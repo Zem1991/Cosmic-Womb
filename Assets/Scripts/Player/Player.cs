@@ -11,12 +11,26 @@ public class Player : MonoBehaviour
 
     [Header("Other references")]
     [SerializeField] private MainCharacter mainCharacter;
-    [SerializeField] private UICrosshair uiCrosshair;
-    //[SerializeField] private Weapons weapons;
+    [SerializeField] private UIHandler uiHandler;
+
+    [Header("Settings")]
+    [SerializeField] private float cameraRange = 12.5F;
 
     [Header("Variables")]
     [SerializeField] private GameObject interactableObj;
-    
+
+    private void OnDrawGizmos()
+    {
+        Vector3 myPos = transform.position;
+        Vector3 chPos = cameraHolder.transform.position;
+
+        Gizmos.color = GizmoColors.cameraRange;
+        Gizmos.DrawWireSphere(myPos, cameraRange);
+
+        Gizmos.color = GizmoColors.cameraPosition;
+        Gizmos.DrawWireSphere(chPos, 0.25F);
+    }
+
     private void FixedUpdate()
     {
         if (mainCharacter)
@@ -28,7 +42,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         playerCursor.ReadCursor(Camera.main);
-
+        
         if (mainCharacter)
         {
             Aim();
@@ -38,6 +52,8 @@ public class Player : MonoBehaviour
             Interaction();
 
             Combat();
+
+            UI();
         }
     }
     
@@ -45,7 +61,7 @@ public class Player : MonoBehaviour
     {
         if (mainCharacter)
         {
-            transform.position = mainCharacter.transform.position;
+            CameraControl();
         }
     }
 
@@ -57,18 +73,24 @@ public class Player : MonoBehaviour
 
     private void Aim()
     {
-        if (uiCrosshair)
+        if (uiHandler)
         {
+            Weapon weapon = mainCharacter.GetWeapon();
+            bool hasBoost = weapon.HasChargeBoost() || weapon.HasAimBoost();
+
             Vector2 screenPosition = playerCursor.GetScreenPosition();
-            float scale = 1F / mainCharacter.GetAimScale();
-            uiCrosshair.UpdateCrosshair(screenPosition, scale);
+            Sprite crosshair = weapon.GetCrosshairSprite();
+            float scale = hasBoost ? mainCharacter.GetWeaponPower() : 0F;
+
+            uiHandler.UpdateCrosshair(screenPosition, crosshair, scale);
         }
     }
 
     private void Rotation()
     {
-        Vector3 cursorPos = playerCursor.GetAimPosition();
-        mainCharacter.RotateTo(cursorPos);
+        Vector3 aimPos = playerCursor.GetAimPosition();
+        //mainCharacter.RotateTo(aimPos);
+        mainCharacter.SetAimPos(aimPos);
     }
     
     private void SearchInteractable()
@@ -96,5 +118,30 @@ public class Player : MonoBehaviour
         if (!previousWeapon && nextWeapon) mainCharacter.SelectNextWeapon();
         if (useWeaponHold) mainCharacter.UseWeapon();
         if (useGrenadeHold) mainCharacter.UseGrenade();
+    }
+
+    private void CameraControl()
+    {
+        Vector3 mcPos = mainCharacter.transform.position;
+        transform.position = mcPos;
+
+        Vector3 aimPos = playerCursor.GetAimPosition();
+        Vector3 cameraPos = (aimPos + mcPos) / 2F;
+
+        Vector3 distance = cameraPos - mcPos;
+        if (distance.magnitude > cameraRange)
+        {
+            Vector3 distanceClamp = Vector3.ClampMagnitude(distance, cameraRange);
+            cameraPos = transform.position + distanceClamp;
+        }
+        cameraHolder.transform.position = cameraPos;
+    }
+
+    private void UI()
+    {
+        if (uiHandler)
+        {
+            uiHandler.UpdatePlayer(mainCharacter);
+        }
     }
 }

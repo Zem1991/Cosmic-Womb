@@ -8,27 +8,46 @@ public partial class Character : MonoBehaviour
     [SerializeField] private bool isDead = false;
     [SerializeField] private int maximumHealth;
     [SerializeField] private int currentHealth;
+    
+    public int GetMaximumHealth()
+    {
+        return maximumHealth;
+    }
 
     public int GetCurrentHealth()
     {
         return currentHealth;
     }
 
-    public int GetMaximumHealth()
+    public bool CheckNoHealth()
     {
-        return maximumHealth;
+        return currentHealth <= 0;
+    }
+    
+    public bool CheckFullHealth()
+    {
+        return currentHealth >= maximumHealth;
+    }
+
+    public void LoseAllHealth()
+    {
+        Debug.LogWarning("LoseAllHealth() was called for character " + characterName);
+        LoseHealth(currentHealth);
     }
 
     public bool LoseHealth(int amount)
     {
         if (amount < 0) amount = 0;
         currentHealth -= amount;
-        //TODO: will use negative health to check for gibbing
+        
+        //TODO: if already dead, will still use negative health to check for gibbing
         if (isDead) return true;
 
         isDead = CheckNoHealth();
-        if (characterController) characterController.detectCollisions = !isDead;
-
+        if (isDead)
+        {
+            Death();
+        }
         if (animator)
         {
             animator.SetBool("Is Dead", isDead);
@@ -37,27 +56,21 @@ public partial class Character : MonoBehaviour
         return isDead;
     }
 
-    public bool CheckNoHealth()
-    {
-        return currentHealth <= 0;
-    }
-
     public bool GainHealth(int amount)
     {
+        //TODO: if already dead, can only come back from specific Revival mechanics
+        if (isDead) return false;
+
         if (amount < 0) amount = 0;
         currentHealth += amount;
+
         if (currentHealth > maximumHealth) currentHealth = maximumHealth;
         return CheckFullHealth();
     }
-
-    public bool CheckFullHealth()
+    
+    protected virtual void Death()
     {
-        return currentHealth >= maximumHealth;
-    }
-
-    public void Die()
-    {
-        Debug.LogWarning("Die() was called for character " + characterName);
-        LoseHealth(currentHealth);
+        //characterController.detectCollisions = false;
+        Destroy(gameObject);
     }
 }

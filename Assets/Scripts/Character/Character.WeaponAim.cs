@@ -5,6 +5,9 @@ using UnityEngine;
 
 public partial class Character : MonoBehaviour
 {
+    //This one will always show in the Inspector the same value 'aimPos' has.
+    private Vector3 aimPosPrevious;
+
     [Header("Weapon Aim")]
     [SerializeField] private Vector3 aimPos;
     [SerializeField] private float aimDisplacement;
@@ -12,8 +15,7 @@ public partial class Character : MonoBehaviour
 
     private void UpdateWeaponAim()
     {
-        Vector3 aimPosBefore = aimPos;
-        aimDisplacement = Vector3.Distance(aimPosBefore, aimPos);
+        aimDisplacement = Vector3.Distance(aimPosPrevious, aimPos);
         aimCurrent -= aimDisplacement;
 
         float recovery = weapon.GetAimRecovery();
@@ -21,11 +23,12 @@ public partial class Character : MonoBehaviour
         aimCurrent += recoveryPerFrame;
 
         AimClamp();
+        aimPosPrevious = aimPos;
     }
 
     private void AimClamp()
     {
-        float aimMin = weapon.GetAimMin();
+        float aimMin = 0F;
         float aimMax = weapon.GetAimMax();
         aimCurrent = Mathf.Clamp(aimCurrent, aimMin, aimMax);
     }
@@ -38,10 +41,11 @@ public partial class Character : MonoBehaviour
 
     public void SetAimPos(Vector3 aimPos)
     {
+        aimPosPrevious = this.aimPos;
         this.aimPos = aimPos;
     }
 
-    public float GetAimScale()
+    public float GetAimBoost()
     {
         //float aimMin = weapon.GetAimMin();
         float aimMax = weapon.GetAimMax();

@@ -35,7 +35,7 @@ public partial class Character : MonoBehaviour
     }
     #endregion
 
-    #region Weapon and Grenade
+    #region Weapon
     public Weapon GetWeapon()
     {
         return weapon;
@@ -51,6 +51,22 @@ public partial class Character : MonoBehaviour
         Shoot();
         return true;
     }
+    public float GetWeaponPower()
+    {
+        float charge = 0F;
+        if (weapon.HasChargeBoost())
+        {
+            //TODO: Nothing yet
+        }
+        else if (weapon.HasAimBoost())
+        {
+            charge += GetAimBoost();
+        }
+        return charge;
+    }
+    #endregion
+
+    #region Grenade
     public void UseGrenade()
     {
         throw new NotImplementedException();

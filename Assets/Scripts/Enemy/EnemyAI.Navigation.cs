@@ -38,7 +38,8 @@ public partial class EnemyAI : MonoBehaviour
             }
         }
 
-        character.RotateTo(navPathFirstPos);
+        //character.RotateTo(navPathFirstPos);
+        character.SetAimPos(navPathFirstPos);
         character.MoveAt(navPathFirstDir);
     }
 

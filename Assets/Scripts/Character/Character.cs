@@ -21,9 +21,13 @@ public partial class Character : MonoBehaviour
 
     private void Update()
     {
+        UpdateRotation();
         UpdateCombat();
+
         UpdateWeaponAim();
         UpdateWeaponFire();
+
+        UpdateCanvas();
     }
 
     #region Identification

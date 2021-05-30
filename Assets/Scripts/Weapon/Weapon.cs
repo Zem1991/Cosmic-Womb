@@ -1,18 +1,26 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    [Header("Identification")]
+    [SerializeField] private string weaponName;
+    [SerializeField] private Sprite weaponSprite;
+    [SerializeField] private Sprite crosshairSprite;
+
     [Header("Projectile")]
     [SerializeField] private Projectile projectile;
 
+    //[Header("Charging")]
+
     [Header("Aiming")]
-    [SerializeField] private float aimMin = 10;
-    [SerializeField] private float aimMax = 10;
-    [SerializeField] private float aimRecovery = 10;
-    [SerializeField] private float aimDecreaseOnFire = 10;
-    [SerializeField] private float aimDamageScale = 1;
+    //[SerializeField] private float aimMin = 10;
+    [SerializeField] private float aimMax = 0;
+    [SerializeField] private float aimRecovery = 0;
+    [SerializeField] private float aimDecreaseOnFire = 0;
+    //[SerializeField] private float aimDamageScale = 1;
 
     [Header("Firing")]
     [SerializeField] private float attackDelay = 0.4F;
@@ -22,6 +30,17 @@ public class Weapon : MonoBehaviour
     [SerializeField] private int burstShots = 1;
     [SerializeField] private float effectiveRange = 15F;
 
+    #region Identification
+    public Sprite GetWeaponSprite()
+    {
+        return weaponSprite;
+    }
+    public Sprite GetCrosshairSprite()
+    {
+        return crosshairSprite;
+    }
+    #endregion
+
     #region Projectile
     public Projectile GetProjectile()
     {
@@ -29,11 +48,23 @@ public class Weapon : MonoBehaviour
     }
     #endregion
 
-    #region Firing
-    public float GetAimMin()
+    #region Charging
+    public bool HasChargeBoost()
     {
-        return aimMin;
+        //TODO: Plasma Rifle - weapon with "button mash for more shots or hold for bigger projectile" mechanic
+        return false;
     }
+    #endregion
+
+    #region Aiming
+    public bool HasAimBoost()
+    {
+        return aimMax > 0;
+    }
+    //public float GetAimMin()
+    //{
+    //    return aimMin;
+    //}
     public float GetAimMax()
     {
         return aimMax;
@@ -46,10 +77,10 @@ public class Weapon : MonoBehaviour
     {
         return aimDecreaseOnFire;
     }
-    public float GetAimDamageScale()
-    {
-        return aimDamageScale;
-    }
+    //public float GetAimDamageScale()
+    //{
+    //    return aimDamageScale;
+    //}
     #endregion
 
     #region Firing

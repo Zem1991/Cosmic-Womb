@@ -43,8 +43,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e568a1121d1c2a54c9ae4128d03f7fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponName: Machine Gun
+  weaponSprite: {fileID: 21300000, guid: a7541ffa725d63b41a3ee8ecda229d39, type: 3}
+  crosshairSprite: {fileID: 21300000, guid: 5d5317e0c942899468b29f0e5f471fb7, type: 3}
   projectile: {fileID: 895071195931463232, guid: e5906ee788563b74ba5cc67ed30eaaf8,
     type: 3}
+  aimMin: 0
+  aimMax: 0
+  aimRecovery: 0
+  aimDecreaseOnFire: 0
+  aimDamageScale: 0
   attackDelay: 0.08
   attackShots: 1
   attackArc: 0

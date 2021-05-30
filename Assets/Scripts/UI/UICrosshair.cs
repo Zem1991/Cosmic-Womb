@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UICrosshair : MonoBehaviour
 {
-    public void UpdateCrosshair(Vector2 screenPosition, float scale)
+    [SerializeField] private Image crosshair;
+    [SerializeField] private Image charge;
+
+    public void ManualUpdate(Vector2 screenPosition, Sprite crosshairImg, float chargeAmount)
     {
         transform.position = screenPosition;
-        transform.localScale = Vector3.one * scale;
+        crosshair.sprite = crosshairImg;
+        charge.fillAmount = chargeAmount;
     }
 }

@@ -19,9 +19,14 @@ public partial class Projectile : MonoBehaviour
         this.weapon = weapon;
         spawnPosition = transform.position;
 
-        float aimScale = shooter.GetAimScale();
-        aimScale *= weapon.GetAimDamageScale();
-        transform.localScale *= aimScale;
+        bool hasBoost = weapon.HasChargeBoost() || weapon.HasAimBoost();
+        float aimScale = hasBoost ? shooter.GetWeaponPower() : 1F;
+        if (aimScale < 1)
+        {
+            aimScale *= 0.8F;
+            aimScale += 0.2F;
+        }
+        transform.localScale = Vector3.one * aimScale;
         damage = Mathf.RoundToInt(damage * aimScale);
     }
 
@@ -58,7 +63,7 @@ public partial class Projectile : MonoBehaviour
         ContactPoint contact = collision.contacts[0];
         Vector3 point = contact.point;
 
-        Character spanwerChar = shooter.GetComponent<Character>();
+        Character spanwerChar = shooter?.GetComponent<Character>();
         GameObject hitObj = collision.gameObject;
         Vector3 hitNormal = collision.contacts[0].normal;
 

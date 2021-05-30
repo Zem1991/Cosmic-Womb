@@ -43,13 +43,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e568a1121d1c2a54c9ae4128d03f7fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponName: Rocket Launcher
+  weaponSprite: {fileID: 21300000, guid: f06ba24a2d19a5142b556c58f5c3a508, type: 3}
+  crosshairSprite: {fileID: 21300000, guid: 8c3eace8a72a3974590ef97131da36cd, type: 3}
   projectile: {fileID: 895071195931463232, guid: bb76b8ff0be1ec646be1ea7c1ff26f6d,
     type: 3}
-  aimMin: 10
-  aimMax: 10
-  aimRecovery: 10
-  aimDecreaseOnFire: 10
-  aimDamageScale: 1
+  aimMin: 0
+  aimMax: 0
+  aimRecovery: 0
+  aimDecreaseOnFire: 0
+  aimDamageScale: 0
   attackDelay: 1.5
   attackShots: 1
   attackArc: 0
