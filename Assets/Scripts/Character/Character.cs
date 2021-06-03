@@ -19,13 +19,18 @@ public partial class Character : MonoBehaviour
         Gizmos.DrawWireSphere(projSpawn, 0.5F);
     }
 
+    private void FixedUpdate()
+    {
+        UpdateWeaponFire();
+    }
+
     private void Update()
     {
         UpdateRotation();
         UpdateCombat();
 
         UpdateWeaponAim();
-        UpdateWeaponFire();
+        //UpdateWeaponFire();
 
         UpdateCanvas();
     }

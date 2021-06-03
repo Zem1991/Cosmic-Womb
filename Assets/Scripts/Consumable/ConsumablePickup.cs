@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponPickup : Pickup
+public class ConsumablePickup : Pickup
 {
-    [SerializeField] private Weapon weaponPrefab;
-    [SerializeField] private int ammo;
+    [SerializeField] private Consumable consumablePrefab;
+    [SerializeField] private int amount;
 
     private void OnTriggerEnter(Collider other)
     {
         MainCharacter mainCharacter = other.GetComponent<MainCharacter>();
         if (mainCharacter)
         {
-            bool added = mainCharacter.AddWeapon(weaponPrefab);
+            bool added = mainCharacter.AddConsumable(consumablePrefab, amount);
             if (added) Destroy(gameObject);
         }
     }

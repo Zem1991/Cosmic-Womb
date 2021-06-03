@@ -263,6 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ec65008602dd940a685aba3274fdae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hpBarFill: {fileID: 0}
   projectileSpawnOffset: {x: 0, y: 1.5, z: 1}
   targetablePosition: {x: 0, y: 0, z: 0}
   projectileSpawnPoint: {x: 0, y: 0, z: 0}
@@ -276,10 +277,15 @@ MonoBehaviour:
   currentHealth: 100
   interactableObj: {fileID: 0}
   moveSpeed: 8
-  aim: 0
+  aimPos: {x: 0, y: 0, z: 0}
+  aimDisplacement: 0
+  aimCurrent: 0
   attackDelayRemaining: 0
   burstDelayRemaining: 0
   burstShotsRemaining: 0
+  grenadeCounter: 2
+  keyCounter: 0
+  medalCounter: 0
   weaponsHolder: {fileID: 3617564675017764768}
   weaponList:
   - {fileID: 5393540603304009328}

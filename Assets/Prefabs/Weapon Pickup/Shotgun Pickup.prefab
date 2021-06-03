@@ -27,7 +27,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6399938353075266662}
+  - {fileID: 571853098252499125}
   - {fileID: 6399938352811335094}
   m_Father: {fileID: 6399938352992797065}
   m_RootOrder: 0
@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 6399938352811335097}
   m_LocalRotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.4, z: 1.2}
+  m_LocalScale: {x: 0.4, y: 0.6, z: 1.6}
   m_Children: []
   m_Father: {fileID: 6399938352750342447}
   m_RootOrder: 1
@@ -119,10 +119,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6399938352992797065}
   - component: {fileID: 6399938352992797062}
-  - component: {fileID: 6399938352992797060}
+  - component: {fileID: -1167908058078545618}
   - component: {fileID: 6399938352992797063}
   m_Layer: 11
-  m_Name: Rocket Launcher Pickup
+  m_Name: Shotgun Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,10 +155,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7369a334629c1d49a243648edfdbf95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPrefab: {fileID: 2910704036538063193, guid: 7ae84d06389086f45b74ba2d03620593,
+  weaponPrefab: {fileID: 2910704036538063193, guid: 01bf67fc0fb486842b59f4e8ab9ee444,
     type: 3}
---- !u!135 &6399938352992797060
-SphereCollider:
+--- !u!65 &-1167908058078545618
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -168,7 +168,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6399938352992797063
 MonoBehaviour:
@@ -184,7 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotation: {x: 0, y: 30, z: 0}
   speed: 5
---- !u!1 &6399938353075266665
+--- !u!1 &6858054040776168937
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -192,45 +192,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6399938353075266662}
-  - component: {fileID: 6399938353075266660}
-  - component: {fileID: 6399938353075266663}
+  - component: {fileID: 571853098252499125}
+  - component: {fileID: 5441306537327143411}
+  - component: {fileID: 2160180819880713304}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6399938353075266662
+--- !u!4 &571853098252499125
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6399938353075266665}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 6858054040776168937}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6399938352750342447}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &6399938353075266660
+--- !u!33 &5441306537327143411
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6399938353075266665}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &6399938353075266663
+  m_GameObject: {fileID: 6858054040776168937}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &2160180819880713304
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6399938353075266665}
+  m_GameObject: {fileID: 6858054040776168937}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -241,7 +241,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1b5be7d0ef351c14eb74e15ab3b2e7f8, type: 2}
+  - {fileID: 2100000, guid: 076b2e426f209e0429e87250838455bf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

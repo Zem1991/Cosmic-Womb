@@ -5,9 +5,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Self references")]
-    [SerializeField] private PlayerCursor playerCursor;
     [SerializeField] private InputReader inputReader;
     [SerializeField] private Transform cameraHolder;
+    [SerializeField] private PlayerCursor playerCursor;
+    [SerializeField] private PlayerAim playerAim;
 
     [Header("Other references")]
     [SerializeField] private MainCharacter mainCharacter;
@@ -41,18 +42,14 @@ public class Player : MonoBehaviour
     
     private void Update()
     {
-        playerCursor.ReadCursor(Camera.main);
-        
         if (mainCharacter)
         {
-            Aim();
+            Cursor();
             Rotation();
-
+            Aim();
             SearchInteractable();
             Interaction();
-
             Combat();
-
             UI();
         }
     }
@@ -71,8 +68,26 @@ public class Player : MonoBehaviour
         mainCharacter.MoveAt(moveDir);
     }
 
+    private void Cursor()
+    {
+        playerCursor.UpdateCursor(Camera.main);
+    }
+
+    private void Rotation()
+    {
+        Vector3 aimPos = playerAim.GetAimPosition();
+        //mainCharacter.RotateTo(aimPos);
+        mainCharacter.SetAimPos(aimPos);
+    }
+
     private void Aim()
     {
+        float weaponRange = mainCharacter.GetWeapon().GetEffectiveRange();
+        Ray screenRay = playerCursor.GetScreenRay();
+        Vector3 aimStart = mainCharacter.GetProjectileSpawnPoint();
+        Vector3 aimEnd = aimStart + (mainCharacter.GetForwardDirection() * weaponRange);
+        playerAim.UpdateAim(screenRay, aimStart, aimEnd);
+
         if (uiHandler)
         {
             Weapon weapon = mainCharacter.GetWeapon();
@@ -84,13 +99,6 @@ public class Player : MonoBehaviour
 
             uiHandler.UpdateCrosshair(screenPosition, crosshair, scale);
         }
-    }
-
-    private void Rotation()
-    {
-        Vector3 aimPos = playerCursor.GetAimPosition();
-        //mainCharacter.RotateTo(aimPos);
-        mainCharacter.SetAimPos(aimPos);
     }
     
     private void SearchInteractable()
@@ -120,12 +128,20 @@ public class Player : MonoBehaviour
         if (useGrenadeHold) mainCharacter.UseGrenade();
     }
 
+    private void UI()
+    {
+        if (uiHandler)
+        {
+            uiHandler.UpdatePlayer(mainCharacter);
+        }
+    }
+
     private void CameraControl()
     {
         Vector3 mcPos = mainCharacter.transform.position;
         transform.position = mcPos;
 
-        Vector3 aimPos = playerCursor.GetAimPosition();
+        Vector3 aimPos = playerAim.GetAimPosition();
         Vector3 cameraPos = (aimPos + mcPos) / 2F;
 
         Vector3 distance = cameraPos - mcPos;
@@ -135,13 +151,5 @@ public class Player : MonoBehaviour
             cameraPos = transform.position + distanceClamp;
         }
         cameraHolder.transform.position = cameraPos;
-    }
-
-    private void UI()
-    {
-        if (uiHandler)
-        {
-            uiHandler.UpdatePlayer(mainCharacter);
-        }
     }
 }

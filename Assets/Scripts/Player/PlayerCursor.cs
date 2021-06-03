@@ -6,24 +6,15 @@ public class PlayerCursor : MonoBehaviour
 {
     [Header("Self references")]
     [SerializeField] private Transform sceneCursor;
-    [SerializeField] private Transform aimCursor;
-
-    [Header("Settings")]
-    [SerializeField] private float aimHeight;
 
     [Header("Screen")]
     [SerializeField] private Vector2 screenPos;
     [SerializeField] private Vector2 edgeCheck;
+    [SerializeField] private Ray screenRay;
 
     [Header("Scene")]
-    [SerializeField] private Ray screenRay;
     [SerializeField] private bool hasScreenRayHit;
     [SerializeField] private Vector3 scenePos;
-
-    [Header("Aim")]
-    [SerializeField] private Vector3 aimPos;
-    [SerializeField] private float aimDisplacement;
-    //[SerializeField] private Vector3 aimTargetPos;
 
     #region Screen
     public Vector2 GetScreenPosition()
@@ -33,6 +24,10 @@ public class PlayerCursor : MonoBehaviour
     public Vector2 GetEdgeCheck()
     {
         return edgeCheck;
+    }
+    public Ray GetScreenRay()
+    {
+        return screenRay;
     }
     private void ReadCursorScreen()
     {
@@ -60,35 +55,11 @@ public class PlayerCursor : MonoBehaviour
     }
     #endregion
 
-    #region Aim
-    public Vector3 GetAimPosition()
-    {
-        return aimPos;
-    }
-    private void ReadCursorAim()
-    {
-        Vector3 aimPosBefore = aimPos;
-
-        Plane xzPlane = new Plane(Vector3.down, aimHeight);
-        xzPlane.Raycast(screenRay, out float planeRaycastPoint);
-        aimPos = screenRay.GetPoint(planeRaycastPoint);
-
-        aimDisplacement = Vector3.Distance(aimPosBefore, aimPos);
-    }
-    #endregion
-
-    public void ReadCursor(Camera camera)
+    public void UpdateCursor(Camera camera)
     {
         ReadCursorScreen();
         ReadCursorScene(camera);
-        ReadCursorAim();
 
-        sceneCursor.gameObject.SetActive(hasScreenRayHit);
         sceneCursor.transform.position = scenePos;
-
-        aimCursor.gameObject.SetActive(hasScreenRayHit);
-        aimCursor.transform.position = aimPos;
-
-        //if (!hasScreenRayHit) return;
     }
 }

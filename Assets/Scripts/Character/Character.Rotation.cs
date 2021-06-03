@@ -23,6 +23,11 @@ public partial class Character : MonoBehaviour
         transform.LookAt(targetPos);
     }
 
+    public Vector3 GetForwardDirection()
+    {
+        return transform.forward;
+    }
+
     //public void RotateTo(Vector3 position)
     //{
     //    Vector3 myPos = transform.position;

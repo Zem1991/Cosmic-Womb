@@ -46,13 +46,14 @@ MonoBehaviour:
   weaponName: Shotgun
   weaponSprite: {fileID: 21300000, guid: b085a510a279bf24f93356d176397143, type: 3}
   crosshairSprite: {fileID: 21300000, guid: df2325884a828cd40acd817a55cc7f64, type: 3}
+  hasInfiniteAmmo: 0
+  ammunitionCurrent: 0
+  ammunitionMax: 50
   projectile: {fileID: 895071195931463232, guid: 39d8b575f00d17144961b56f6a0f6f29,
     type: 3}
-  aimMin: 0
   aimMax: 0
   aimRecovery: 0
   aimDecreaseOnFire: 0
-  aimDamageScale: 0
   attackDelay: 0.75
   attackShots: 12
   attackArc: 30

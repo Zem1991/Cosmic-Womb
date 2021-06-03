@@ -10,6 +10,11 @@ public class Weapon : MonoBehaviour
     [SerializeField] private Sprite weaponSprite;
     [SerializeField] private Sprite crosshairSprite;
 
+    [Header("Ammunition")]
+    [SerializeField] private bool hasInfiniteAmmo;
+    [SerializeField] private int ammunitionCurrent;
+    [SerializeField] private int ammunitionMax;
+
     [Header("Projectile")]
     [SerializeField] private Projectile projectile;
 
@@ -31,6 +36,10 @@ public class Weapon : MonoBehaviour
     [SerializeField] private float effectiveRange = 15F;
 
     #region Identification
+    public string GetWeaponName()
+    {
+        return weaponName;
+    }
     public Sprite GetWeaponSprite()
     {
         return weaponSprite;
@@ -38,6 +47,21 @@ public class Weapon : MonoBehaviour
     public Sprite GetCrosshairSprite()
     {
         return crosshairSprite;
+    }
+    #endregion
+
+    #region Ammunition
+    public bool HasInfiniteAmmo()
+    {
+        return hasInfiniteAmmo;
+    }
+    public int GetAmmunitionCurrent()
+    {
+        return ammunitionCurrent;
+    }
+    public int GetAmmunitionMax()
+    {
+        return ammunitionMax;
     }
     #endregion
 

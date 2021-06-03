@@ -6,31 +6,47 @@ using UnityEngine.UI;
 
 public class UIPanel_Player : MonoBehaviour
 {
-    [Header("Elements")]
-    //[SerializeField] private UISelectionItem selectedItem;
-    //[SerializeField] private UISelectionItem selectedSpell;
-    //[SerializeField] private Image mpFill;
-    [SerializeField] private Image hpFill;
-    [SerializeField] private Image weapon;
+    [Header("Image")]
+    [SerializeField] private Image hpBarFillImage;
+    [SerializeField] private Image weaponImage;
+
+    [Header("Text")]
+    [SerializeField] private Text weaponAmmoText;
+    [SerializeField] private Text grenadeCounterText;
+    [SerializeField] private Text keyCounterText;
+    [SerializeField] private Text medalCounterText;
 
     public void ManualUpdate(MainCharacter mainCharacter)
     {
         if (mainCharacter)
         {
-            //AbstractItem item = mainCharacter.GetInventory().GetSelectedItem();
-            //selectedItem.Set(item);
-
-            //AbstractSpell spell = mainCharacter.GetGrimoire().GetSelectedSpell();
-            //selectedSpell.Set(spell);
-
-            //float mpFillAmount = 1F * mainCharacter.GetCurrentMana() / mainCharacter.GetMaximumMana();
-            //mpFill.fillAmount = mpFillAmount;
+            //int maxConsumables = MainCharacter.MAX_CONSUMABLES;
 
             float hpFillAmount = 1F * mainCharacter.GetCurrentHealth() / mainCharacter.GetMaximumHealth();
-            hpFill.fillAmount = hpFillAmount;
+            hpBarFillImage.fillAmount = hpFillAmount;
 
             Weapon mcWeapon = mainCharacter.GetWeapon();
-            weapon.sprite = mcWeapon.GetWeaponSprite();
+            weaponImage.sprite = mcWeapon.GetWeaponSprite();
+
+            if (mcWeapon.HasInfiniteAmmo())
+            {
+                weaponAmmoText.text = "∞";
+            }
+            else
+            {
+                int ammunitionCurrent = mcWeapon.GetAmmunitionCurrent();
+                int ammunitionMax = mcWeapon.GetAmmunitionMax();
+                weaponAmmoText.text = ammunitionCurrent + " / " + ammunitionMax;
+            }
+
+            int grenadeCounter = mainCharacter.GetGrenadeCounter();
+            grenadeCounterText.text = grenadeCounter.ToString();
+
+            int keyCounter = mainCharacter.GetKeyCounter();
+            keyCounterText.text = keyCounter.ToString();
+
+            int medalCounter = mainCharacter.GetMedalCounter();
+            medalCounterText.text = medalCounter.ToString();
         }
         gameObject.SetActive(mainCharacter);
     }

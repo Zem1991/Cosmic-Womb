@@ -15,7 +15,7 @@ public partial class EnemyAI : MonoBehaviour
         Gizmos.DrawWireSphere(myPos, sightRange);
 
         float halfSightRadius = sightRadius / 2F;
-        Vector3 fovMidPos = transform.forward * sightRange;
+        Vector3 fovMidPos = character.GetForwardDirection() * sightRange;
         Vector3 fovLeftPos = Quaternion.Euler(0, -halfSightRadius, 0) * fovMidPos;
         Vector3 fovRightPos = Quaternion.Euler(0, halfSightRadius, 0) * fovMidPos;
 

@@ -50,7 +50,7 @@ public partial class Character : MonoBehaviour
     {
         if (burstDelayRemaining > 0)
         {
-            burstDelayRemaining -= Time.deltaTime;
+            burstDelayRemaining -= Time.fixedDeltaTime;
         }
         else if (burstShotsRemaining > 0)
         {
@@ -66,7 +66,7 @@ public partial class Character : MonoBehaviour
         }
         if (attackDelayRemaining > 0)
         {
-            attackDelayRemaining -= Time.deltaTime;
+            attackDelayRemaining -= Time.fixedDeltaTime;
         }
     }
 }

@@ -46,13 +46,14 @@ MonoBehaviour:
   weaponName: Assault Rifle
   weaponSprite: {fileID: 21300000, guid: dcf148ea7c4185243898b0d09eeea4c0, type: 3}
   crosshairSprite: {fileID: 21300000, guid: d182beaaa0f30434ab0092c9acd6ab7a, type: 3}
+  hasInfiniteAmmo: 1
+  ammunitionCurrent: 0
+  ammunitionMax: 0
   projectile: {fileID: 895071195931463232, guid: dfecaca2c324ee749b549e2fa083abe0,
     type: 3}
-  aimMin: 0
   aimMax: 0
   aimRecovery: 0
   aimDecreaseOnFire: 0
-  aimDamageScale: 0
   attackDelay: 0.4
   attackShots: 1
   attackArc: 0

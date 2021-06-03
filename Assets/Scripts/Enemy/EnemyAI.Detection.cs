@@ -26,7 +26,7 @@ public partial class EnemyAI : MonoBehaviour
         Vector3 rayDir = (rayTo - rayFrom).normalized;
         Ray ray = new Ray(rayFrom, rayDir);
 
-        float angle = Vector3.Angle(transform.forward, rayDir);
+        float angle = Vector3.Angle(character.GetForwardDirection(), rayDir);
         angle = Mathf.Abs(angle);
         float halfSightRadius = sightRadius / 2F;
 
