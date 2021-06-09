@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerCursor : MonoBehaviour
 {
     [Header("Self references")]
-    [SerializeField] private Transform sceneCursor;
+    [SerializeField] private Transform scenePointer;
 
     [Header("Screen")]
     [SerializeField] private Vector2 screenPos;
@@ -60,6 +60,6 @@ public class PlayerCursor : MonoBehaviour
         ReadCursorScreen();
         ReadCursorScene(camera);
 
-        sceneCursor.transform.position = scenePos;
+        scenePointer.transform.position = scenePos;
     }
 }

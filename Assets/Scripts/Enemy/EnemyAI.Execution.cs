@@ -17,7 +17,7 @@ public partial class EnemyAI : MonoBehaviour
             case AIDecision.ENGAGE_ENEMY:
                 break;
             case AIDecision.ATTACK_ENEMY:
-                character.UseWeapon();
+                character.UseWeaponHold();
                 break;
             default:
                 break;

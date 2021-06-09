@@ -37,11 +37,11 @@ public partial class Character : MonoBehaviour
 
     public bool LoseHealth(int amount)
     {
-        if (amount < 0) amount = 0;
+        if (amount <= 0) return false;
         currentHealth -= amount;
         
         //TODO: if already dead, will still use negative health to check for gibbing
-        if (isDead) return true;
+        if (isDead) return false;
 
         isDead = CheckNoHealth();
         if (isDead)
@@ -60,12 +60,11 @@ public partial class Character : MonoBehaviour
     {
         //TODO: if already dead, can only come back from specific Revival mechanics
         if (isDead) return false;
+        if (amount <= 0) return false;
 
-        if (amount < 0) amount = 0;
         currentHealth += amount;
-
         if (currentHealth > maximumHealth) currentHealth = maximumHealth;
-        return CheckFullHealth();
+        return true;
     }
     
     protected virtual void Death()

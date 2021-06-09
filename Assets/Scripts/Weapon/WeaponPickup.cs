@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponPickup : Pickup
+public class WeaponPickup : AbstractPickup
 {
     [SerializeField] private Weapon weaponPrefab;
     [SerializeField] private int ammo;

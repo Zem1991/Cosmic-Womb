@@ -9,25 +9,29 @@ public partial class Projectile : MonoBehaviour
     [SerializeField] private Collider _collider;
     [SerializeField] private Rigidbody _rigidbody;
 
-    [Header("Runtime")]
+    [Header("Initialization")]
+    [SerializeField] private Vector3 spawnPosition;
     [SerializeField] private Character shooter;
     [SerializeField] private Weapon weapon;
 
     public void Initialize(Character shooter, Weapon weapon)
     {
+        spawnPosition = transform.position;
         this.shooter = shooter;
         this.weapon = weapon;
-        spawnPosition = transform.position;
 
-        bool hasBoost = weapon.HasChargeBoost() || weapon.HasAimBoost();
-        float aimScale = hasBoost ? shooter.GetWeaponPower() : 1F;
-        if (aimScale < 1)
+        if (weapon)
         {
-            aimScale *= 0.8F;
-            aimScale += 0.2F;
+            bool hasBoost = weapon.HasChargeBoost() || weapon.HasAimBoost();
+            float aimScale = hasBoost ? shooter.GetWeaponPower() : 1F;
+            if (aimScale < 1)
+            {
+                aimScale *= 0.8F;
+                aimScale += 0.2F;
+            }
+            transform.localScale = Vector3.one * aimScale;
+            impactDamage = Mathf.RoundToInt(impactDamage * aimScale);
         }
-        transform.localScale = Vector3.one * aimScale;
-        damage = Mathf.RoundToInt(damage * aimScale);
     }
 
     //private virtual void OnDrawGizmos()
@@ -50,7 +54,7 @@ public partial class Projectile : MonoBehaviour
     protected virtual void Update()
     {
         UpdateGuidance();
-        UpdateDuration();
+        UpdateDurationAndDistance();
     }
 
     private void FixedUpdate()
@@ -60,46 +64,8 @@ public partial class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        ContactPoint contact = collision.contacts[0];
-        Vector3 point = contact.point;
-
-        Character spanwerChar = shooter?.GetComponent<Character>();
         GameObject hitObj = collision.gameObject;
-        Vector3 hitNormal = collision.contacts[0].normal;
-
-        if (CheckDeflection(hitObj, hitNormal))
-        {
-            //hitNormal.y = 0;
-            //hitNormal.Normalize();
-            ////Debug.Log("hitNormal: " + hitNormal);
-
-            //float angle = Mathf.Atan2(hitNormal.z, hitNormal.x);
-            //angle *= Mathf.Rad2Deg;
-            //angle = Helper.RoundToMultiple(angle, 45F);
-            //Debug.Log("angle: " + angle);
-
-            //Vector3 reflect = Vector3.Reflect(transform.forward, hitNormal);
-            //transform.rotation = Quaternion.LookRotation(reflect);
-
-            ////transform.Rotate(Vector3.up, angle);
-
-            //Vector3 eulerMulitple = transform.eulerAngles;
-            //eulerMulitple.y = Helper.RoundToMultiple(eulerMulitple.y, 45F);
-            ////eulerMulitple.y = Helper.RoundToMultiple(eulerMulitple.y, 22.5F);
-            //transform.eulerAngles = eulerMulitple;
-            //return;
-        }
-
-        Character hitChar = hitObj.GetComponent<Character>();
-        if (hitChar) hitChar.LoseHealth(damage);
-
-        if (CanExplode())
-        {
-            Explode();
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Impact(hitObj);
+        PostImpact();
     }
 }

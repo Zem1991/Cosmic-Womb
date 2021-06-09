@@ -48,14 +48,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 3150716332543053750}
   _rigidbody: {fileID: 3842448582705695908}
-  damage: 7
-  speed: 15
-  homingSpeed: 0
+  spawnPosition: {x: 0, y: 0, z: 0}
   shooter: {fileID: 0}
   weapon: {fileID: 0}
-  spawnPosition: {x: 0, y: 0, z: 0}
-  travelDistance: 0
+  durationMax: 5
   durationCurrent: 0
+  distanceCurrent: 0
+  explosionPrefab: {fileID: 0}
+  explosionRadius: 0
+  explosionGrowth: 0
+  explosionDamage: 0
+  explodeOnImpact: 0
+  explodeOnTimer: 0
+  guidanceSpeed: 0
+  impactDamage: 8
+  destroyAfterImpact: 1
+  speed: 15
 --- !u!136 &3150716332543053750
 CapsuleCollider:
   m_ObjectHideFlags: 0

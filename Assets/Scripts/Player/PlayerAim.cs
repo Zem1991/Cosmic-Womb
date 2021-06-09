@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerAim : MonoBehaviour
 {
     [Header("Self references")]
-    [SerializeField] private Transform aimCursor;
-    [SerializeField] private LineRenderer aimLine;
+    [SerializeField] private Transform aimPointer;
+    [SerializeField] private LineRenderer weaponTrajectory;
+    [SerializeField] private LineRenderer grenadeTrajectory;
 
     [Header("Settings")]
     [SerializeField] private float aimHeight;
@@ -20,8 +21,8 @@ public class PlayerAim : MonoBehaviour
     {
         ReadCursorAim(screenRay);
         Vector3[] positions = { aimStart, aimEnd };
-        aimCursor.transform.position = aimPos;
-        aimLine.SetPositions(positions);
+        aimPointer.transform.position = aimPos;
+        weaponTrajectory.SetPositions(positions);
     }
 
     #region Aim

@@ -4,69 +4,78 @@ using UnityEngine;
 
 public partial class MainCharacter : Character
 {
-    public const int MAX_CONSUMABLES = 99;
 
     [Header("Consumables")]
-    [SerializeField] private int grenadeCounter;
-    [SerializeField] private int keyCounter;
-    [SerializeField] private int medalCounter;
+    [SerializeField] private Transform consumablesHolder;
+    [SerializeField] private List<Consumable> consumableList = new List<Consumable>();
+    [SerializeField] private Consumable grenadeConsumable;
+    [SerializeField] private Consumable keyConsumable;
+    [SerializeField] private Consumable medalConsumable;
+
+    //[SerializeField] private int grenadeCounter;
+    //[SerializeField] private int keyCounter;
+    //[SerializeField] private int medalCounter;
 
     public int GetGrenadeCounter()
     {
-        return grenadeCounter;
+        return grenadeConsumable.GetQuantity();
     }
 
     public int GetKeyCounter()
     {
-        return keyCounter;
+        return keyConsumable.GetQuantity();
     }
 
     public int GetMedalCounter()
     {
-        return medalCounter;
+        return medalConsumable.GetQuantity();
     }
 
     public bool AddConsumable(Consumable consumablePrefab, int amount = 1)
     {
         if (amount <= 0) return false;
-        ConsumableType consumableType = consumablePrefab.GetConsumableType();
-        switch (consumableType)
+
+        Consumable listedCons = null;
+        foreach (Consumable forCons in consumableList)
         {
-            case ConsumableType.GRENADE:
-                if (grenadeCounter >= MAX_CONSUMABLES) return false;
-                grenadeCounter = Mathf.Clamp(grenadeCounter + amount, 0, MAX_CONSUMABLES);
-                break;
-            case ConsumableType.KEY:
-                if (keyCounter >= MAX_CONSUMABLES) return false;
-                keyCounter = Mathf.Clamp(keyCounter + amount, 0, MAX_CONSUMABLES);
-                break;
-            case ConsumableType.MEDAL:
-                if (medalCounter >= MAX_CONSUMABLES) return false;
-                medalCounter = Mathf.Clamp(medalCounter + amount, 0, MAX_CONSUMABLES);
-                break;
+            if (forCons.GetConsumableType() != consumablePrefab.GetConsumableType()) continue;
+            listedCons = forCons;
+            break;
         }
-        return true;
+
+        if (!listedCons)
+        {
+            listedCons = Instantiate(consumablePrefab, consumablesHolder);
+            bool success = listedCons.Add(amount);
+            if (success)
+            {
+                consumableList.Add(listedCons);
+            }
+            else
+            {
+                Destroy(listedCons.gameObject);
+            }
+            return success;
+        }
+        else
+        {
+            return listedCons.Add(amount);
+        }
     }
 
-    public bool SubtractConsumable(ConsumableType consumableType, int amount = 1)
+    public bool SubtractConsumable(Consumable consumablePrefab, int amount = 1)
     {
         if (amount <= 0) return false;
 
-        switch (consumableType)
+        Consumable listedCons = null;
+        foreach (Consumable forCons in consumableList)
         {
-            case ConsumableType.GRENADE:
-                if (grenadeCounter - amount < 0) return false;
-                grenadeCounter = Mathf.Clamp(grenadeCounter - amount, 0, MAX_CONSUMABLES);
-                break;
-            case ConsumableType.KEY:
-                if (keyCounter - amount < 0) return false;
-                keyCounter = Mathf.Clamp(keyCounter - amount, 0, MAX_CONSUMABLES);
-                break;
-            case ConsumableType.MEDAL:
-                if (medalCounter - amount < 0) return false;
-                medalCounter = Mathf.Clamp(medalCounter - amount, 0, MAX_CONSUMABLES);
-                break;
+            if (forCons.GetConsumableType() != consumablePrefab.GetConsumableType()) continue;
+            listedCons = forCons;
+            break;
         }
-        return true;
+
+        if (!listedCons) return false;
+        return listedCons.Subtract(amount);
     }
 }

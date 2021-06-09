@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
     {
         if (interactableObj == null) return;
         IInteractable interactable = interactableObj.GetComponent<IInteractable>();
-        if (inputReader.Interact()) mainCharacter.Interact(interactable);
+        if (inputReader.InteractPress()) mainCharacter.Interact(interactable);
         else if (inputReader.InteractHold()) mainCharacter.InteractContinuous(interactable);
     }
     
@@ -119,13 +119,22 @@ public class Player : MonoBehaviour
     {
         bool previousWeapon = inputReader.PreviousWeapon();
         bool nextWeapon = inputReader.NextWeapon();
+        bool useWeaponPress = inputReader.UseWeaponPress();
         bool useWeaponHold = inputReader.UseWeaponHold();
+        bool useWeaponRelease = inputReader.UseWeaponRelease();
+        bool useGrenadePress = inputReader.UseGrenadePress();
         bool useGrenadeHold = inputReader.UseGrenadeHold();
+        bool useGrenadeRelease = inputReader.UseGrenadeRelease();
 
         if (previousWeapon && !nextWeapon) mainCharacter.SelectPreviousWeapon();
         if (!previousWeapon && nextWeapon) mainCharacter.SelectNextWeapon();
-        if (useWeaponHold) mainCharacter.UseWeapon();
-        if (useGrenadeHold) mainCharacter.UseGrenade();
+
+        if (useWeaponHold) mainCharacter.UseWeaponHold();
+        //TODO: mash-or-charge weapon, so I can make an UseWeaponRelease() method
+
+        if (useGrenadePress) mainCharacter.UseGrenadePress();
+        //if (useGrenadeHold) mainCharacter.UseGrenadeHold();
+        if (useGrenadeRelease) mainCharacter.UseGrenadeRelease();
     }
 
     private void UI()

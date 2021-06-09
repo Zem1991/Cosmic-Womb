@@ -5,7 +5,7 @@ using UnityEngine;
 
 public partial class Projectile : MonoBehaviour
 {
-    [Header("Settings")]
+    [Header("Movement")]
     [SerializeField] private float speed;
     
     private void ActualMovement()

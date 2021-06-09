@@ -10,6 +10,7 @@ public partial class Character : MonoBehaviour
     [SerializeField] private Vector3 targetablePosition;
     [SerializeField] private Vector3 projectileSpawnPoint;
     [SerializeField] protected Weapon weapon;
+    [SerializeField] protected Projectile grenade;
 
     private void UpdateCombat()
     {
@@ -40,15 +41,16 @@ public partial class Character : MonoBehaviour
     {
         return weapon;
     }
-    public bool CanUseWeapon()
+    public virtual bool CanUseWeapon()
     {
+        //MainCharacter depends on having ammo available. But the base Character doesn't need it.
         return weapon && attackDelayRemaining <= 0 && burstDelayRemaining <= 0 && burstShotsRemaining <= 0;
     }
-    public bool UseWeapon()
+    public bool UseWeaponHold()
     {
         if (!CanUseWeapon()) return false;
         burstShotsRemaining = weapon.GetBurstShots();
-        Shoot();
+        FireWeapon();
         return true;
     }
     public float GetWeaponPower()
@@ -67,9 +69,32 @@ public partial class Character : MonoBehaviour
     #endregion
 
     #region Grenade
-    public void UseGrenade()
+    public Projectile GetGrenade()
     {
-        throw new NotImplementedException();
+        return grenade;
+    }
+    public virtual bool CanUseGrenade()
+    {
+        //MainCharacter depends on having a grenade consumable. But the base Character doesn't need it.
+        return grenade && !isPreparingThrow;
+    }
+    public bool UseGrenadePress()
+    {
+        if (!CanUseGrenade()) return false;
+        ThrowGrenadeStart();
+        return true;
+    }
+    //public bool UseGrenadeHold()
+    //{
+    //    if (!CanUseGrenade()) return false;
+    //    PrepareGrenadeThrow();
+    //    return true;
+    //}
+    public bool UseGrenadeRelease()
+    {
+        if (!isPreparingThrow) return false;
+        ThrowGrenadeEnd();
+        return true;
     }
     #endregion
 }
