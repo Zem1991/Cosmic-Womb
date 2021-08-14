@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class InputReader : MonoBehaviour
 {
-    [Header("Movement")]
+    [Header("Character")]
     [SerializeField] private string characterAxisX = "Horizontal";
     [SerializeField] private string characterAxisY = "Vertical";
+
+    [Header("Camera")]
+    [SerializeField] private KeyCode cameraRotLeft = KeyCode.Z;
+    [SerializeField] private KeyCode cameraRotRight = KeyCode.X;
+
+    //[Header("Cursor")]
     //[SerializeField] private string cursorAxisX = "Mouse X";
     //[SerializeField] private string cursorAxisY = "Mouse Y";
 
@@ -25,6 +31,15 @@ public class InputReader : MonoBehaviour
         result.x = Input.GetAxis(characterAxisX);
         result.z = Input.GetAxis(characterAxisY);
         return result;
+    }
+
+    public bool CameraRotLeft()
+    {
+        return Input.GetKey(cameraRotLeft);
+    }
+    public bool CameraRotRight()
+    {
+        return Input.GetKey(cameraRotRight);
     }
 
     //public Vector3 CursorMovement()

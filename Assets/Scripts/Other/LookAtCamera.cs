@@ -17,7 +17,11 @@ public class LookAtCamera : MonoBehaviour
     private void Look()
     {
         Vector3 myPos = transform.position;
-        Quaternion mainCameraRot = Camera.main.transform.rotation;
+        Quaternion mainCameraRot = Quaternion.identity;
+        
+        Camera camera = Camera.main;
+        if (camera) mainCameraRot = camera.transform.rotation;
+
         transform.LookAt(myPos + mainCameraRot * Vector3.forward, mainCameraRot * Vector3.up);
     }
 }

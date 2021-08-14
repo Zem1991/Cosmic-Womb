@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
     {
         if (mainCharacter)
         {
+            CameraControl();
             Cursor();
             Rotation();
             Aim();
@@ -58,14 +59,27 @@ public class Player : MonoBehaviour
     {
         if (mainCharacter)
         {
-            CameraControl();
+            CameraPositioning();
         }
     }
 
     private void Movement()
     {
-        Vector3 moveDir = inputReader.CharacterMovement();
-        mainCharacter.MoveAt(moveDir);
+        Vector3 characterMov = inputReader.CharacterMovement();
+
+        Vector3 cameraRotationEuler = cameraHolder.rotation.eulerAngles;
+        Quaternion cameraRotation = Quaternion.Euler(0, cameraRotationEuler.y, 0);
+        Vector3 moveDirAdjusted = cameraRotation * characterMov;
+
+        mainCharacter.MoveAt(moveDirAdjusted);
+    }
+
+    private void CameraControl()
+    {
+        float rotation = 0F;
+        if (inputReader.CameraRotLeft()) rotation--;
+        if (inputReader.CameraRotRight()) rotation++;
+        cameraHolder.transform.Rotate(Vector3.up, rotation, Space.World);
     }
 
     private void Cursor()
@@ -145,7 +159,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void CameraControl()
+    private void CameraPositioning()
     {
         Vector3 mcPos = mainCharacter.transform.position;
         transform.position = mcPos;
