@@ -39,10 +39,16 @@ public partial class Character : MonoBehaviour
         AimClamp();
     }
 
+    public Vector3 GetAimPos()
+    {
+        return aimPos;
+    }
+
     public void SetAimPos(Vector3 aimPos)
     {
         aimPosPrevious = this.aimPos;
         this.aimPos = aimPos;
+        UpdateRotation();
     }
 
     public float GetAimBoost()

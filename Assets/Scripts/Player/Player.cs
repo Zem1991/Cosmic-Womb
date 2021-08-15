@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     [Header("Self references")]
     [SerializeField] private InputReader inputReader;
-    [SerializeField] private Transform cameraHolder;
+    [SerializeField] private PlayerCamera playerCamera;
     [SerializeField] private PlayerCursor playerCursor;
     [SerializeField] private PlayerAim playerAim;
 
@@ -14,29 +14,21 @@ public class Player : MonoBehaviour
     [SerializeField] private MainCharacter mainCharacter;
     [SerializeField] private UIHandler uiHandler;
 
-    [Header("Settings")]
-    [SerializeField] private float cameraRange = 12.5F;
-
     [Header("Variables")]
     [SerializeField] private GameObject interactableObj;
-
-    private void OnDrawGizmos()
-    {
-        Vector3 myPos = transform.position;
-        Vector3 chPos = cameraHolder.transform.position;
-
-        Gizmos.color = GizmoColors.cameraRange;
-        Gizmos.DrawWireSphere(myPos, cameraRange);
-
-        Gizmos.color = GizmoColors.cameraPosition;
-        Gizmos.DrawWireSphere(chPos, 0.25F);
-    }
-
+    
     private void FixedUpdate()
     {
         if (mainCharacter)
         {
+            Cursor();
+            Aim();
+
             Movement();
+            Rotation();
+
+            CameraControl();
+            CameraPositioning();
         }
     }
     
@@ -44,14 +36,16 @@ public class Player : MonoBehaviour
     {
         if (mainCharacter)
         {
-            CameraControl();
             Cursor();
-            Rotation();
             Aim();
+
+            Rotation();
+
             SearchInteractable();
             Interaction();
             Combat();
-            UI();
+
+            CameraPositioning();
         }
     }
     
@@ -59,16 +53,22 @@ public class Player : MonoBehaviour
     {
         if (mainCharacter)
         {
+            Cursor();
+            Aim();
+
+            Rotation();
+
             CameraPositioning();
+            UI();
         }
     }
 
     private void Movement()
     {
-        Vector3 characterMov = inputReader.CharacterMovement();
-
-        Vector3 cameraRotationEuler = cameraHolder.rotation.eulerAngles;
+        Vector3 cameraRotationEuler = playerCamera.GetRotation();
         Quaternion cameraRotation = Quaternion.Euler(0, cameraRotationEuler.y, 0);
+
+        Vector3 characterMov = inputReader.CharacterMovement();
         Vector3 moveDirAdjusted = cameraRotation * characterMov;
 
         mainCharacter.MoveAt(moveDirAdjusted);
@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
         float rotation = 0F;
         if (inputReader.CameraRotLeft()) rotation--;
         if (inputReader.CameraRotRight()) rotation++;
-        cameraHolder.transform.Rotate(Vector3.up, rotation, Space.World);
+        playerCamera.Rotate(rotation);
     }
 
     private void Cursor()
@@ -162,17 +162,7 @@ public class Player : MonoBehaviour
     private void CameraPositioning()
     {
         Vector3 mcPos = mainCharacter.transform.position;
-        transform.position = mcPos;
-
         Vector3 aimPos = playerAim.GetAimPosition();
-        Vector3 cameraPos = (aimPos + mcPos) / 2F;
-
-        Vector3 distance = cameraPos - mcPos;
-        if (distance.magnitude > cameraRange)
-        {
-            Vector3 distanceClamp = Vector3.ClampMagnitude(distance, cameraRange);
-            cameraPos = transform.position + distanceClamp;
-        }
-        cameraHolder.transform.position = cameraPos;
+        playerCamera.SetPosition(mcPos, aimPos);
     }
 }

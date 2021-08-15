@@ -21,15 +21,20 @@ public partial class Character : MonoBehaviour
 
     private void FixedUpdate()
     {
+        UpdateRotation();
+
+        UpdateAiming();
         UpdateFiring();
         UpdateThrowing();
     }
 
     private void Update()
     {
-        UpdateRotation();
         UpdateCombat();
-        UpdateAiming();
+    }
+
+    private void LateUpdate()
+    {
         UpdateCanvas();
     }
 
