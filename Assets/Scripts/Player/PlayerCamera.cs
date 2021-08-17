@@ -25,6 +25,7 @@ public class PlayerCamera : MonoBehaviour
 
     public void SetPosition(Vector3 charPos, Vector3 cursorPos)
     {
+        cursorPos.y = charPos.y;
         transform.position = charPos;
 
         //Vector3 cameraPos = (cursorPos + charPos) / 2F;

@@ -5,32 +5,29 @@ using UnityEngine;
 
 public partial class Character : MonoBehaviour
 {
-    //This one will always show in the Inspector the same value 'aimPos' has.
-    private Vector3 aimPosPrevious;
-
     [Header("Aiming")]
-    [SerializeField] private Vector3 aimPos;
     [SerializeField] private float aimDisplacement;
     [SerializeField] private float aimCurrent;
+    [SerializeField] private float aimMaximum;
 
     private void UpdateAiming()
     {
-        aimDisplacement = Vector3.Distance(aimPosPrevious, aimPos);
+        aimDisplacement = Vector3.Distance(rotPosPrevious, rotPos);
         aimCurrent -= aimDisplacement;
+        aimMaximum = weapon.GetAimMax();
 
         float recovery = weapon.GetAimRecovery();
         float recoveryPerFrame = recovery * Time.deltaTime;
         aimCurrent += recoveryPerFrame;
 
         AimClamp();
-        aimPosPrevious = aimPos;
     }
 
     private void AimClamp()
     {
-        float aimMin = 0F;
-        float aimMax = weapon.GetAimMax();
-        aimCurrent = Mathf.Clamp(aimCurrent, aimMin, aimMax);
+        //float aimMin = 0F;
+        //float aimMax = aimMaximum;
+        aimCurrent = Mathf.Clamp(aimCurrent, 0F, aimMaximum);
     }
 
     private void DecreaseAim(float amount)
@@ -39,23 +36,11 @@ public partial class Character : MonoBehaviour
         AimClamp();
     }
 
-    public Vector3 GetAimPos()
-    {
-        return aimPos;
-    }
-
-    public void SetAimPos(Vector3 aimPos)
-    {
-        aimPosPrevious = this.aimPos;
-        this.aimPos = aimPos;
-        UpdateRotation();
-    }
-
     public float GetAimBoost()
     {
         //float aimMin = weapon.GetAimMin();
-        float aimMax = weapon.GetAimMax();
-        if (aimMax <= 0) return 1;
-        return aimCurrent / aimMax;
+        //float aimMax = weapon.GetAimMax();
+        if (aimMaximum <= 0) return 1;
+        return aimCurrent / aimMaximum;
     }
 }

@@ -20,7 +20,7 @@ public class InputReader : MonoBehaviour
     [SerializeField] private KeyCode previousWeapon = KeyCode.Q;
     [SerializeField] private KeyCode nextWeapon = KeyCode.E;
     [SerializeField] private KeyCode useWeapon = KeyCode.Mouse0;
-    [SerializeField] private KeyCode useGrenade = KeyCode.Mouse1;
+    //[SerializeField] private KeyCode useGrenade = KeyCode.Mouse1;
 
     [Header("Other")]
     [SerializeField] private KeyCode interact = KeyCode.R;
@@ -72,18 +72,18 @@ public class InputReader : MonoBehaviour
         return Input.GetKeyUp(useWeapon);
     }
 
-    public bool UseGrenadePress()
-    {
-        return Input.GetKeyDown(useGrenade);
-    }
-    public bool UseGrenadeHold()
-    {
-        return Input.GetKey(useGrenade);
-    }
-    public bool UseGrenadeRelease()
-    {
-        return Input.GetKeyUp(useGrenade);
-    }
+    //public bool UseGrenadePress()
+    //{
+    //    return Input.GetKeyDown(useGrenade);
+    //}
+    //public bool UseGrenadeHold()
+    //{
+    //    return Input.GetKey(useGrenade);
+    //}
+    //public bool UseGrenadeRelease()
+    //{
+    //    return Input.GetKeyUp(useGrenade);
+    //}
 
     public bool InteractPress()
     {

@@ -5,18 +5,18 @@ using UnityEngine;
 public partial class Character : MonoBehaviour
 {
     [Header("Health")]
-    [SerializeField] private bool isDead = false;
-    [SerializeField] private int maximumHealth;
     [SerializeField] private int currentHealth;
+    [SerializeField] private int maximumHealth;
+    [SerializeField] private bool isDead = false;
     
-    public int GetMaximumHealth()
-    {
-        return maximumHealth;
-    }
-
     public int GetCurrentHealth()
     {
         return currentHealth;
+    }
+
+    public int GetMaximumHealth()
+    {
+        return maximumHealth;
     }
 
     public bool CheckNoHealth()

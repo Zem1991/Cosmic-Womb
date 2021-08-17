@@ -10,7 +10,6 @@ public partial class Character : MonoBehaviour
     [SerializeField] private Vector3 targetablePosition;
     [SerializeField] private Vector3 projectileSpawnPoint;
     [SerializeField] protected Weapon weapon;
-    [SerializeField] protected Projectile grenade;
 
     private void UpdateCombat()
     {
@@ -65,36 +64,6 @@ public partial class Character : MonoBehaviour
             charge += GetAimBoost();
         }
         return charge;
-    }
-    #endregion
-
-    #region Grenade
-    public Projectile GetGrenade()
-    {
-        return grenade;
-    }
-    public virtual bool CanUseGrenade()
-    {
-        //MainCharacter depends on having a grenade consumable. But the base Character doesn't need it.
-        return grenade && !isPreparingThrow;
-    }
-    public bool UseGrenadePress()
-    {
-        if (!CanUseGrenade()) return false;
-        ThrowGrenadeStart();
-        return true;
-    }
-    //public bool UseGrenadeHold()
-    //{
-    //    if (!CanUseGrenade()) return false;
-    //    PrepareGrenadeThrow();
-    //    return true;
-    //}
-    public bool UseGrenadeRelease()
-    {
-        if (!isPreparingThrow) return false;
-        ThrowGrenadeEnd();
-        return true;
     }
     #endregion
 }
