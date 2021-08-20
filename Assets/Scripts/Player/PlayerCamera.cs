@@ -23,9 +23,9 @@ public class PlayerCamera : MonoBehaviour
         Gizmos.DrawWireSphere(chPos, 0.25F);
     }
 
-    public void SetPosition(Vector3 charPos, Vector3 cursorPos)
+    public void SetPosition(Vector3 charPos, Vector3 aimPos)
     {
-        cursorPos.y = charPos.y;
+        aimPos.y = charPos.y;
         transform.position = charPos;
 
         //Vector3 cameraPos = (cursorPos + charPos) / 2F;

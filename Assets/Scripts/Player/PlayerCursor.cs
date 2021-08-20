@@ -16,6 +16,11 @@ public class PlayerCursor : MonoBehaviour
     [SerializeField] private bool hasScreenRayHit;
     [SerializeField] private Vector3 scenePos;
 
+    private void OnGUI()
+    {
+        screenPos = Input.mousePosition;
+    }
+
     #region Screen
     public Vector2 GetScreenPosition()
     {

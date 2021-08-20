@@ -4,10 +4,11 @@ using UnityEngine;
 
 public partial class EnemyAI : MonoBehaviour
 {
-    [Header("Self References")]
-    [SerializeField] private Character character;
+    //[Header("Gizmos")]
+    //[SerializeField] private float stopDistance = 0.1F;
+    //[SerializeField] private float attackDistance = 5F;
 
-    private void OnDrawGizmos()
+    private void GizmosDetection()
     {
         Vector3 myPos = transform.position;
 
@@ -24,18 +25,34 @@ public partial class EnemyAI : MonoBehaviour
         Gizmos.DrawLine(myPos, myPos + fovLeftPos);
         Gizmos.DrawLine(myPos, myPos + fovRightPos);
 
-        if (currentDecisionTarget)
+        if (decisionTarget)
         {
             Gizmos.color = GizmoColors.detectionTarget;
-            Gizmos.DrawLine(myPos, currentDecisionPos);
+            Gizmos.DrawLine(myPos, decisionPos);
         }
+    }
+
+    private void GizmosNavigation()
+    {
+        Vector3 myPos = transform.position;
+        Vector3 myRotDir = transform.forward;
+        Vector3 myNavDir = navPathFirstDir;
+        Vector3 myPosRotDir = myPos + myRotDir;
+        Vector3 myPosNavDir = myPos + myNavDir;
+
+        Gizmos.color = GizmoColors.movementDirection;
+        Gizmos.DrawLine(myPos, myPosRotDir);
+        Gizmos.DrawSphere(myPosRotDir, 0.1F);
+        Gizmos.DrawWireSphere(myPosNavDir, 0.1F);
 
         if (hasNavPath)
         {
             Gizmos.color = GizmoColors.movementPath;
-            Vector3[] corners = navPath.corners;
             Vector3 fromPos = myPos;
-            Vector3 toPos;
+            Vector3 toPos = navPathFirstPos;
+            //Gizmos.DrawLine(fromPos, toPos);
+
+            Vector3[] corners = navPath.corners;
             for (int index = 0; index < corners.Length; index++)
             {
                 toPos = corners[index];
@@ -43,47 +60,5 @@ public partial class EnemyAI : MonoBehaviour
                 fromPos = toPos;
             }
         }
-    }
-
-    private void Awake()
-    {
-        navPath = new UnityEngine.AI.NavMeshPath();
-        NavClear();
-    }
-
-    private void Update()
-    {
-        //These two should be overriden by somehting like orders from an officer
-        ReadContext();
-        MakeCalculations();
-
-        //And this one should be called always.
-        TakeDecision();
-    }
-
-    private void ReadContext()
-    {
-        //Do detection - sight, hearing, etc
-        DetPerform();
-    }
-
-    private void MakeCalculations()
-    {
-        //Filter known enemies that can be attacked
-        //TODO: ...
-
-        //Filter known enemies that can be reached
-        CalcReachableEnemy();
-    }
-
-    private void TakeDecision()
-    {
-        //select best action
-        //  - check what to attack
-        //  - check where to move
-        DecideDecision();
-
-        //perform said action
-        ExecuteDecision();
     }
 }

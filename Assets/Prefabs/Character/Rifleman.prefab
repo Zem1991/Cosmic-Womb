@@ -54,6 +54,8 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -65,6 +67,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -77,6 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5398889039714729820
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,7 +151,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5398889039714729820}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
@@ -160,6 +164,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &8848034959085143771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,7 +174,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5398889039714729820}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreReversedGraphics: 1
@@ -277,6 +282,8 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -288,6 +295,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -300,6 +308,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &6314995091971948660
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,17 +394,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 7174225437553582915}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 9db96cb497a074f4ab50f6211fd3818c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -405,6 +414,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &7485416706609700175
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,17 +469,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 7485416706609700175}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 9db96cb497a074f4ab50f6211fd3818c, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
@@ -479,6 +489,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &8638905236984488272
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,17 +546,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 8638905236984488272}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.7529412, g: 0.7529412, b: 0.7529412, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 9db96cb497a074f4ab50f6211fd3818c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -555,6 +566,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &8730394259674988758
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,6 +621,8 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -620,6 +634,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -632,6 +647,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &8829763843223710171
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,6 +702,8 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -697,6 +715,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -709,6 +728,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &9072241975872126544
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,31 +777,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d134820355ac4214190a88e5ff7ca0bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aimPos: {x: 0, y: 0, z: 0}
   aimDisplacement: 0
   aimCurrent: 0
-  hpBarFill: {fileID: 6320202168017128194}
+  aimMaximum: 0
   projectileSpawnOffset: {x: 0, y: 1.5, z: 1}
   targetablePosition: {x: 0, y: 0, z: 0}
   projectileSpawnPoint: {x: 0, y: 0, z: 0}
   weapon: {fileID: 5905279542958818774}
-  grenade: {fileID: 895071195931463232, guid: 026d2af9cd022944ba0aca9a23707a2e, type: 3}
+  attackDelayRemaining: 0
+  burstDelayRemaining: 0
+  burstShotsRemaining: 0
+  currentHealth: 20
+  maximumHealth: 20
+  isDead: 0
+  interactableObj: {fileID: 0}
+  moveSpeed: 5
+  moveDir: {x: 0, y: 0, z: 0}
+  rotPos: {x: 0, y: 0, z: 0}
+  rotPosPrevious: {x: 0, y: 0, z: 0}
   characterController: {fileID: 6418791018580347152}
   animator: {fileID: 0}
   characterName: Unknown Character
   allegiance: 2
-  attackDelayRemaining: 0
-  burstDelayRemaining: 0
-  burstShotsRemaining: 0
-  isDead: 0
-  maximumHealth: 20
-  currentHealth: 20
-  interactableObj: {fileID: 0}
-  moveSpeed: 5
-  throwMax: 0
-  throwIncrease: 0
-  throwCurrent: 0
-  isPreparingThrow: 0
 --- !u!143 &6418791018580347152
 CharacterController:
   m_ObjectHideFlags: 0
@@ -812,19 +829,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dbaaa8f7b784d343ab67a30aa6a701e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  calcReachableEnemy: {fileID: 0}
-  calcReachableEnemyPos: {x: 0, y: 0, z: 0}
-  character: {fileID: 9072241975872126547}
+  stopDistance: 0.1
+  attackDistance: 5
+  currentState: 0
   currentDecision: 0
-  currentDecisionPos: {x: 0, y: 0, z: 0}
-  currentDecisionTarget: {fileID: 0}
-  currentDecisionStoppingDistance: 0.1
+  decisionPos: {x: 0, y: 0, z: 0}
+  decisionTarget: {fileID: 0}
   sightRange: 15
   sightRadius: 120
   detectedCharacterList: []
   hasNavPath: 0
-  navPathFirstDir: {x: 0, y: 0, z: 0}
   navPathFirstPos: {x: 0, y: 0, z: 0}
+  navPathFirstDir: {x: 0, y: 0, z: 0}
+  reachableEnemy: {fileID: 0}
+  character: {fileID: 9072241975872126547}
 --- !u!1001 &8761508513728208015
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -832,10 +850,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7248538316053873068}
     m_Modifications:
-    - target: {fileID: 8589293463235756308, guid: 3645b8277f60c3e49bd3bc7c5ce49af8,
+    - target: {fileID: 2930682547968383374, guid: 3645b8277f60c3e49bd3bc7c5ce49af8,
         type: 3}
-      propertyPath: m_Name
-      value: Assault Rifle
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2930682547968383374, guid: 3645b8277f60c3e49bd3bc7c5ce49af8,
         type: 3}
@@ -854,6 +872,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2930682547968383374, guid: 3645b8277f60c3e49bd3bc7c5ce49af8,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930682547968383374, guid: 3645b8277f60c3e49bd3bc7c5ce49af8,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
@@ -869,16 +892,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2930682547968383374, guid: 3645b8277f60c3e49bd3bc7c5ce49af8,
         type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2930682547968383374, guid: 3645b8277f60c3e49bd3bc7c5ce49af8,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2930682547968383374, guid: 3645b8277f60c3e49bd3bc7c5ce49af8,
-        type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -891,6 +904,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8589293463235756308, guid: 3645b8277f60c3e49bd3bc7c5ce49af8,
+        type: 3}
+      propertyPath: m_Name
+      value: Assault Rifle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3645b8277f60c3e49bd3bc7c5ce49af8, type: 3}

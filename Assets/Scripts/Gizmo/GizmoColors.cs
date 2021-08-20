@@ -9,6 +9,7 @@ public static class GizmoColors
     public static readonly Color cameraPosition = new Color(0F, 1F, 1F, 1F);
 
     //Movement
+    public static readonly Color movementDirection = new Color(0.25F, 1F, 0.25F, 1F);
     public static readonly Color movementPath = new Color(0F, 1F, 0F, 1F);
 
     ////Targeting

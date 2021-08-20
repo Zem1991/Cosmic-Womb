@@ -11,7 +11,7 @@ public partial class EnemyAI : MonoBehaviour
     [Header("Detection: runtime")]
     [SerializeField] private List<Character> detectedCharacterList = new List<Character>();
 
-    public bool DetCheck(Character target)
+    public bool CheckDetection(Character target)
     {
         if (!target) return false;
 
@@ -42,7 +42,7 @@ public partial class EnemyAI : MonoBehaviour
         return true;
     }
 
-    private void DetPerform()
+    private void FullDetection()
     {
         detectedCharacterList.Clear();
         Collider[] candidates = Physics.OverlapSphere(transform.position, sightRange);
@@ -57,7 +57,7 @@ public partial class EnemyAI : MonoBehaviour
             Character possibleTarget = item.GetComponent<Character>();
             if (!possibleTarget) continue;
 
-            bool detected = DetCheck(possibleTarget);
+            bool detected = CheckDetection(possibleTarget);
             if (detected) detectedCharacterList.Add(possibleTarget);
         }
     }

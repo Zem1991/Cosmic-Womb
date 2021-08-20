@@ -18,6 +18,11 @@ public partial class Character : MonoBehaviour
         DecreaseAim(speedMagnitude);
     }
 
+    public void StopMovement()
+    {
+        moveDir = Vector3.zero;
+    }
+
     public void MoveAt(Vector3 direction)
     {
         moveDir = Vector3.ClampMagnitude(direction, 1);
@@ -25,6 +30,7 @@ public partial class Character : MonoBehaviour
 
     //public void MoveTo(Vector3 position)
     //{
-    //    throw new NotImplementedException();
+    //    Vector3 direction = position - transform.position;
+    //    MoveAt(direction);
     //}
 }
