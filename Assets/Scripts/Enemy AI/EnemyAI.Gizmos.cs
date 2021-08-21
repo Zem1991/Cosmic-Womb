@@ -8,6 +8,20 @@ public partial class EnemyAI : MonoBehaviour
     //[SerializeField] private float stopDistance = 0.1F;
     //[SerializeField] private float attackDistance = 5F;
 
+    private void GizmosDecision()
+    {
+        Vector3 myPos = transform.position;
+
+        Gizmos.color = GizmoColors.decisionPos;
+        Gizmos.DrawLine(myPos, decisionPos);
+
+        if (decisionTarget)
+        {
+            Gizmos.color = GizmoColors.decisionTarget;
+            Gizmos.DrawWireSphere(decisionTarget.GetTargetablePosition(), 0.5F);
+        }
+    }
+
     private void GizmosDetection()
     {
         Vector3 myPos = transform.position;
@@ -25,11 +39,7 @@ public partial class EnemyAI : MonoBehaviour
         Gizmos.DrawLine(myPos, myPos + fovLeftPos);
         Gizmos.DrawLine(myPos, myPos + fovRightPos);
 
-        if (decisionTarget)
-        {
-            Gizmos.color = GizmoColors.detectionTarget;
-            Gizmos.DrawLine(myPos, decisionPos);
-        }
+        //TODO: Gizmos over every detected thing? Maybe inside the OnDrawGizmosSelected method instead.
     }
 
     private void GizmosNavigation()

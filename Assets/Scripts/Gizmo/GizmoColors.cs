@@ -24,8 +24,12 @@ public static class GizmoColors
     //public static readonly Color projectileTarget = new Color(1F, 0F, 0F, 1F);
     //public static readonly Color projectileSeekRange = new Color(1F, 0F, 1F, 0.5F);
 
+    //Decision
+    public static readonly Color decisionPos = new Color(1F, 0F, 0F, 1F);
+    public static readonly Color decisionTarget = new Color(1F, 0F, 0F, 1F);
+
     //Detection
     public static readonly Color detectionSightRange = new Color(1F, 0F, 1F, 0.5F);
     public static readonly Color detectionSightArc = new Color(1F, 0F, 1F, 1F);
-    public static readonly Color detectionTarget = new Color(1F, 0F, 0F, 1F);
+    //public static readonly Color detectionTarget = new Color(1F, 0F, 0F, 1F);
 }

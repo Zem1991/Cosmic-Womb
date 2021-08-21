@@ -33,7 +33,10 @@ public partial class EnemyAI : MonoBehaviour
         bool withinSightArc = angle < halfSightRadius;
         if (!withinSightArc) return false;
 
-        bool withinSightRange = Physics.Raycast(ray, out RaycastHit hitInfo, sightRange);
+        string[] sightLayerNames = {"Default", "Character"};
+        LayerMask sightMask = LayerMask.GetMask(sightLayerNames);
+
+        bool withinSightRange = Physics.Raycast(ray, out RaycastHit hitInfo, sightRange, sightMask);
         if (!withinSightRange) return false;
 
         bool sightNotBlocked = hitInfo.collider.gameObject == target.gameObject;

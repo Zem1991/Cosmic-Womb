@@ -8,6 +8,16 @@ public partial class Character : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private Vector3 moveDir;
 
+    public float GetMoveSpeed()
+    {
+        return moveSpeed;
+    }
+    
+    public Vector3 GetMoveDir()
+    {
+        return moveDir;
+    }
+
     private void UpdateMovement()
     {
         Vector3 speed = moveDir * moveSpeed;

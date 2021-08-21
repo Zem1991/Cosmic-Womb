@@ -8,7 +8,7 @@ public partial class EnemyAI : MonoBehaviour
     {
         character.StopMovement();
         
-        switch (currentDecision)
+        switch (decisionAction)
         {
             case AIAction.MOVE:
                 character.MoveAt(navPathFirstDir);

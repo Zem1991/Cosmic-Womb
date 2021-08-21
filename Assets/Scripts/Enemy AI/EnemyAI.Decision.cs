@@ -9,14 +9,14 @@ public partial class EnemyAI : MonoBehaviour
     [SerializeField] private float attackDistance = 5F;
 
     [Header("Decision: current")]
-    [SerializeField] AIState currentState;
-    [SerializeField] AIAction currentDecision;
+    [SerializeField] AIState decisionState;
+    [SerializeField] AIAction decisionAction;
     [SerializeField] private Vector3 decisionPos;
     [SerializeField] private Character decisionTarget;
 
-    private bool HasDecision()
+    private bool HasDecisionAction()
     {
-        return currentDecision != AIAction.NONE;
+        return decisionAction != AIAction.NONE;
     }
 
     //TODO: what I was trying to achieve here could just be too much overthinking, and even if it worked it could introduce many bugs to further work on.
@@ -54,6 +54,7 @@ public partial class EnemyAI : MonoBehaviour
     private void TakeNewDecision()
     {
         if (DecideEngage()) return;
+        if (DecideSearch()) return;
         DecideNormal();
 
         //if (DecideAttackEnemy()) return;
@@ -67,6 +68,9 @@ public partial class EnemyAI : MonoBehaviour
     {
         if (!reachableEnemy) return false;
 
+        //TODO: I could make an EnemyAI.Engage class to deal exclusively with the many ways the controlled character can perform combat actions.
+        //This can even help later when making more specific/smart enemies, when making derived classes.
+
         Vector3 targetablePosition = reachableEnemy.GetTargetablePosition();
         float distance = Vector3.Distance(transform.position, targetablePosition);
         float attackRange = character.GetWeapon().GetEffectiveRange();
@@ -75,70 +79,49 @@ public partial class EnemyAI : MonoBehaviour
         bool withinAttackDistance = distance <= attackDistance;
         if (!withinAttackRange) return false;
 
-        currentState = AIState.ENGAGE;
-        currentDecision = withinAttackDistance ? AIAction.ATTACK : AIAction.MOVE_AND_ATTACK;
+        decisionState = AIState.ENGAGE;
+        decisionAction = withinAttackDistance ? AIAction.ATTACK : AIAction.MOVE_AND_ATTACK;
         decisionPos = targetablePosition;
         decisionTarget = reachableEnemy;
+
+        //TODO: clear variables used in other AIStates when returning true.
+        return true;
+    }
+
+    private bool DecideSearch()
+    {
+        if (!decisionTarget) return false;
+
+        if (decisionState == AIState.ENGAGE)
+        {
+            BeginSearch(decisionTarget);
+        }
+        else if (decisionState != AIState.SEARCH)
+        {
+            return false;
+        }
+        else
+        {
+            bool noSearchTime = !SearchTimer();
+            if (noSearchTime)
+            {
+                EndSearch();
+                return false;
+            }
+        }
+
+        SearchAction();
+
+        //TODO: clear variables used in other AIStates when returning true.
         return true;
     }
 
     private bool DecideNormal()
     {
-        currentState = AIState.NORMAL;
-        currentDecision = AIAction.NONE;
+        decisionState = AIState.NORMAL;
+        decisionAction = AIAction.NONE;
         decisionPos = transform.position;
         decisionTarget = null;
         return true;
     }
-
-    //private bool DecideAttackEnemy()
-    //{
-    //    if (calcReachableEnemy)
-    //    {
-    //        float distance = Vector3.Distance(transform.position, calcReachableEnemyPos);
-    //        float attackRange = character.GetWeapon().GetEffectiveRange();
-    //        bool enemyWithinAttackRange = distance <= attackRange;
-    //        if (enemyWithinAttackRange)
-    //        {
-    //            currentDecision = AIAction.ATTACK_ENEMY;
-    //            currentDecisionPos = calcReachableEnemyPos;
-    //            currentDecisionTarget = calcReachableEnemy;
-    //            //currentDecisionStoppingDistance = 1.25F;
-    //            return true;
-    //        }
-    //    }
-    //    return false;
-    //}
-
-    //private bool DecideEngageEnemy()
-    //{
-    //    if (calcReachableEnemy)
-    //    {
-    //        currentDecision = AIAction.ENGAGE_ENEMY;
-    //        currentDecisionPos = calcReachableEnemyPos;
-    //        currentDecisionTarget = calcReachableEnemy;
-    //        //currentDecisionStoppingDistance = 1.25F;
-    //        return true;
-    //    }
-    //    return false;
-    //}
-
-    //private bool DecideSearchEnemy()
-    //{
-    //    bool knowsTheEnemyExists = currentDecisionTarget;
-    //    if (!calcReachableEnemy && knowsTheEnemyExists)
-    //    {
-    //        currentDecision = AIAction.SEARCH_ENEMY;
-    //        //currentDecisionPos = currentDecisionPos;
-    //        //currentDecisionTarget = currentDecisionTarget;
-    //        //currentDecisionStoppingDistance = 1.25F;
-    //        return true;
-    //    }
-    //    return false;
-    //}
-
-    //private bool DecideMoveTo()
-    //{
-    //    return false;
-    //}
 }

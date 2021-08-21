@@ -5,7 +5,10 @@ using UnityEngine.AI;
 
 public partial class EnemyAI : MonoBehaviour
 {
-    [Header("Navigation")]
+    [Header("Navigation: settings")]
+    [SerializeField] private float stopDistance = 0.1F;
+
+    [Header("Navigation: current")]
     [SerializeField] private bool hasNavPath;
     [SerializeField] private NavMeshPath navPath;
     [SerializeField] private Vector3 navPathFirstPos;
@@ -36,7 +39,7 @@ public partial class EnemyAI : MonoBehaviour
         Vector3 myPos = transform.position;
 
         //TODO: is this necessary?
-        //if (Vector3.Distance(targetPos, myPos) < stopDistance) return;
+        //if (Vector3.Distance(myPos, targetPos) < stopDistance) return;
 
         hasNavPath = NavMesh.CalculatePath(myPos, targetPos, NavMesh.AllAreas, navPath);
         if (hasNavPath)

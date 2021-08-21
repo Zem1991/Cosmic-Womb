@@ -9,6 +9,7 @@ public partial class EnemyAI : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        GizmosDecision();
         GizmosDetection();
         GizmosNavigation();
     }

@@ -36,6 +36,13 @@ public partial class Character : MonoBehaviour
 
         if (instant) UpdateRotation();
     }
+    
+    public bool CheckRotationTo(Vector3 position)
+    {
+        Vector3 direction = position - transform.position;
+        float dot = Vector3.Dot(GetForwardDirection(), direction);
+        return dot >= 1F;
+    }
 
     public Vector3 GetForwardDirection()
     {
