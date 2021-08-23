@@ -11,3 +11,14 @@
     //ENGAGE_ENEMY,   //Goes towards enemy
     //ATTACK_ENEMY    //Attacks if enemy is within attack range
 }
+
+public static class AIActionEnum
+{
+    public static bool IsMove(this AIAction aiAction)
+    {
+        if (aiAction == AIAction.MOVE) return true;
+        if (aiAction == AIAction.MOVE_AND_ROTATE) return true;
+        if (aiAction == AIAction.MOVE_AND_ATTACK) return true;
+        return false;
+    }
+}

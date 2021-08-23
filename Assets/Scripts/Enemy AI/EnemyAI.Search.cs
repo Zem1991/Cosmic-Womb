@@ -72,8 +72,8 @@ public partial class EnemyAI : MonoBehaviour
             }
 
             //Will keep moving towards the position returned within nmHit.
-            decisionAction = AIAction.MOVE_AND_ROTATE;
-            NavigationCalculatePath(decisionPos);
+            SearchActionMoveAndRotate();
+            return;
         }
 
         if (decisionAction == AIAction.ROTATE)
@@ -102,14 +102,22 @@ public partial class EnemyAI : MonoBehaviour
             decisionPos.z += searchOffset.y;
 
             //Will start moving towards the new search position on the next frame, if possible.
-            decisionAction = AIAction.MOVE_AND_ROTATE;
+            SearchActionMoveAndRotate();
+            //decisionAction = AIAction.MOVE_AND_ROTATE;    //TODO: can I take this out?
             return;
         }
+    }
+
+    private void SearchActionMoveAndRotate()
+    {
+        decisionAction = AIAction.MOVE_AND_ROTATE;
+        //NavigationCalculatePath(decisionPos);
     }
 
     private void SearchActionRotate()
     {
         decisionAction = AIAction.ROTATE;
+        //NavigationCalculatePath(decisionPos);   //TODO: is this required here?
     }
 
     private void SearchActionNone()

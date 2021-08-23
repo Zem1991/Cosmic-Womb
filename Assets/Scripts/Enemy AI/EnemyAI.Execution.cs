@@ -7,7 +7,8 @@ public partial class EnemyAI : MonoBehaviour
     private void Execute()
     {
         character.StopMovement();
-        
+        NavigationRefresh();
+
         switch (decisionAction)
         {
             case AIAction.MOVE:

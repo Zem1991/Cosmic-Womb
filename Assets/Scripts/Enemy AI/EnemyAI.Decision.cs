@@ -4,11 +4,7 @@ using UnityEngine;
 
 public partial class EnemyAI : MonoBehaviour
 {
-    [Header("Decision: settings")]
-    //[SerializeField] private float stopDistance = 0.1F;
-    [SerializeField] private float attackDistance = 5F;
-
-    [Header("Decision: current")]
+    [Header("Decision")]
     [SerializeField] AIState decisionState;
     [SerializeField] AIAction decisionAction;
     [SerializeField] private Vector3 decisionPos;
@@ -54,65 +50,59 @@ public partial class EnemyAI : MonoBehaviour
     private void TakeNewDecision()
     {
         if (DecideEngage()) return;
-        if (DecideSearch()) return;
+        //if (DecideSearch()) return;
         DecideNormal();
-
-        //if (DecideAttackEnemy()) return;
-        //if (DecideEngageEnemy()) return;
-        //if (DecideSearchEnemy()) return;
-        //if (DecideMoveTo()) return;
-        //DecideNone();
     }
 
     private bool DecideEngage()
     {
-        if (!reachableEnemy) return false;
+        //TODO: This will make the AI go after the first enemy found until it's defeated.
+        //I need something that tells the AI that wathever is closer should be selected.
+        Character engageTarget = decisionTarget ? decisionTarget : reachableEnemy;
+        //if (!CanEngage(engageTarget)) return false;
 
-        //TODO: I could make an EnemyAI.Engage class to deal exclusively with the many ways the controlled character can perform combat actions.
-        //This can even help later when making more specific/smart enemies, when making derived classes.
-
-        Vector3 targetablePosition = reachableEnemy.GetTargetablePosition();
-        float distance = Vector3.Distance(transform.position, targetablePosition);
-        float attackRange = character.GetWeapon().GetEffectiveRange();
-
-        bool withinAttackRange = distance <= attackRange;
-        bool withinAttackDistance = distance <= attackDistance;
-        if (!withinAttackRange) return false;
-
-        decisionState = AIState.ENGAGE;
-        decisionAction = withinAttackDistance ? AIAction.ATTACK : AIAction.MOVE_AND_ATTACK;
-        decisionPos = targetablePosition;
-        decisionTarget = reachableEnemy;
+        if (decisionState != AIState.ENGAGE)
+        {
+            bool cannotBegin = !BeginEngage(engageTarget);
+            if (cannotBegin) return false;
+        }
+        else
+        {
+            bool noTime = !EngageTimer();
+            if (noTime)
+            {
+                EndEngage();
+                return false;
+            }
+        }
 
         //TODO: clear variables used in other AIStates when returning true.
+        EngageAction();
         return true;
     }
 
     private bool DecideSearch()
     {
+        //Can only search something that was targeted first.
         if (!decisionTarget) return false;
 
-        if (decisionState == AIState.ENGAGE)
+        if (decisionState != AIState.SEARCH)
         {
-            BeginSearch(decisionTarget);
-        }
-        else if (decisionState != AIState.SEARCH)
-        {
-            return false;
+            bool cannotBegin = !BeginSearch(decisionTarget);
+            if (cannotBegin) return false;
         }
         else
         {
-            bool noSearchTime = !SearchTimer();
-            if (noSearchTime)
+            bool noTime = !SearchTimer();
+            if (noTime)
             {
                 EndSearch();
                 return false;
             }
         }
 
-        SearchAction();
-
         //TODO: clear variables used in other AIStates when returning true.
+        SearchAction();
         return true;
     }
 

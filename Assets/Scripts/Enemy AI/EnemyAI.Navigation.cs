@@ -7,6 +7,7 @@ public partial class EnemyAI : MonoBehaviour
 {
     [Header("Navigation: settings")]
     [SerializeField] private float stopDistance = 0.1F;
+    [SerializeField] private int navAreas = NavMesh.AllAreas;
 
     [Header("Navigation: current")]
     [SerializeField] private bool hasNavPath;
@@ -14,34 +15,36 @@ public partial class EnemyAI : MonoBehaviour
     [SerializeField] private Vector3 navPathFirstPos;
     [SerializeField] private Vector3 navPathFirstDir;
 
-    public bool NavigationCheckPosition(Character target, out NavMeshHit nmHit)
-    {
-        nmHit = new NavMeshHit();
-        if (!target) return false;
+    //public bool NavigationCheckPosition(Character target, out NavMeshHit nmHit)
+    //{
+    //    nmHit = new NavMeshHit();
+    //    if (!target) return false;
 
-        Vector3 targetPos = target.transform.position;
-        return NavigationCheckPosition(targetPos, out nmHit);
-    }
+    //    Vector3 targetPos = target.transform.position;
+    //    return NavigationCheckPosition(targetPos, out nmHit);
+    //}
 
     public bool NavigationCheckPosition(Vector3 targetPos, out NavMeshHit nmHit)
     {
-        return NavMesh.SamplePosition(targetPos, out nmHit, 1, NavMesh.AllAreas);
+        return NavMesh.SamplePosition(targetPos, out nmHit, 1, navAreas);
     }
 
-    private void NavigationCalculatePath(NavMeshHit nmHit)
-    {
-        NavigationCalculatePath(nmHit.position);
-    }
+    //private void NavigationCalculatePath(NavMeshHit nmHit)
+    //{
+    //    NavigationCalculatePath(nmHit.position);
+    //}
     
     private void NavigationCalculatePath(Vector3 targetPos)
     {
         NavigationClear();
+
+        //bool positionCheck = NavigationCheckPosition(targetPos, out NavMeshHit hit);
+        //if (!positionCheck) return;
+
         Vector3 myPos = transform.position;
+        //targetPos = hit.position;
 
-        //TODO: is this necessary?
-        //if (Vector3.Distance(myPos, targetPos) < stopDistance) return;
-
-        hasNavPath = NavMesh.CalculatePath(myPos, targetPos, NavMesh.AllAreas, navPath);
+        hasNavPath = NavMesh.CalculatePath(myPos, targetPos, navAreas, navPath);
         if (hasNavPath)
         {
             Vector3[] navPathCorners = navPath.corners;
@@ -64,5 +67,21 @@ public partial class EnemyAI : MonoBehaviour
         navPath.ClearCorners();
         navPathFirstPos = myPos;
         navPathFirstDir = Vector3.zero;
+    }
+
+    private void NavigationRefresh()
+    {
+        if (decisionAction.IsMove())
+        {
+            //NavigationCalculatePath(decisionPos);
+            if (decisionTarget)
+                NavigationCalculatePath(decisionTarget.transform.position);
+            else
+                NavigationCalculatePath(decisionPos);
+        }
+        else
+        {
+            NavigationClear();
+        }
     }
 }

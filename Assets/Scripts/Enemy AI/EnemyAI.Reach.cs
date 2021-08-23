@@ -8,19 +8,25 @@ public partial class EnemyAI : MonoBehaviour
     [Header("Reach")]
     [SerializeField] private Character reachableEnemy;
 
-    public bool ApplyReach(Character target)
+    public bool ReachTarget(Character target)
     {
-        bool hasNavigation = NavigationCheckPosition(target, out NavMeshHit nmHit);
+        bool hasNavigation = ReachPosition(target.transform.position);
         if (hasNavigation)
         {
             reachableEnemy = target;
-            NavigationCalculatePath(nmHit);
+            //NavigationCalculatePath(nmHit);
         }
         else
         {
             reachableEnemy = null;
-            NavigationClear();
+            //NavigationClear();
         }
+        return hasNavigation;
+    }
+
+    public bool ReachPosition(Vector3 position)
+    {
+        bool hasNavigation = NavigationCheckPosition(position, out NavMeshHit nmHit);
         return hasNavigation;
     }
 
@@ -29,7 +35,7 @@ public partial class EnemyAI : MonoBehaviour
         reachableEnemy = null;
         foreach (Character forChar in detectedCharacterList)
         {
-            bool hasReachableEnemy = ApplyReach(forChar);
+            bool hasReachableEnemy = ReachTarget(forChar);
             if (hasReachableEnemy) break;
         }
     }
