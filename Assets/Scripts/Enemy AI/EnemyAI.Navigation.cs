@@ -11,9 +11,10 @@ public partial class EnemyAI : MonoBehaviour
 
     [Header("Navigation: current")]
     [SerializeField] private bool hasNavPath;
-    [SerializeField] private NavMeshPath navPath;
-    [SerializeField] private Vector3 navPathFirstPos;
-    [SerializeField] private Vector3 navPathFirstDir;
+    [SerializeField] private NavMeshPath navigationPath;
+    [SerializeField] private Vector3 navigationFirstPos;
+    [SerializeField] private Vector3 navigationLastPos;
+    [SerializeField] private Vector3 navigationDir;
 
     //public bool NavigationCheckPosition(Character target, out NavMeshHit nmHit)
     //{
@@ -26,7 +27,7 @@ public partial class EnemyAI : MonoBehaviour
 
     public bool NavigationCheckPosition(Vector3 targetPos, out NavMeshHit nmHit)
     {
-        return NavMesh.SamplePosition(targetPos, out nmHit, 1, navAreas);
+        return NavMesh.SamplePosition(targetPos, out nmHit, 1F, navAreas);
     }
 
     //private void NavigationCalculatePath(NavMeshHit nmHit)
@@ -38,43 +39,42 @@ public partial class EnemyAI : MonoBehaviour
     {
         NavigationClear();
 
-        //bool positionCheck = NavigationCheckPosition(targetPos, out NavMeshHit hit);
-        //if (!positionCheck) return;
+        bool positionCheck = NavigationCheckPosition(targetPos, out NavMeshHit hit);
+        if (!positionCheck) return;
 
         Vector3 myPos = transform.position;
-        //targetPos = hit.position;
+        Vector3 finalPos = hit.position;
 
-        hasNavPath = NavMesh.CalculatePath(myPos, targetPos, navAreas, navPath);
+        hasNavPath = NavMesh.CalculatePath(myPos, finalPos, navAreas, navigationPath);
         if (hasNavPath)
         {
-            Vector3[] navPathCorners = navPath.corners;
-            navPathFirstPos = navPathCorners.Length > 1 ? navPathCorners[1] : myPos;
-            navPathFirstPos.y = myPos.y;
-            navPathFirstDir = (navPathFirstPos - myPos).normalized;
+            Vector3[] navPathCorners = navigationPath.corners;
+            navigationFirstPos = navPathCorners.Length > 1 ? navPathCorners[1] : myPos;
+            navigationLastPos = finalPos;
+            navigationDir = (navigationFirstPos - myPos).normalized;
         }
-        //else
-        //{
-        //    navPath.ClearCorners();
-        //    navPathFirstPos = myPos;
-        //    navPathFirstDir = Vector3.zero;
-        //}
+
+        ////Fix for floaty NavMesh.
+        //navigationFirstPos.y = myPos.y;
+        //navigationLastPos.y = myPos.y;
     }
     
     private void NavigationClear()
     {
         Vector3 myPos = transform.position;
         hasNavPath = false;
-        navPath.ClearCorners();
-        navPathFirstPos = myPos;
-        navPathFirstDir = Vector3.zero;
+        navigationPath.ClearCorners();
+        navigationFirstPos = myPos;
+        navigationLastPos = myPos;
+        navigationDir = Vector3.zero;
     }
 
     private void NavigationRefresh()
     {
         if (decisionAction.IsMove())
         {
-            //NavigationCalculatePath(decisionPos);
-            if (decisionTarget)
+            bool useDecisionTarget = decisionTarget && decisionState == AIState.ENGAGE;
+            if (useDecisionTarget)
                 NavigationCalculatePath(decisionTarget.transform.position);
             else
                 NavigationCalculatePath(decisionPos);

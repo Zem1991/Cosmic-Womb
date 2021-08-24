@@ -12,21 +12,21 @@ public partial class EnemyAI : MonoBehaviour
         switch (decisionAction)
         {
             case AIAction.MOVE:
-                character.MoveAt(navPathFirstDir);
+                character.MoveAt(navigationDir);
                 break;
             case AIAction.ROTATE:
                 character.RotateTo(decisionPos);
                 break;
             case AIAction.MOVE_AND_ROTATE:
-                character.MoveAt(navPathFirstDir);
-                character.RotateTo(navPathFirstPos);
+                character.MoveAt(navigationDir);
+                character.RotateTo(navigationFirstPos);
                 break;
             case AIAction.ATTACK:
                 character.RotateTo(decisionPos);
                 character.UseWeaponHold();
                 break;
             case AIAction.MOVE_AND_ATTACK:
-                character.MoveAt(navPathFirstDir);
+                character.MoveAt(navigationDir);
                 character.RotateTo(decisionPos);
                 character.UseWeaponHold();
                 break;

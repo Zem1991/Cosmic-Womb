@@ -4,71 +4,92 @@ using UnityEngine;
 
 public partial class EnemyAI : MonoBehaviour
 {
-    //[Header("Gizmos")]
-    //[SerializeField] private float stopDistance = 0.1F;
-    //[SerializeField] private float attackDistance = 5F;
-
     private void GizmosDecision()
     {
-        Vector3 myPos = transform.position;
+        Vector3 myPos = character.GetTargetablePosition();
 
-        Gizmos.color = GizmoColors.decisionPos;
+        Color stateColor = GizmosColors.decisionStateNormal;
+        bool drawSearchArea = false;
+
+        if (decisionState == AIState.SEARCH)
+        {
+            stateColor = GizmosColors.decisionStateSearch;
+            drawSearchArea = true;
+        }
+        else if (decisionState == AIState.ENGAGE)
+        {
+            stateColor = GizmosColors.decisionStateEngage;
+        }
+
+        Gizmos.color = stateColor;
         Gizmos.DrawLine(myPos, decisionPos);
-
         if (decisionTarget)
         {
-            Gizmos.color = GizmoColors.decisionTarget;
-            Gizmos.DrawWireSphere(decisionTarget.GetTargetablePosition(), 0.5F);
+            Vector3 cubePos = decisionTarget.GetTargetablePosition();
+            Vector3 cubeSize = Vector3.one;
+            Gizmos.DrawWireCube(cubePos, cubeSize);
+        }
+        if (drawSearchArea)
+        {
+            Gizmos.DrawWireSphere(decisionPos, searchAreaSize);
         }
     }
 
     private void GizmosDetection()
     {
         Vector3 myPos = transform.position;
+        Vector3 myDir = transform.forward;
+        float negativeSightRadius = 360 - sightRadius;
 
-        Gizmos.color = GizmoColors.detectionSightRange;
-        Gizmos.DrawWireSphere(myPos, sightRange);
+        Gizmos.color = GizmosColors.sightRange;
+        GizmosExtensions.DrawWireArc(myPos, -myDir, negativeSightRadius, sightRange);
 
-        float halfSightRadius = sightRadius / 2F;
-        Vector3 fovMidPos = character.GetForwardDirection() * sightRange;
-        Vector3 fovLeftPos = Quaternion.Euler(0, -halfSightRadius, 0) * fovMidPos;
-        Vector3 fovRightPos = Quaternion.Euler(0, halfSightRadius, 0) * fovMidPos;
-
-        Gizmos.color = GizmoColors.detectionSightArc;
-        //Gizmos.DrawLine(myPos, myPos + fovMidPos);
-        Gizmos.DrawLine(myPos, myPos + fovLeftPos);
-        Gizmos.DrawLine(myPos, myPos + fovRightPos);
-
-        //TODO: Gizmos over every detected thing? Maybe inside the OnDrawGizmosSelected method instead.
+        Gizmos.color = GizmosColors.sightRadius;
+        GizmosExtensions.DrawWireArc(myPos, myDir, sightRadius, sightRange);
     }
-
+    
     private void GizmosNavigation()
     {
+        if (!hasNavPath) return;
+
         Vector3 myPos = transform.position;
-        Vector3 myRotDir = transform.forward;
-        Vector3 myNavDir = navPathFirstDir;
-        Vector3 myPosRotDir = myPos + myRotDir;
-        Vector3 myPosNavDir = myPos + myNavDir;
 
-        Gizmos.color = GizmoColors.movementDirection;
-        Gizmos.DrawLine(myPos, myPosRotDir);
-        Gizmos.DrawSphere(myPosRotDir, 0.1F);
-        Gizmos.DrawWireSphere(myPosNavDir, 0.1F);
-
-        if (hasNavPath)
+        Gizmos.color = GizmosColors.navigationPath;
+        Vector3[] corners = navigationPath.corners;
+        Vector3 fromPos = myPos;
+        Vector3 toPos;
+        for (int index = 1; index < corners.Length; index++)
         {
-            Gizmos.color = GizmoColors.movementPath;
-            Vector3 fromPos = myPos;
-            Vector3 toPos = navPathFirstPos;
-            //Gizmos.DrawLine(fromPos, toPos);
+            toPos = corners[index];
+            Gizmos.DrawLine(fromPos, toPos);
+            fromPos = toPos;
+        }
 
-            Vector3[] corners = navPath.corners;
-            for (int index = 0; index < corners.Length; index++)
-            {
-                toPos = corners[index];
-                Gizmos.DrawLine(fromPos, toPos);
-                fromPos = toPos;
-            }
+        Vector3 cubeSize = Vector3.one * 0.1F;
+
+        Gizmos.color = GizmosColors.navigationFirstPos;
+        Gizmos.DrawLine(myPos, navigationFirstPos);
+        Gizmos.DrawWireCube(navigationFirstPos, cubeSize);
+
+        Gizmos.color = GizmosColors.navigationLastPos;
+        Gizmos.DrawLine(myPos, navigationLastPos);
+        Gizmos.DrawWireCube(navigationLastPos, cubeSize);
+
+        Gizmos.color = GizmosColors.navigationDir;
+        Vector3 positionWithNavDir = myPos + navigationDir;
+        Vector3 positionWithForward = myPos + transform.forward;
+        Gizmos.DrawLine(myPos, positionWithNavDir);
+        Gizmos.DrawWireSphere(positionWithNavDir, 0.1F);
+        Gizmos.DrawSphere(positionWithForward, 0.1F);
+    }
+
+    private void GizmosSelectedDetection()
+    {
+        Gizmos.color = GizmosColors.detectedCharacter;
+        foreach (Character forChara in detectedCharacterList)
+        {
+            Vector3 position = forChara.GetTargetablePosition();
+            Gizmos.DrawWireSphere(position, 0.5F);
         }
     }
 }

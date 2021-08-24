@@ -50,7 +50,7 @@ public partial class EnemyAI : MonoBehaviour
     private void TakeNewDecision()
     {
         if (DecideEngage()) return;
-        //if (DecideSearch()) return;
+        if (DecideSearch()) return;
         DecideNormal();
     }
 

@@ -896,7 +896,7 @@ CharacterController:
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.1
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &9072241975872126546
@@ -911,19 +911,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dbaaa8f7b784d343ab67a30aa6a701e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopDistance: 0.1
-  attackDistance: 5
-  currentState: 0
-  currentDecision: 0
+  decisionState: 0
+  decisionAction: 0
   decisionPos: {x: 0, y: 0, z: 0}
   decisionTarget: {fileID: 0}
   sightRange: 15
   sightRadius: 120
   detectedCharacterList: []
+  engageStateTimeMax: 10
+  engageDistance: 5
+  engageStateTimeCurrent: 0
+  stopDistance: 0.1
+  navAreas: -1
   hasNavPath: 0
-  navPathFirstPos: {x: 0, y: 0, z: 0}
-  navPathFirstDir: {x: 0, y: 0, z: 0}
+  navigationFirstPos: {x: 0, y: 0, z: 0}
+  navigationLastPos: {x: 0, y: 0, z: 0}
+  navigationDir: {x: 0, y: 0, z: 0}
   reachableEnemy: {fileID: 0}
+  searchStateTimeMax: 20
+  searchAreaSize: 10
+  searchPositionAttempts: 3
+  searchPos: {x: 0, y: 0, z: 0}
+  previousSearchPos: {x: 0, y: 0, z: 0}
+  searchStateTimeCurrent: 0
+  searchActionTimeCurrent: 0
   character: {fileID: 9072241975872126547}
 --- !u!1001 &4913579326993889455
 PrefabInstance:

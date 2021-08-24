@@ -6,12 +6,13 @@ using UnityEngine.AI;
 public partial class EnemyAI : MonoBehaviour
 {
     [Header("Search: settings")]
-    [SerializeField] private float searchStateTimeMax = 30F;
-    [SerializeField] private float searchAreaSize = 5F;
+    [SerializeField] private float searchStateTimeMax = 20F;
+    [SerializeField] private float searchAreaSize = 10F;
+    [SerializeField] private int decisionPositionAttempts = 3;
 
     [Header("Search: current")]
-    //[SerializeField] private Vector3 searchPos;
-    //[SerializeField] private Character searchTarget;
+    [SerializeField] private Vector3 startingSearchPos;
+    [SerializeField] private Vector3 previousSearchPos;
     [SerializeField] private float searchStateTimeCurrent;
     [SerializeField] private float searchActionTimeCurrent;
 
@@ -19,15 +20,17 @@ public partial class EnemyAI : MonoBehaviour
     {
         if (!target) return false;
 
-        Vector3 searchPosFirst = target.GetMoveDir() * target.GetMoveSpeed();
-        searchPosFirst += target.transform.position;
+        //Vector3 decisionPosOffset = target.GetMoveDir() * target.GetMoveSpeed();
+        startingSearchPos = target.transform.position;
+        //decisionPos += decisionPosOffset;
+        previousSearchPos = startingSearchPos;
 
         decisionState = AIState.SEARCH;
         decisionAction = AIAction.MOVE_AND_ROTATE;
-        decisionPos = searchPosFirst;
+        decisionPos = startingSearchPos;
         decisionTarget = target;
 
-        //searchPos = searchPosFirst;
+        //decisionPos = decisionPosFirst;
         //searchTarget = target;
         searchStateTimeCurrent = searchStateTimeMax;
         searchActionTimeCurrent = 0;
@@ -43,7 +46,7 @@ public partial class EnemyAI : MonoBehaviour
 
     private void EndSearch()
     {
-        //searchPos = Vector3.zero;
+        //decisionPos = Vector3.zero;
         //searchTarget = null;
         searchStateTimeCurrent = 0;
         searchActionTimeCurrent = 0;
@@ -55,6 +58,8 @@ public partial class EnemyAI : MonoBehaviour
 
         if (decisionAction == AIAction.MOVE_AND_ROTATE)
         {
+            //TODO: maybe I should do something about the cases where the current search position (decisionPos) is close enough but the path is very lengthy...
+
             bool hasNavigation = hasNavPath || NavigationCheckPosition(decisionPos, out NavMeshHit nmHit);
             if (!hasNavigation)
             {
@@ -63,10 +68,12 @@ public partial class EnemyAI : MonoBehaviour
                 return;
             }
 
-            bool hasDistance = Vector3.Distance(myPos, decisionPos) > stopDistance;
+            bool hasDistance = Vector3.Distance(myPos, navigationLastPos) > stopDistance;
+            //bool hasTimeRemaining = searchActionTimeCurrent > 0;
+            //if (!hasDistance || !hasTimeRemaining)
             if (!hasDistance)
             {
-                //It's too close already. Do nothing for a while.
+                //It's either too close already or just spent too much time going there. Do nothing for a while.
                 SearchActionNone();
                 return;
             }
@@ -95,15 +102,9 @@ public partial class EnemyAI : MonoBehaviour
         {
             if (searchActionTimeCurrent > 0) return;
 
-            //Selects a random position around itself and store it into decisionPos.
-            Vector2 searchOffset = Random.insideUnitCircle * searchAreaSize;
-            decisionPos = myPos;
-            decisionPos.x += searchOffset.x;
-            decisionPos.z += searchOffset.y;
-
             //Will start moving towards the new search position on the next frame, if possible.
+            GenerateSearchPosition();
             SearchActionMoveAndRotate();
-            //decisionAction = AIAction.MOVE_AND_ROTATE;    //TODO: can I take this out?
             return;
         }
     }
@@ -111,18 +112,46 @@ public partial class EnemyAI : MonoBehaviour
     private void SearchActionMoveAndRotate()
     {
         decisionAction = AIAction.MOVE_AND_ROTATE;
-        //NavigationCalculatePath(decisionPos);
+        //GenerateSearchPosition();
     }
 
     private void SearchActionRotate()
     {
         decisionAction = AIAction.ROTATE;
-        //NavigationCalculatePath(decisionPos);   //TODO: is this required here?
     }
 
     private void SearchActionNone()
     {
         decisionAction = AIAction.NONE;
         searchActionTimeCurrent = Random.Range(1F, 5F);
+    }
+
+    private void GenerateSearchPosition()
+    {
+        Vector3 newSearchPos = startingSearchPos;
+        float retryDistance = searchAreaSize / 2F;
+
+        int attempts = 0;
+        bool newPositionFound = false;
+        while (!newPositionFound)
+        {
+            Vector2 searchOffset = Random.insideUnitCircle * searchAreaSize;
+            newSearchPos = startingSearchPos;
+            newSearchPos.x += searchOffset.x;
+            newSearchPos.z += searchOffset.y;
+
+            attempts++;
+            if (attempts >= decisionPositionAttempts)
+            {
+                newPositionFound = true;
+            }
+            else
+            {
+                newPositionFound = Vector3.Distance(previousSearchPos, newSearchPos) >= retryDistance;
+            }
+        }
+
+        previousSearchPos = decisionPos;
+        decisionPos = newSearchPos;
     }
 }

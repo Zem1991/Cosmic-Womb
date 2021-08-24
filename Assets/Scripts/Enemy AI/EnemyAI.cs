@@ -6,7 +6,7 @@ public partial class EnemyAI : MonoBehaviour
 {
     [Header("Self References")]
     [SerializeField] private Character character;
-
+    
     private void OnDrawGizmos()
     {
         GizmosDecision();
@@ -14,9 +14,14 @@ public partial class EnemyAI : MonoBehaviour
         GizmosNavigation();
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        GizmosSelectedDetection();
+    }
+
     private void Awake()
     {
-        navPath = new UnityEngine.AI.NavMeshPath();
+        navigationPath = new UnityEngine.AI.NavMeshPath();
         NavigationClear();
     }
 

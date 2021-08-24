@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public partial class EnemyAI : MonoBehaviour
 {
     [Header("Engage: settings")]
-    [SerializeField] private float engageStateTimeMax = 30F;
+    [SerializeField] private float engageStateTimeMax = 10F;
     [SerializeField] private float engageDistance = 5F;
 
     [Header("Engage: current")]
