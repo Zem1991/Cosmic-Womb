@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public partial class Player : MonoBehaviour
 {
     [Header("Self references")]
     [SerializeField] private InputReader inputReader;
@@ -13,9 +13,6 @@ public class Player : MonoBehaviour
     [Header("Other references")]
     [SerializeField] private MainCharacter mainCharacter;
     [SerializeField] private UIHandler uiHandler;
-
-    [Header("Variables")]
-    [SerializeField] private GameObject interactableObj;
 
     private void Awake()
     {
@@ -90,20 +87,6 @@ public class Player : MonoBehaviour
         Vector3 moveDirAdjusted = cameraRotation * characterMov;
 
         mainCharacter.MoveAt(moveDirAdjusted);
-    }
-
-    private void SearchInteractable()
-    {
-        //TODO: write something
-        interactableObj = null;
-    }
-
-    private void Interaction()
-    {
-        if (interactableObj == null) return;
-        IInteractable interactable = interactableObj.GetComponent<IInteractable>();
-        if (inputReader.InteractPress()) mainCharacter.Interact(interactable);
-        else if (inputReader.InteractHold()) mainCharacter.InteractContinuous(interactable);
     }
 
     private void Combat()

@@ -732,13 +732,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d29ddf474e00e334ba02cd5cbb79fcd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactable: {fileID: 0}
+  interactableSearchDistance: 1
   inputReader: {fileID: 626242605}
   playerCamera: {fileID: 1041672449}
   playerCursor: {fileID: 2023865877}
   playerAim: {fileID: 1248960714}
   mainCharacter: {fileID: 665999623}
   uiHandler: {fileID: 1183763802}
-  interactableObj: {fileID: 0}
 --- !u!4 &626242608
 Transform:
   m_ObjectHideFlags: 0
@@ -790,33 +791,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3818061449410338211, guid: 548e401db89382b409d5da6174321553,
         type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3818061449410338211, guid: 548e401db89382b409d5da6174321553,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3818061449410338211, guid: 548e401db89382b409d5da6174321553,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3818061449410338211, guid: 548e401db89382b409d5da6174321553,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3818061449410338211, guid: 548e401db89382b409d5da6174321553,
-        type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3818061449410338211, guid: 548e401db89382b409d5da6174321553,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3818061449410338211, guid: 548e401db89382b409d5da6174321553,
         type: 3}

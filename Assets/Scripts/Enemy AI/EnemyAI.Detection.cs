@@ -33,7 +33,7 @@ public partial class EnemyAI : MonoBehaviour
         bool withinSightArc = angle < halfSightRadius;
         if (!withinSightArc) return false;
 
-        string[] sightLayerNames = {"Default", "Character"};
+        string[] sightLayerNames = {"Default", "Character", "Interactable"};
         LayerMask sightMask = LayerMask.GetMask(sightLayerNames);
 
         bool withinSightRange = Physics.Raycast(ray, out RaycastHit hitInfo, sightRange, sightMask);

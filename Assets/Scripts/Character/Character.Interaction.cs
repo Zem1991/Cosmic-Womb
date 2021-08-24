@@ -5,16 +5,16 @@ using UnityEngine;
 
 public partial class Character : MonoBehaviour
 {
-    [Header("Interaction")]
-    [SerializeField] private GameObject interactableObj;
+    //[Header("Interaction")]
+    //[SerializeField] private GameObject interactableObj;
 
-    public void Interact(IInteractable interactable)
-    {
-        throw new NotImplementedException();
-    }
+    //public void Interact(IPlayerInteractions interactable)
+    //{
+    //    throw new NotImplementedException();
+    //}
 
-    public void InteractContinuous(IInteractable interactable)
-    {
-        throw new NotImplementedException();
-    }
+    //public void InteractContinuous(IPlayerInteractions interactable)
+    //{
+    //    throw new NotImplementedException();
+    //}
 }

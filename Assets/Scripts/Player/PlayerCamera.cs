@@ -13,8 +13,8 @@ public class PlayerCamera : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Vector3 myPos = transform.position;
-        Vector3 chPos = cameraHolder.transform.position;
+        //Vector3 myPos = transform.position;
+        //Vector3 chPos = cameraHolder.transform.position;
 
         //Gizmos.color = GizmosColors.cameraRange;
         //Gizmos.DrawWireSphere(myPos, cameraRange);
@@ -28,14 +28,14 @@ public class PlayerCamera : MonoBehaviour
         aimPos.y = charPos.y;
         transform.position = charPos;
 
-        //Vector3 cameraPos = (cursorPos + charPos) / 2F;
-        //Vector3 offset = cameraPos - charPos;
-        //if (offset.magnitude > cameraRange)
-        //{
-        //    Vector3 offsetClamp = Vector3.ClampMagnitude(offset, cameraRange);
-        //    cameraPos = transform.position + offsetClamp;
-        //}
-        //cameraHolder.transform.position = cameraPos;
+        Vector3 cameraPos = (aimPos + charPos) / 2F;
+        Vector3 offset = cameraPos - charPos;
+        if (offset.magnitude > cameraRange)
+        {
+            Vector3 offsetClamp = Vector3.ClampMagnitude(offset, cameraRange);
+            cameraPos = transform.position + offsetClamp;
+        }
+        cameraHolder.transform.position = cameraPos;
     }
 
     public void Rotate(float rotation)
