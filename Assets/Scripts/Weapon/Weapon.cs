@@ -35,11 +35,15 @@ public class Weapon : MonoBehaviour
     [SerializeField] private int burstShots = 1;
     [SerializeField] private float effectiveRange = 15F;
 
+    [Header("Other")]
+    [SerializeField] private float shotAudibleRange = 25F;
+
     #region Identification
     public string GetWeaponName()
     {
         return weaponName;
     }
+
     public Sprite GetWeaponSprite()
     {
         return weaponSprite;
@@ -131,6 +135,13 @@ public class Weapon : MonoBehaviour
     public float GetEffectiveRange()
     {
         return effectiveRange;
+    }
+    #endregion
+
+    #region Other
+    public float GetShotAudibleRange()
+    {
+        return shotAudibleRange;
     }
     #endregion
 

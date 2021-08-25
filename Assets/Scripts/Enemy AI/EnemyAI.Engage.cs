@@ -30,6 +30,7 @@ public partial class EnemyAI : MonoBehaviour
         if (!CanEngage(target)) return false;
 
         Vector3 targetPos = target.GetTargetablePosition();
+        targetPos = NavigationSnapPosition(targetPos);
 
         decisionState = AIState.ENGAGE;
         decisionAction = AIAction.MOVE_AND_ROTATE;

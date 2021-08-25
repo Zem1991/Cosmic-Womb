@@ -13,14 +13,15 @@ public class PlayerCamera : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        //Vector3 myPos = transform.position;
-        //Vector3 chPos = cameraHolder.transform.position;
+        Vector3 myPos = transform.position;
+        Vector3 cameraHolderPos = cameraHolder.transform.position;
+        Vector3 cameraForward = cameraHolderPos - myPos;
 
-        //Gizmos.color = GizmosColors.cameraRange;
-        //Gizmos.DrawWireSphere(myPos, cameraRange);
+        Gizmos.color = GizmosColors.cameraRange;
+        GizmosExtensions.DrawWireArc(myPos, -cameraForward.normalized, 360, cameraRange, 24);
 
-        //Gizmos.color = GizmosColors.cameraPosition;
-        //Gizmos.DrawWireSphere(chPos, 0.25F);
+        Gizmos.color = GizmosColors.cameraPosition;
+        Gizmos.DrawWireSphere(cameraHolderPos, 0.25F);
     }
 
     public void SetPosition(Vector3 charPos, Vector3 aimPos)

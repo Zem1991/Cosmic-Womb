@@ -36,6 +36,9 @@ public partial class Character : MonoBehaviour
 
             Projectile newProjectile = Instantiate(weapon.GetProjectile(), position, shotRot);
             newProjectile.Initialize(this, weapon);
+
+            //TODO: And what should I do in the case where I want gizmos showing the audible area? Cry?
+            SoundPropagator.Propagate(position, weapon.GetShotAudibleRange());
         }
 
         float aimDecrease = weapon.GetAimDecreaseOnFire();

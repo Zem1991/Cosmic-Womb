@@ -4,9 +4,13 @@ using UnityEngine;
 
 public static class GizmosColors
 {
-    //Camera - Cyan/Blue
-    public static readonly Color cameraRange = new Color(0F, 1F, 1F, 1F);
-    public static readonly Color cameraPosition = new Color(0F, 1F, 1F, 1F);
+    //Camera - Black
+    public static readonly Color cameraRange = new Color(0F, 0F, 0F, 1F);
+    public static readonly Color cameraPosition = new Color(0F, 0F, 0F, 1F);
+
+    //Interaction - Orange
+    public static readonly Color interactionRange = new Color(1F, 0.5F, 0F, 1F);
+    public static readonly Color interactionTarget = new Color(1F, 0.5F, 0F, 1F);
 
     ////Targeting
     //public static readonly Color targetablePosition = new Color(0F, 1F, 1F, 1F);

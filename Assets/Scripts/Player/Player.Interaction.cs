@@ -5,8 +5,9 @@ using UnityEngine;
 public partial class Player : MonoBehaviour
 {
     [Header("Interaction")]
-    [SerializeField] private AbstractInteractable interactable;
-    [SerializeField] private float interactableSearchDistance = 1F;
+    [SerializeField] private float interactionRange = 1F;
+    [SerializeField] private AbstractInteractable interactionTarget;
+    [SerializeField] private Vector3 interactionPos;
     
     private void SearchInteractable()
     {
@@ -16,7 +17,7 @@ public partial class Player : MonoBehaviour
         string[] layerNames = {"Interactable"};
         LayerMask layerMask = LayerMask.GetMask(layerNames);
 
-        Collider[] colliders = Physics.OverlapSphere(mcPos, interactableSearchDistance, layerMask, QueryTriggerInteraction.Collide);
+        Collider[] colliders = Physics.OverlapSphere(mcPos, interactionRange, layerMask, QueryTriggerInteraction.Collide);
         List<AbstractInteractable> interactableList = new List<AbstractInteractable>();
         foreach (Collider forCol in colliders)
         {
@@ -43,19 +44,25 @@ public partial class Player : MonoBehaviour
         }
 
         if (interactableList.Count > 0)
-            interactable = interactableList[0];
+        {
+            interactionTarget = interactableList[0];
+            interactionPos = interactionTarget.GetComponent<Collider>().ClosestPoint(mcPos);
+        }
         else
-            interactable = null;
+        {
+            interactionTarget = null;
+            interactionPos = Vector3.zero;
+        }
     }
     
     private void Interaction()
     {
-        if (!interactable) return;
+        if (!interactionTarget) return;
 
         bool interactPress = inputReader.InteractPress();
         bool interactHold = inputReader.InteractHold();
         //TODO: I might require differentiating between button press and button hold for different possible interactions.
 
-        if (interactPress) interactable.Interact();
+        if (interactPress) interactionTarget.Interact();
     }
 }

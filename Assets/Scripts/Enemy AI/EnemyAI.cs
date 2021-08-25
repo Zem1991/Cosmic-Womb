@@ -6,18 +6,6 @@ public partial class EnemyAI : MonoBehaviour
 {
     [Header("Self References")]
     [SerializeField] private Character character;
-    
-    private void OnDrawGizmos()
-    {
-        GizmosDecision();
-        GizmosDetection();
-        GizmosNavigation();
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        GizmosSelectedDetection();
-    }
 
     private void Awake()
     {

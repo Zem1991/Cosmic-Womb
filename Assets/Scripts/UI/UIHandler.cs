@@ -8,27 +8,29 @@ public class UIHandler : MonoBehaviour
     [Header("Panels")]
     [SerializeField] private UICrosshair crosshair;
     [SerializeField] private UIPanel_Player player;
-    //[SerializeField] private UIPanel_Selection selection;
+    [SerializeField] private UIInteraction interaction;
 
     public void UpdateCrosshair(Vector2 screenPosition, Sprite crosshairImg, float chargeAmount)
     {
         crosshair.ManualUpdate(screenPosition, crosshairImg, chargeAmount);
-        //if (!mainCharacter) selection.ManualUpdate();
     }
 
     public void UpdatePlayer(MainCharacter mainCharacter)
     {
         player.ManualUpdate(mainCharacter);
-        //if (!mainCharacter) selection.ManualUpdate();
     }
+    
+    public void UpdateInteraction(AbstractInteractable interactionTarget, Vector3 interactionPos)
+    {
+        if (!interactionTarget)
+        {
+            interaction.ManualUpdate();
+            return;
+        }
 
-    //public void ManualUpdateSelection(List<AbstractItem> itemList, AbstractItem selectedItem)
-    //{
-    //    selection.ManualUpdate(itemList, selectedItem);
-    //}
-
-    //internal void ManualUpdateSelection(List<AbstractSpell> spellList, AbstractSpell selectedSpell)
-    //{
-    //    selection.ManualUpdate(spellList, selectedSpell);
-    //}
+        Vector2 screenPosition = Camera.main.WorldToScreenPoint(interactionPos);
+        string interactionText = interactionTarget.ReadInteraction();
+        //TODO: also pass an bool to render with a different color when the interaction is not possible.
+        interaction.ManualUpdate(screenPosition, interactionText);
+    }
 }

@@ -11,17 +11,18 @@ public partial class EnemyAI : MonoBehaviour
     [SerializeField] private int decisionPositionAttempts = 3;
 
     [Header("Search: current")]
+    //[SerializeField] private Character searchTarget;
     [SerializeField] private Vector3 startingSearchPos;
     [SerializeField] private Vector3 previousSearchPos;
     [SerializeField] private float searchStateTimeCurrent;
     [SerializeField] private float searchActionTimeCurrent;
 
-    private bool BeginSearch(Character target)
+    private bool BeginSearch(Character target, Vector3 targetPos)
     {
-        if (!target) return false;
+        targetPos = NavigationSnapPosition(targetPos);
 
         //Vector3 decisionPosOffset = target.GetMoveDir() * target.GetMoveSpeed();
-        startingSearchPos = target.transform.position;
+        startingSearchPos = targetPos;
         //decisionPos += decisionPosOffset;
         previousSearchPos = startingSearchPos;
 
@@ -68,7 +69,7 @@ public partial class EnemyAI : MonoBehaviour
                 return;
             }
 
-            bool hasDistance = Vector3.Distance(myPos, navigationLastPos) > stopDistance;
+            bool hasDistance = !hasNavPath || Vector3.Distance(myPos, navigationLastPos) > stopDistance;
             //bool hasTimeRemaining = searchActionTimeCurrent > 0;
             //if (!hasDistance || !hasTimeRemaining)
             if (!hasDistance)

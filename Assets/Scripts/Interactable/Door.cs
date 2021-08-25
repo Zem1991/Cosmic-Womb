@@ -6,17 +6,31 @@ public class Door : AbstractInteractable
 {
     [Header("Animator")]
     [SerializeField] private Animator animator;
-    [SerializeField] private readonly string animatorBoolIsOpen = "IsOpen";
+    [SerializeField] private readonly string animatorOpenThresholdName = "Open Threshold";
+    [SerializeField] private float animatorOpenThresholdValue = 0F;
 
-    //[Header("Door")]
-    //[SerializeField] private float doorSpeed;
+    [Header("Door")]
+    [SerializeField] private bool isOpen = false;
+    [SerializeField] private float doorSpeed = 1F;
     //[SerializeField] private bool canOpen;
     //[SerializeField] private bool canClose;
 
     [Header("Occupants")]
-    //TODO: I can switch the doorway trigger for using instead an Physics.CheckBox call.
-    [SerializeField] private Collider doorway;
+    //TODO: I can change having the doorway trigger by instead using an Physics.CheckBox call.
+    [SerializeField] private Collider doorway;  //Useless?
     [SerializeField] private HashSet<Character> doorwayOccupantList = new HashSet<Character>();
+    
+    private void Awake()
+    {
+        if (IsOpen()) animatorOpenThresholdValue = 1F;
+        animator.SetFloat(animatorOpenThresholdName, animatorOpenThresholdValue);
+    }
+
+    private void Update()
+    {
+        DoorMotion();
+        animator.SetFloat(animatorOpenThresholdName, animatorOpenThresholdValue);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -39,47 +53,71 @@ public class Door : AbstractInteractable
     public override bool Interact()
     {
         if (!CanInteract()) return false;
+
         if (IsOpen())
-            Close();
+            return Close();
         else
-            Open();
-        return true;
+            return Open();
     }
-    
+
+    public override string ReadInteraction()
+    {
+        if (IsOpen())
+            return "Close door";
+        else
+            return "Open door";
+    }
+
+
     public bool IsOpen()
     {
-        bool check = animator.GetBool(animatorBoolIsOpen);
-        return check;
+        return isOpen;
     }
     
     public bool IsDoorwayClear()
     {
-        bool check = doorwayOccupantList.Count <= 0;
-        return check;
-    }
-
-    public bool Open()
-    {
-        if (IsOpen()) return false;
-        animator.SetBool(animatorBoolIsOpen, true);
-        return true;
+        return doorwayOccupantList.Count <= 0;
     }
 
     public bool Close()
     {
-        if (!IsOpen()) return false;
+        //if (!IsOpen()) return false;
         if (!IsDoorwayClear()) return false;
-        animator.SetBool(animatorBoolIsOpen, false);
+        isOpen = false;
+        return true;
+    }
+
+    public bool Open()
+    {
+        //if (IsOpen()) return false;
+        isOpen = true;
         return true;
     }
     
-    public bool IsInTransition()
+    public bool IsIdle()
     {
-        return animator.IsInTransition(0);
+        bool isClosed = animatorOpenThresholdValue <= 0;
+        bool isOpen = animatorOpenThresholdValue >= 1;
+        return isClosed || isOpen;
     }
 
     public bool CanCross()
     {
-        return IsOpen() && !IsInTransition();
+        return IsOpen() && IsIdle();
+    }
+
+    private void DoorMotion()
+    {
+        float change = Time.deltaTime * doorSpeed;
+        if (isOpen)
+        {
+            animatorOpenThresholdValue += change;
+            if (animatorOpenThresholdValue > 1F) animatorOpenThresholdValue = 1F;
+        }
+        else
+        {
+            animatorOpenThresholdValue -= change;
+            if (animatorOpenThresholdValue < 0F) animatorOpenThresholdValue = 0F;
+        }
     }
 }

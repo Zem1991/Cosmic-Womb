@@ -21,15 +21,7 @@ public partial class Player : MonoBehaviour
         CursorMode cursorMode = CursorMode.Auto;
         Cursor.SetCursor(null, hotSpot, cursorMode);
     }
-
-    //private void FixedUpdate()
-    //{
-    //    if (mainCharacter)
-    //    {
-    //        //Movement();     //here?
-    //    }
-    //}
-
+    
     private void Update()
     {
         if (mainCharacter)
@@ -58,20 +50,20 @@ public partial class Player : MonoBehaviour
     {
         if (mainCharacter)
         {
-            //DONT CHANGE THIS - UNITY HAS A BUGGED MOUSE POSITON THAT ONLY GIVES YOU THE DELAYED VALUE
+            //DONT CHANGE THIS - UNITY HAS A WEIRD MOUSE POSITON THAT ONLY GIVES YOU THE DELAYED VALUE.
             CameraPlacement();
             CursorPlacement();
             AimPlacement();
-            //THIS IS WHY I HAVE THESE FUNCTIONS BEING CALLED TWICE, BECAUSE THIS IS THE CLOSEST THING TO 'WORKING'
+            //THIS IS WHY I HAVE THESE FUNCTIONS BEING CALLED TWICE, BECAUSE THIS IS THE CLOSEST TO 'WORKING' THAT I COULD GET.
 
             CameraControl();
             Rotation();
 
-            //DONT CHANGE THIS - UNITY HAS A BUGGED MOUSE POSITON THAT ONLY GIVES YOU THE DELAYED VALUE
+            //DONT CHANGE THIS - UNITY HAS A WEIRD MOUSE POSITON THAT ONLY GIVES YOU THE DELAYED VALUE.
             CameraPlacement();
             CursorPlacement();
             AimPlacement();
-            //THIS IS WHY I HAVE THESE FUNCTIONS BEING CALLED TWICE, BECAUSE THIS IS THE CLOSEST THING TO 'WORKING'
+            //THIS IS WHY I HAVE THESE FUNCTIONS BEING CALLED TWICE, BECAUSE THIS IS THE CLOSEST TO 'WORKING' THAT I COULD GET.
 
             UIRefresh();
             ShowAim();
@@ -154,21 +146,23 @@ public partial class Player : MonoBehaviour
     private void UIRefresh()
     {
         if (!uiHandler) return;
+
         uiHandler.UpdatePlayer(mainCharacter);
+        uiHandler.UpdateInteraction(interactionTarget, interactionPos);
     }
 
     private void ShowAim()
     {
-        if (uiHandler)
-        {
-            Weapon weapon = mainCharacter.GetWeapon();
-            bool hasBoost = weapon.HasChargeBoost() || weapon.HasAimBoost();
+        if (!uiHandler) return;
 
-            Vector2 screenPosition = playerCursor.GetScreenPosition();
-            Sprite crosshair = weapon.GetCrosshairSprite();
-            float scale = hasBoost ? mainCharacter.GetWeaponPower() : 0F;
+        Weapon weapon = mainCharacter.GetWeapon();
+        bool hasBoost = weapon.HasChargeBoost() || weapon.HasAimBoost();
 
-            uiHandler.UpdateCrosshair(screenPosition, crosshair, scale);
-        }
+        Vector2 screenPosition = playerCursor.GetScreenPosition();
+        Sprite crosshair = weapon.GetCrosshairSprite();
+        float scale = hasBoost ? mainCharacter.GetWeaponPower() : 0F;
+
+        //TODO: have this method pass mainCharacter and playerCursor as parameters?
+        uiHandler.UpdateCrosshair(screenPosition, crosshair, scale);
     }
 }

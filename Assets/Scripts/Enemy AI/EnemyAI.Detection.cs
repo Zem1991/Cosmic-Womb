@@ -9,7 +9,24 @@ public partial class EnemyAI : MonoBehaviour
     [SerializeField] private float sightRadius = 120F;
 
     [Header("Detection: runtime")]
+    [SerializeField] private bool heardSomethingBefore;
+    [SerializeField] private bool heardSomethingNow;
+    [SerializeField] private Vector3 hearingPos;
     [SerializeField] private List<Character> detectedCharacterList = new List<Character>();
+
+    public void Unhear()
+    {
+        heardSomethingBefore = false;
+        heardSomethingNow = false;
+        hearingPos = Vector3.zero;
+    }
+
+    public void Hear(Vector3 position)
+    {
+        heardSomethingBefore = true;
+        heardSomethingNow = true;
+        hearingPos = position;
+    }
 
     public bool CheckDetection(Character target)
     {
@@ -33,7 +50,8 @@ public partial class EnemyAI : MonoBehaviour
         bool withinSightArc = angle < halfSightRadius;
         if (!withinSightArc) return false;
 
-        string[] sightLayerNames = {"Default", "Character", "Interactable"};
+        //string[] sightLayerNames = {"Default", "Character", "Interactable"};
+        string[] sightLayerNames = {"Default", "Character"};
         LayerMask sightMask = LayerMask.GetMask(sightLayerNames);
 
         bool withinSightRange = Physics.Raycast(ray, out RaycastHit hitInfo, sightRange, sightMask);

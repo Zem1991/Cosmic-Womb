@@ -1,9 +1,22 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public partial class EnemyAI : MonoBehaviour
 {
+    private void OnDrawGizmos()
+    {
+        GizmosDecision();
+        GizmosDetection();
+        GizmosNavigation();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        GizmosSelectedDetection();
+    }
+
     private void GizmosDecision()
     {
         Vector3 myPos = character.GetTargetablePosition();

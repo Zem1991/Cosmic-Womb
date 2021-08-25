@@ -63,8 +63,8 @@ public partial class EnemyAI : MonoBehaviour
 
         if (decisionState != AIState.ENGAGE)
         {
-            bool cannotBegin = !BeginEngage(engageTarget);
-            if (cannotBegin) return false;
+            bool engageStarted = BeginEngage(engageTarget);
+            if (!engageStarted) return false;
         }
         else
         {
@@ -83,13 +83,34 @@ public partial class EnemyAI : MonoBehaviour
 
     private bool DecideSearch()
     {
-        //Can only search something that was targeted first.
-        if (!decisionTarget) return false;
-
-        if (decisionState != AIState.SEARCH)
+        //It's either going after the missing engagement target, or going towards the source of a noise it had just heard.
+        Vector3 newSearchPos = Vector3.zero;
+        bool hasNewSearchPos = true;
+        
+        if (decisionTarget)
         {
-            bool cannotBegin = !BeginSearch(decisionTarget);
-            if (cannotBegin) return false;
+            newSearchPos = decisionTarget.transform.position;
+        }   
+        else if (heardSomethingBefore && heardSomethingNow)
+        {
+            newSearchPos = hearingPos;
+        }
+        else
+        {
+            hasNewSearchPos = false;
+        }
+
+        //bool startSearchDecisionTarget = decisionTarget && decisionState != AIState.SEARCH;
+        //bool startSearchHearingPosition = heardSomethingBefore && heardSomethingNow;
+        //bool canStartNewSearch = startSearchDecisionTarget || startSearchHearingPosition;
+
+        if (heardSomethingNow || decisionState != AIState.SEARCH)
+        {
+            heardSomethingNow = false;
+            if (!hasNewSearchPos) return false;
+
+            bool searchStarted = BeginSearch(decisionTarget, newSearchPos);
+            if (!searchStarted) return false;
         }
         else
         {
@@ -108,10 +129,15 @@ public partial class EnemyAI : MonoBehaviour
 
     private bool DecideNormal()
     {
+        //Remove dirty readings.
+        Unhear();
+
+        //Clear previous values.
         decisionState = AIState.NORMAL;
         decisionAction = AIAction.NONE;
         decisionPos = transform.position;
         decisionTarget = null;
+
         return true;
     }
 }
