@@ -6,8 +6,8 @@ public partial class Player : MonoBehaviour
 {
     [Header("Interaction")]
     [SerializeField] private float interactionRange = 1F;
-    [SerializeField] private AbstractInteractable interactionTarget;
     [SerializeField] private Vector3 interactionPos;
+    [SerializeField] private AbstractInteractable interactionTarget;
     
     private void SearchInteractable()
     {
@@ -26,6 +26,7 @@ public partial class Player : MonoBehaviour
             interactableList.Add(forInteractable);
         }
 
+        //TODO: This is using the transform.position instead of the collision point!
         if (interactableList.Count > 1)
         {
             //TODO: This allows the player to interact with anything that is just close enough, regardless of facing directions.
@@ -45,13 +46,14 @@ public partial class Player : MonoBehaviour
 
         if (interactableList.Count > 0)
         {
+            //TODO: Switch the position of these 2 lines - see previous TODOs.
             interactionTarget = interactableList[0];
             interactionPos = interactionTarget.GetComponent<Collider>().ClosestPoint(mcPos);
         }
         else
         {
-            interactionTarget = null;
             interactionPos = Vector3.zero;
+            interactionTarget = null;
         }
     }
     

@@ -19,15 +19,21 @@ public partial class Character : MonoBehaviour
         Gizmos.DrawWireSphere(projSpawn, 0.5F);
     }
 
-    //private void FixedUpdate()
-    //{
-    //    UpdateMovement();
-    //    UpdateRotation();
-    //}
+    private void Awake()
+    {
+        //This fixes an bug that made all Characters rotate towards the position (0; 0; 0) at scene start.
+        RotateAt(transform.forward);
+    }
+
+    private void FixedUpdate()
+    {
+        UpdateMovement();
+        //UpdateRotation();
+    }
 
     private void Update()
     {
-        UpdateMovement();
+        //UpdateMovement();
         UpdateRotation();
 
         UpdateCombat();

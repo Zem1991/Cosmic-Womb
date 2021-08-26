@@ -6,6 +6,11 @@ public partial class Player : MonoBehaviour
 {
     private void OnDrawGizmos()
     {
+        GizmosInteraction();
+    }
+
+    private void GizmosInteraction()
+    {
         if (!mainCharacter) return;
 
         Vector3 myPos = mainCharacter.transform.position;

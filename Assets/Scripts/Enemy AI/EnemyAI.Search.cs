@@ -57,8 +57,23 @@ public partial class EnemyAI : MonoBehaviour
     {
         Vector3 myPos = transform.position;
 
+        if (decisionAction == AIAction.INTERACT)
+        {
+            //After interacting, resumes its navigation.
+            SearchActionMoveAndRotate();
+            return;
+        }
+
         if (decisionAction == AIAction.MOVE_AND_ROTATE)
         {
+            bool doorSituation = interactionDoor && !interactionDoor.IsOpen();
+            if (doorSituation)
+            {
+                //Will interact with the door in front of itself for a single frame. Then it will keep moving like if the door didn't exist.
+                SearchActionInteract();
+                return;
+            }
+
             //TODO: maybe I should do something about the cases where the current search position (decisionPos) is close enough but the path is very lengthy...
 
             bool hasNavigation = hasNavPath || NavigationCheckPosition(decisionPos, out NavMeshHit nmHit);
@@ -110,10 +125,14 @@ public partial class EnemyAI : MonoBehaviour
         }
     }
 
+    private void SearchActionInteract()
+    {
+        decisionAction = AIAction.INTERACT;
+    }
+
     private void SearchActionMoveAndRotate()
     {
         decisionAction = AIAction.MOVE_AND_ROTATE;
-        //GenerateSearchPosition();
     }
 
     private void SearchActionRotate()

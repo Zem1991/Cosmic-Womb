@@ -20,10 +20,13 @@ public partial class Character : MonoBehaviour
         rotPosPrevious = rotPos;
     }
 
-    //public void RotateAt(Vector3 direction)
-    //{
-    //    throw new NotImplementedException();
-    //}
+    public void RotateAt(Vector3 direction)
+    {
+        if (direction.magnitude < 0.1F) return;
+        direction = Vector3.ClampMagnitude(direction, 1F);
+        Vector3 position = transform.position + direction;
+        RotateTo(position);
+    }
 
     public void RotateTo(Vector3 position, bool instant = false)
     {

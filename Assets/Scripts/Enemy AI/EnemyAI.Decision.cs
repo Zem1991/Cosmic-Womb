@@ -100,10 +100,6 @@ public partial class EnemyAI : MonoBehaviour
             hasNewSearchPos = false;
         }
 
-        //bool startSearchDecisionTarget = decisionTarget && decisionState != AIState.SEARCH;
-        //bool startSearchHearingPosition = heardSomethingBefore && heardSomethingNow;
-        //bool canStartNewSearch = startSearchDecisionTarget || startSearchHearingPosition;
-
         if (heardSomethingNow || decisionState != AIState.SEARCH)
         {
             heardSomethingNow = false;

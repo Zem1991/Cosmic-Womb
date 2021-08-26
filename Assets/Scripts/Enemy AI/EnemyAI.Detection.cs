@@ -18,7 +18,7 @@ public partial class EnemyAI : MonoBehaviour
     {
         heardSomethingBefore = false;
         heardSomethingNow = false;
-        hearingPos = Vector3.zero;
+        hearingPos = transform.position;
     }
 
     public void Hear(Vector3 position)

@@ -69,9 +69,14 @@ public partial class EnemyAI : MonoBehaviour
         bool withinAttackRange = distance <= attackRange;
         bool withinAttackDistance = distance <= engageDistance;
 
+        //TODO: needs an extra check for if the decisionTarget is still being seen. This would fix:
+        // -    Trying to shoot through walls/obstacles.
+        // -    Trying to shoot through other characters.
         if (!withinAttackRange)
         {
-            decisionAction = AIAction.MOVE_AND_ROTATE;
+            bool doorSituation = CanOpenDoor();
+            if (doorSituation) decisionAction = AIAction.INTERACT;
+            else decisionAction = AIAction.MOVE_AND_ROTATE;
         }
         else
         {
@@ -79,6 +84,5 @@ public partial class EnemyAI : MonoBehaviour
         }
 
         decisionPos = targetablePosition;
-        //NavigationCalculatePath(decisionPos);
     }
 }

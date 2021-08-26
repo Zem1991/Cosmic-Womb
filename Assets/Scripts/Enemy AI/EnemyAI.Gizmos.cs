@@ -9,6 +9,7 @@ public partial class EnemyAI : MonoBehaviour
     {
         GizmosDecision();
         GizmosDetection();
+        GizmosInteraction();
         GizmosNavigation();
     }
 
@@ -61,6 +62,24 @@ public partial class EnemyAI : MonoBehaviour
         GizmosExtensions.DrawWireArc(myPos, myDir, sightRadius, sightRange);
     }
     
+    private void GizmosInteraction()
+    {
+        Vector3 myPos = character.GetTargetablePosition();
+        Vector3 myDir = character.GetForwardDirection();
+
+        Gizmos.color = GizmosColors.interactionRange;
+        Vector3 lineEnd = myPos + (myDir * interactionRange);
+        Gizmos.DrawLine(myPos, lineEnd);
+
+        if (interactionTarget)
+        {
+            Vector3 cubePos = interactionPos;
+            Vector3 cubeSize = Vector3.one * 1F;
+            Gizmos.color = GizmosColors.interactionTarget;
+            Gizmos.DrawWireCube(cubePos, cubeSize);
+        }
+    }
+
     private void GizmosNavigation()
     {
         if (!hasNavPath) return;

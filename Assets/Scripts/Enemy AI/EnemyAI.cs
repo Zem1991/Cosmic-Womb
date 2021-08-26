@@ -43,6 +43,9 @@ public partial class EnemyAI : MonoBehaviour
         //Perform detection - sight, hearing, etc.
         FullDetection();
 
+        //Check for interactible stuff within range.
+        SearchInteractable();
+
         //Get knowledge about other stuff via external sources.
         //TODO: ...
     }

@@ -30,6 +30,9 @@ public partial class EnemyAI : MonoBehaviour
                 character.RotateTo(decisionPos);
                 character.UseWeaponHold();
                 break;
+            case AIAction.INTERACT:
+                interactionTarget.Interact();
+                break;
         }
     }
 }
