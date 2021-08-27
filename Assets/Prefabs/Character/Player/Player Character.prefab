@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7615193971028689800}
   - component: {fileID: 5623614614620493237}
   - component: {fileID: 9169664683235818961}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 4261421899325884024}
   - component: {fileID: 8960593127149706882}
   - component: {fileID: 8606896448015732263}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 468149491406152400}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,6 @@ MonoBehaviour:
   currentHealth: 100
   maximumHealth: 100
   isDead: 0
-  interactableObj: {fileID: 0}
   moveSpeed: 12
   moveDir: {x: 0, y: 0, z: 0}
   rotPos: {x: 0, y: 0, z: 0}
@@ -332,7 +331,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4626529746763681189}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Consumables
   m_TagString: Untagged
   m_Icon: {fileID: 0}

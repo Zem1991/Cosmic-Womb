@@ -27,13 +27,13 @@ public partial class Character : MonoBehaviour
 
     private void FixedUpdate()
     {
-        UpdateMovement();
+        //UpdateMovement();
         //UpdateRotation();
     }
 
     private void Update()
     {
-        //UpdateMovement();
+        UpdateMovement();
         UpdateRotation();
 
         UpdateCombat();

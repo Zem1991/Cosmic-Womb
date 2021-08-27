@@ -79,6 +79,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 6008208913959152350}
+  animatorOpenThresholdValue: 0
+  isOpen: 0
+  doorSpeed: 1
   doorway: {fileID: 4853459227292573525}
 --- !u!1 &6167267261306425473
 GameObject:

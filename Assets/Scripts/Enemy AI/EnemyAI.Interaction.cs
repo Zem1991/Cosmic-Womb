@@ -9,7 +9,7 @@ public partial class EnemyAI : MonoBehaviour
     [SerializeField] private float interactionRange = 1F;
     [SerializeField] private Vector3 interactionPos;
     [SerializeField] private AbstractInteractable interactionTarget;
-    [SerializeField] private Door interactionDoor;
+    [SerializeField] private DoorInteractable interactionDoor;
 
     private void SearchInteractable()
     {
@@ -31,7 +31,7 @@ public partial class EnemyAI : MonoBehaviour
         Collider collider = raycastHit.collider;
         interactionPos = collider.ClosestPoint(myPos);
         interactionTarget = collider.GetComponent<AbstractInteractable>();
-        interactionDoor = interactionTarget as Door;
+        interactionDoor = interactionTarget as DoorInteractable;
     }
 
     private bool CanOpenDoor()

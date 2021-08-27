@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3849700136674311397}
   - component: {fileID: 6903244947684081875}
   - component: {fileID: 3029178540933744101}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &8848034959085143771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 2817361297264205759}
   - component: {fileID: 3636822373574188772}
   - component: {fileID: 8491566703231730638}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -284,7 +284,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8677379888782889772}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 2614560374232886356}
   - component: {fileID: 5683520246107782232}
   - component: {fileID: 8976247938069995067}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -659,7 +659,7 @@ GameObject:
   - component: {fileID: 5477627295328524063}
   - component: {fileID: 7180384373986032153}
   - component: {fileID: 1571765266196338468}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -790,7 +790,6 @@ MonoBehaviour:
   currentHealth: 20
   maximumHealth: 20
   isDead: 0
-  interactableObj: {fileID: 0}
   moveSpeed: 5
   moveDir: {x: 0, y: 0, z: 0}
   rotPos: {x: 0, y: 0, z: 0}
@@ -835,10 +834,17 @@ MonoBehaviour:
   decisionTarget: {fileID: 0}
   sightRange: 15
   sightRadius: 120
+  heardSomethingBefore: 0
+  heardSomethingNow: 0
+  hearingPos: {x: 0, y: 0, z: 0}
   detectedCharacterList: []
   engageStateTimeMax: 10
   engageDistance: 5
   engageStateTimeCurrent: 0
+  interactionRange: 1
+  interactionPos: {x: 0, y: 0, z: 0}
+  interactionTarget: {fileID: 0}
+  interactionDoor: {fileID: 0}
   stopDistance: 0.1
   navAreas: -1
   hasNavPath: 0
@@ -848,8 +854,8 @@ MonoBehaviour:
   reachableEnemy: {fileID: 0}
   searchStateTimeMax: 20
   searchAreaSize: 10
-  searchPositionAttempts: 3
-  searchPos: {x: 0, y: 0, z: 0}
+  decisionPositionAttempts: 3
+  startingSearchPos: {x: 0, y: 0, z: 0}
   previousSearchPos: {x: 0, y: 0, z: 0}
   searchStateTimeCurrent: 0
   searchActionTimeCurrent: 0

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : AbstractInteractable
+public class DoorInteractable : AbstractInteractable
 {
     [Header("Animator")]
     [SerializeField] private Animator animator;

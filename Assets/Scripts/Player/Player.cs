@@ -21,7 +21,7 @@ public partial class Player : MonoBehaviour
         CursorMode cursorMode = CursorMode.Auto;
         Cursor.SetCursor(null, hotSpot, cursorMode);
     }
-    
+
     private void Update()
     {
         if (mainCharacter)
@@ -59,6 +59,8 @@ public partial class Player : MonoBehaviour
             CameraControl();
             Rotation();
 
+            transform.position = mainCharacter.transform.position;
+
             //DONT CHANGE THIS - UNITY HAS A WEIRD MOUSE POSITON THAT ONLY GIVES YOU THE DELAYED VALUE.
             CameraPlacement();
             CursorPlacement();
@@ -67,6 +69,8 @@ public partial class Player : MonoBehaviour
 
             UIRefresh();
             ShowAim();
+
+            //transform.position = mainCharacter.transform.position;
         }
     }
 

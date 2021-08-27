@@ -27,7 +27,7 @@ public class PlayerCamera : MonoBehaviour
     public void SetPosition(Vector3 charPos, Vector3 aimPos)
     {
         aimPos.y = charPos.y;
-        transform.position = charPos;
+        //transform.position = charPos;
 
         Vector3 cameraPos = (aimPos + charPos) / 2F;
         Vector3 offset = cameraPos - charPos;
@@ -36,6 +36,7 @@ public class PlayerCamera : MonoBehaviour
             Vector3 offsetClamp = Vector3.ClampMagnitude(offset, cameraRange);
             cameraPos = transform.position + offsetClamp;
         }
+        //transform.position = cameraPos;
         cameraHolder.transform.position = cameraPos;
     }
 
