@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SecretAreaLevelEvent : LevelEvent
+public class SecretAreaLevelEvent : AbstractLevelEvent
 {
     [Header("Secret Area settings")]
     [SerializeField] private bool secretFound;
@@ -11,9 +11,14 @@ public class SecretAreaLevelEvent : LevelEvent
     {
         base.TriggerEvent();
 
-        //TODO: Make something to call ONLY ONCE the "Secret Found" message.
-        secretFound = true;
+        if (!secretFound)
+        {
+            //TODO: Make something to call ONLY ONCE the "Secret Found" message.
+            Vector3 myPosition = transform.position;
+            Debug.Log("SECRET FOUND - " + myPosition);
+            secretFound = true;
+        }
 
-        throw new System.NotImplementedException();
+        return true;
     }
 }

@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class LevelEvent : MonoBehaviour
+public abstract class AbstractLevelEvent : MonoBehaviour
 {
     [Header("Trigger settings")]
     [SerializeField] private bool triggerOnAwake;
     [SerializeField] private bool triggerOnStart;
-    [SerializeField] private bool triggerAfterDelay;
     [SerializeField] private bool triggerOnEnter;
     [SerializeField] private bool triggerOnExit;
+    [SerializeField] private bool triggerAfterDelay;
 
     //TODO: maybe I should move all timed-related triggering to another abstract class that is derived from this one?
     [Header("Timed settings")]

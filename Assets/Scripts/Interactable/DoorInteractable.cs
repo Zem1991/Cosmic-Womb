@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,9 @@ public class DoorInteractable : AbstractInteractable
     [SerializeField] private readonly string animatorOpenThresholdName = "Open Threshold";
     [SerializeField] private float animatorOpenThresholdValue = 0F;
 
-    [Header("Door")]
+    [Header("Door settings")]
+    [SerializeField] private bool isConcealed = false;
+    [SerializeField] private bool isLocked = false;
     [SerializeField] private bool isOpen = false;
     [SerializeField] private float doorSpeed = 1F;
     //[SerializeField] private bool canOpen;
@@ -46,26 +49,43 @@ public class DoorInteractable : AbstractInteractable
 
     public override bool CanInteract()
     {
-        //TODO: Check settings for 'can open', 'can close', 'required keys', etc.
-        return true;
+        bool canOpen = !isLocked && !IsOpen();
+        bool canClose = IsOpen();
+        //TODO: Check for 'required keys'.
+        return canOpen || canClose;
     }
 
     public override bool Interact()
     {
         if (!CanInteract()) return false;
 
-        if (IsOpen())
-            return Close();
-        else
+        //After the first successful interaction, regardless of who or what did it, any concealment is broken.
+        isConcealed = false;
+
+        if (!IsOpen())
             return Open();
+        else
+            return Close();
     }
 
     public override string ReadInteraction()
     {
-        if (IsOpen())
-            return "Close door";
-        else
-            return "Open door";
+        string result = null;
+        if (!isConcealed)
+        {
+            if (IsOpen())
+            {
+                result = "Close door";
+            }
+            else
+            {
+                if (isLocked)
+                    result = "Door locked";
+                else
+                    result = "Open door";
+            }
+        }
+        return result;
     }
 
 
@@ -90,6 +110,7 @@ public class DoorInteractable : AbstractInteractable
     public bool Open()
     {
         //if (IsOpen()) return false;
+        if (isLocked) return false;
         isOpen = true;
         return true;
     }
@@ -104,6 +125,11 @@ public class DoorInteractable : AbstractInteractable
     public bool CanCross()
     {
         return IsOpen() && IsIdle();
+    }
+
+    public void Unlock()
+    {
+        isLocked = false;
     }
 
     private void DoorMotion()
