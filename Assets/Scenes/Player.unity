@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 190473751}
   - component: {fileID: 190473753}
   - component: {fileID: 190473752}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Grenade Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -349,7 +349,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2000000, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: far clip plane
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2000000, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_TargetTexture
@@ -365,7 +365,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2000002, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: far clip plane
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2000002, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_TargetTexture
@@ -381,7 +381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2000004, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: far clip plane
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2000004, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_TargetTexture
@@ -397,7 +397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2000006, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: far clip plane
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2000006, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_TargetTexture
@@ -413,7 +413,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2000008, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: far clip plane
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2000008, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_TargetTexture
@@ -429,7 +429,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2000010, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: far clip plane
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2000010, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_TargetTexture
@@ -440,8 +440,36 @@ PrefabInstance:
       value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_EdgeFade
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskInvert
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MinVariance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_DistanceFade
@@ -452,12 +480,44 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_ExcludeBackfaces
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_EdgeFade
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskInvert
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MinVariance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_DistanceFade
@@ -468,12 +528,44 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_ExcludeBackfaces
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_EdgeFade
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskInvert
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MinVariance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_DistanceFade
@@ -484,12 +576,44 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_ExcludeBackfaces
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400006, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_EdgeFade
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400006, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskInvert
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400006, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400006, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400006, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400006, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400006, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MinVariance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_DistanceFade
@@ -498,14 +622,46 @@ PrefabInstance:
     - target: {fileID: 11400006, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_BackfacesFade
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400006, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskIntensity
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_ExcludeBackfaces
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400008, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_EdgeFade
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskInvert
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MinVariance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400008, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_DistanceFade
@@ -514,14 +670,46 @@ PrefabInstance:
     - target: {fileID: 11400008, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_BackfacesFade
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskIntensity
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400008, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_ExcludeBackfaces
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400010, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_EdgeFade
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskInvert
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MinVariance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400010, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_DistanceFade
@@ -530,6 +718,10 @@ PrefabInstance:
     - target: {fileID: 11400010, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_BackfacesFade
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: 6070b1377c2920547be98efb1187179c, type: 3}
+      propertyPath: m_MaskIntensity
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400010, guid: 6070b1377c2920547be98efb1187179c, type: 3}
       propertyPath: m_ExcludeBackfaces
@@ -778,7 +970,7 @@ GameObject:
   - component: {fileID: 377773352}
   - component: {fileID: 377773354}
   - component: {fileID: 377773353}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: HP Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -855,7 +1047,7 @@ GameObject:
   - component: {fileID: 431535168}
   - component: {fileID: 431535170}
   - component: {fileID: 431535169}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Medal Counter Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1168,6 +1360,43 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &627918192
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 627918193}
+  m_Layer: 5
+  m_Name: Minimap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &627918193
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627918192}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1960113021}
+  - {fileID: 1746201519}
+  m_Father: {fileID: 1183763801}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -160, y: 160}
+  m_SizeDelta: {x: 320, y: 320}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &665999622
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1245,7 +1474,7 @@ GameObject:
   - component: {fileID: 719227145}
   - component: {fileID: 719227147}
   - component: {fileID: 719227146}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Weapon Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1476,9 +1705,6 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
-  - component: {fileID: 963194231}
-  - component: {fileID: 963194230}
-  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1504,7 +1730,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.5283019, g: 0.34140262, b: 0.40350127, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1522,7 +1748,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 10
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1551,47 +1777,6 @@ Transform:
   m_Father: {fileID: 2106384071}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &963194229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bd9f9479e2e6fc49b5578bacf41d9b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_BufferStorage: {fileID: 963194231}
-  m_QualityLevel: 2
-  m_HDRMask: 1
---- !u!114 &963194230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a9ad3dbf6ac227409ca309548ea7a5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Shader: {fileID: 4800000, guid: 2b6a538e428c46a43b25dd43e69ef78f, type: 3}
-  m_Brightness: 0.35
---- !u!114 &963194231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d2fe9082113d1a4a9c09e27df518e66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1001813624
 GameObject:
   m_ObjectHideFlags: 0
@@ -1603,7 +1788,7 @@ GameObject:
   - component: {fileID: 1001813625}
   - component: {fileID: 1001813627}
   - component: {fileID: 1001813626}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Keys
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1804,8 +1989,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 220, y: 200}
-  m_SizeDelta: {x: 440, y: 400}
+  m_AnchoredPosition: {x: 220, y: 210}
+  m_SizeDelta: {x: 440, y: 420}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1075783479
 MonoBehaviour:
@@ -1856,7 +2041,7 @@ RectTransform:
   - {fileID: 373922518}
   - {fileID: 957396103}
   m_Father: {fileID: 1183763801}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1970,6 +2155,7 @@ RectTransform:
   m_Children:
   - {fileID: 1073758315}
   - {fileID: 1075783478}
+  - {fileID: 627918193}
   - {fileID: 1091891906}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -2005,7 +2191,7 @@ GameObject:
   - component: {fileID: 1189901661}
   - component: {fileID: 1189901663}
   - component: {fileID: 1189901662}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Medals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2082,7 +2268,7 @@ GameObject:
   - component: {fileID: 1192595920}
   - component: {fileID: 1192595922}
   - component: {fileID: 1192595921}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Grenades
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2159,7 +2345,7 @@ GameObject:
   - component: {fileID: 1204285159}
   - component: {fileID: 1204285161}
   - component: {fileID: 1204285160}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Key Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2234,7 +2420,7 @@ GameObject:
   - component: {fileID: 1224614257}
   - component: {fileID: 1224614259}
   - component: {fileID: 1224614258}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: HP Bar Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2555,7 +2741,7 @@ GameObject:
   - component: {fileID: 1332142133}
   - component: {fileID: 1332142135}
   - component: {fileID: 1332142134}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Weapon Ammo Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2634,7 +2820,7 @@ GameObject:
   - component: {fileID: 1369792935}
   - component: {fileID: 1369792937}
   - component: {fileID: 1369792936}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Key Counter Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2896,6 +3082,78 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1726543920}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1746201518
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1746201519}
+  - component: {fileID: 1746201521}
+  - component: {fileID: 1746201520}
+  m_Layer: 5
+  m_Name: Minimap Render
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1746201519
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746201518}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 627918193}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 300, y: 300}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1746201520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746201518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 03b85406163c68446b82737ebddc0abc, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 8400000, guid: 94c52b93339bcdc4cb6245f125897a41, type: 2}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &1746201521
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746201518}
+  m_CullTransparentMesh: 1
 --- !u!1 &1756759621
 GameObject:
   m_ObjectHideFlags: 0
@@ -2907,7 +3165,7 @@ GameObject:
   - component: {fileID: 1756759622}
   - component: {fileID: 1756759624}
   - component: {fileID: 1756759623}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2984,7 +3242,7 @@ GameObject:
   - component: {fileID: 1939240936}
   - component: {fileID: 1939240938}
   - component: {fileID: 1939240937}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Medal Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3048,6 +3306,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939240935}
   m_CullTransparentMesh: 0
+--- !u!1 &1960113020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1960113021}
+  - component: {fileID: 1960113023}
+  - component: {fileID: 1960113022}
+  m_Layer: 5
+  m_Name: Minimap Frame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1960113021
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960113020}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 627918193}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1960113022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960113020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.36078432, g: 0.36078432, b: 0.36078432, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 9db96cb497a074f4ab50f6211fd3818c, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1960113023
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960113020}
+  m_CullTransparentMesh: 1
 --- !u!1 &1980057682
 GameObject:
   m_ObjectHideFlags: 0
@@ -3189,7 +3522,7 @@ GameObject:
   - component: {fileID: 2064189057}
   - component: {fileID: 2064189059}
   - component: {fileID: 2064189058}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Grenade Counter Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3268,7 +3601,7 @@ GameObject:
   - component: {fileID: 2095659726}
   - component: {fileID: 2095659728}
   - component: {fileID: 2095659727}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: HP Bar Fill Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3355,11 +3688,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2106384070}
-  m_LocalRotation: {x: 0.46193978, y: -0.33141357, z: 0.19134171, w: 0.8001032}
+  m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 963194228}
   m_Father: {fileID: 1041672448}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 60, y: -45, z: 0}
+  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}

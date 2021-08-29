@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 8854973775419642140}
   - component: {fileID: 7405073927204568792}
   - component: {fileID: 2735249878481582998}
-  - component: {fileID: 3362892619472570661}
-  - component: {fileID: 6404609021674080645}
   m_Layer: 10
   m_Name: Capsule (2)
   m_TagString: Untagged
@@ -83,33 +81,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3362892619472570661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 88259080971365765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3417c49995cbcea4aa2a73ebdf103693, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RaycastLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &6404609021674080645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 88259080971365765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6b334c0935829642b595f043fde9963, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5398889039714729820
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,8 +239,6 @@ GameObject:
   - component: {fileID: 2614560374232886356}
   - component: {fileID: 5683520246107782232}
   - component: {fileID: 8976247938069995067}
-  - component: {fileID: 7481356767934311057}
-  - component: {fileID: 1822420855221350707}
   m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
@@ -340,33 +309,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7481356767934311057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6073926616785631153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3417c49995cbcea4aa2a73ebdf103693, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RaycastLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &1822420855221350707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6073926616785631153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6b334c0935829642b595f043fde9963, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6314995091971948660
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,8 +578,6 @@ GameObject:
   - component: {fileID: 5477627295328524063}
   - component: {fileID: 7180384373986032153}
   - component: {fileID: 1571765266196338468}
-  - component: {fileID: 7053615247419876078}
-  - component: {fileID: 7082650263446080172}
   m_Layer: 10
   m_Name: Capsule
   m_TagString: Untagged
@@ -708,33 +648,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7053615247419876078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8730394259674988758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3417c49995cbcea4aa2a73ebdf103693, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RaycastLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &7082650263446080172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8730394259674988758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6b334c0935829642b595f043fde9963, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8829763843223710171
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,8 +659,6 @@ GameObject:
   - component: {fileID: 6432404077425536223}
   - component: {fileID: 2377235987979708284}
   - component: {fileID: 5195917419232336213}
-  - component: {fileID: 5000650993087344458}
-  - component: {fileID: 2736941904500903244}
   m_Layer: 10
   m_Name: Capsule (1)
   m_TagString: Untagged
@@ -818,33 +729,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5000650993087344458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8829763843223710171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3417c49995cbcea4aa2a73ebdf103693, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RaycastLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &2736941904500903244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8829763843223710171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6b334c0935829642b595f043fde9963, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &9072241975872126544
 GameObject:
   m_ObjectHideFlags: 0
