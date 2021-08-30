@@ -11,7 +11,7 @@ public class DoorInteractable : AbstractInteractable
     [SerializeField] private float animatorOpenThresholdValue = 0F;
 
     [Header("Door settings")]
-    [SerializeField] private bool isConcealed = false;
+    
     [SerializeField] private bool isLocked = false;
     [SerializeField] private bool isOpen = false;
     [SerializeField] private float doorSpeed = 1F;
@@ -58,9 +58,7 @@ public class DoorInteractable : AbstractInteractable
     public override bool Interact()
     {
         if (!CanInteract()) return false;
-
-        //After the first successful interaction, regardless of who or what did it, any concealment is broken.
-        isConcealed = false;
+        base.Interact();
 
         if (!IsOpen())
             return Open();
@@ -70,7 +68,7 @@ public class DoorInteractable : AbstractInteractable
 
     public override string ReadInteraction()
     {
-        string result = null;
+        string result = "???";
         if (!isConcealed)
         {
             if (IsOpen())

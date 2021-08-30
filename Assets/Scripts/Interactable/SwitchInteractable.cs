@@ -21,6 +21,7 @@ public class SwitchInteractable : AbstractInteractable
     public override bool Interact()
     {
         if (!CanInteract()) return false;
+        base.Interact();
 
         isOn = !isOn;
         animator.SetBool("Is On", isOn);
@@ -33,7 +34,7 @@ public class SwitchInteractable : AbstractInteractable
         string result = "Use switch";
         if (isOneTimeUse && isOn)
         {
-            result = null;
+            result = "It's stuck";
         }
         return result;
     }

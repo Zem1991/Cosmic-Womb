@@ -22,7 +22,7 @@ public class UIHandler : MonoBehaviour
     
     public void UpdateInteraction(AbstractInteractable interactionTarget, Vector3 interactionPos)
     {
-        if (!interactionTarget)
+        if (!interactionTarget || interactionTarget.IsConcealed())
         {
             interaction.ManualUpdate();
             return;
@@ -30,7 +30,7 @@ public class UIHandler : MonoBehaviour
 
         Vector2 screenPosition = Camera.main.WorldToScreenPoint(interactionPos);
         string interactionText = interactionTarget.ReadInteraction();
-        //TODO: also pass an bool to render with a different color when the interaction is not possible.
+        //TODO: also pass an bool to render with a different color when the interaction is not possible?
         interaction.ManualUpdate(screenPosition, interactionText);
     }
 }
