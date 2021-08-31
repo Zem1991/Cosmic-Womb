@@ -14,8 +14,8 @@ public class SwitchInteractable : AbstractInteractable
 
     public override bool CanInteract()
     {
-        bool oneTime = !isOneTimeUse || (isOneTimeUse && !isOn);
-        return true;
+        bool checkOneUse = !isOneTimeUse || (isOneTimeUse && !isOn);
+        return checkOneUse;
     }
 
     public override bool Interact()

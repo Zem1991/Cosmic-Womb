@@ -44,12 +44,20 @@ public abstract class AbstractLevelEvent : MonoBehaviour
     //TODO: this may need overrides later
     private void OnTriggerEnter(Collider other)
     {
+        //Should only test for Characters within bounds.
+        Character otherCharacter = other.GetComponent<Character>();
+        if (!otherCharacter) return;
+
         if (CanActivate(triggerOnEnter)) TriggerEvent();
     }
 
     //TODO: this may need overrides later
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
+        //Should only test for Characters within bounds.
+        Character otherCharacter = other.GetComponent<Character>();
+        if (!otherCharacter) return;
+
         if (CanActivate(triggerOnExit)) TriggerEvent();
     }
 
