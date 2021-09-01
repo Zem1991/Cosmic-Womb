@@ -46,7 +46,7 @@ public class GameManager : AbstractSingleton<GameManager>
             LevelController levelController = LevelController.Instance;
             LevelSpawnPosition spawnPosition = levelController.GetSpawnPosition();
 
-            PlayerManager.Instance.SpawnPlayer(spawnPosition);
+            PlayerManager.Instance.SpawnAllPlayers(spawnPosition);
             levelController.StartLevel();
             Debug.Log("Level \"" + levelName + "\" was started.");
         };

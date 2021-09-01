@@ -12,7 +12,7 @@ public partial class Player : MonoBehaviour
 
     [Header("Other references")]
     [SerializeField] private MainCharacter mainCharacter;
-    [SerializeField] private UIHandler uiHandler;
+    [SerializeField] private PlayerUI uiHandler;
 
     private void Awake()
     {
@@ -151,7 +151,7 @@ public partial class Player : MonoBehaviour
     {
         if (!uiHandler) return;
 
-        uiHandler.UpdatePlayer(mainCharacter);
+        uiHandler.UpdatePlayerData(mainCharacter);
         uiHandler.UpdateInteraction(interactionTarget, interactionPos);
     }
 

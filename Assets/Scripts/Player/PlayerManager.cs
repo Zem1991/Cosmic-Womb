@@ -4,11 +4,37 @@ using UnityEngine;
 
 public class PlayerManager : AbstractSingleton<PlayerManager>
 {
+    [Header("Scene references")]
+    [SerializeField] private PlayerUI uiHandler;
+
     [Header("Players")]
     [SerializeField] private Player localPlayer;
 
-    public bool SpawnPlayer(LevelSpawnPosition spawnPosition)
+    public override void Awake()
     {
+        //TODO: I will need something later for handling which player is being featured on the PlayerUI.
+        //For now this is handled in the DespawnAllPlayers and SpawnAllPlayers methods.
+
+        base.Awake();
+        DespawnAllPlayers();
+        Debug.Log("PlayerManager finished Awake()");
+    }
+
+    public bool DespawnAllPlayers()
+    {
+        uiHandler.HideAll();
+
+        //TODO: if this game ever get co-op mode, make this method work for any player instead of just localPlayer.
+        Player player = localPlayer;
+        
+        player.Despawn();
+        return true;
+    }
+
+    public bool SpawnAllPlayers(LevelSpawnPosition spawnPosition)
+    {
+        uiHandler.ShowAll();
+
         //TODO: if this game ever get co-op mode, make this method work for any player instead of just localPlayer.
         Player player = localPlayer;
 

@@ -4,14 +4,31 @@ using UnityEngine;
 
 public class LevelController : AbstractSingleton<LevelController>
 {
+    [Header("Scene references")]
+    [SerializeField] private LevelUI uiHandler;
+    [SerializeField] private Transform mapCameraHolder;
+    [SerializeField] private Camera mapCamera;
+    [SerializeField] private Transform endCameraHolder;
+    [SerializeField] private Camera endCamera;
+
     [Header("Level information")]
     [SerializeField] private string levelName = "Unnamed level";
     [SerializeField] private float completionTime = 30F;
+    [SerializeField] private int enemyCount = 0;
+    [SerializeField] private int secretsCount = 0;
     [SerializeField] private LevelSpawnPosition spawnPosition;
 
     [Header("Level data")]
     [SerializeField] private bool isCompleted = false;
     [SerializeField] private float playTime = 0F;
+    [SerializeField] private int killCount = 0;
+    [SerializeField] private int findingsCount = 0;
+
+    public override void Awake()
+    {
+        base.Awake();
+        Debug.Log("LevelController finished Awake()");
+    }
 
     private void Start()
     {
@@ -27,22 +44,70 @@ public class LevelController : AbstractSingleton<LevelController>
         }
     }
 
+    #region Level information
+    public string GetLevelName()
+    {
+        return levelName;
+    }
+    public float GetCompletionTime()
+    {
+        return completionTime;
+    }
+    public int GetEnemyCount()
+    {
+        return enemyCount;
+    }
+    public int GetSecretsCount()
+    {
+        return secretsCount;
+    }
     public LevelSpawnPosition GetSpawnPosition()
     {
         return spawnPosition;
     }
+    #endregion
+
+    #region Level data
+    public float GetPlayTime()
+    {
+        return playTime;
+    }
+    public int GetKillCount()
+    {
+        return killCount;
+    }
+    public int GetFindingsCount()
+    {
+        return findingsCount;
+    }
+    #endregion
 
     public void StartLevel()
     {
+        endCameraHolder.gameObject.SetActive(false);
+        uiHandler.HideAll();
+
         isCompleted = false;
         playTime = 0F;
     }
 
     public void EndLevel()
     {
+        //TODO: Say this game becomes co-op. Do it despawn everyone when one uses the Exit? Do it wait for some, if not all, players?
+        PlayerManager.Instance.DespawnAllPlayers();
+
+        endCameraHolder.gameObject.SetActive(true);
+        uiHandler.ShowAll();
+        uiHandler.UpdateLevelResults(this);
+
         isCompleted = true;
-        Debug.Log("Level completed in " + playTime  + " seconds.");
-        Debug.Log(playTime + " / " + completionTime);
+    }
+
+    public void ToNextLevel()
+    {
+        endCameraHolder.gameObject.SetActive(false);
+        uiHandler.HideAll();
+
         GameManager.Instance.LoadNextLevel();
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIPanel_Player : MonoBehaviour
+public class UIPanel_PlayerData : MonoBehaviour
 {
     [Header("Image")]
     [SerializeField] private Image hpBarFillImage;
