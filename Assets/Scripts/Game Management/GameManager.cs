@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,14 @@ public class GameManager : AbstractSingleton<GameManager>
     public override void Awake()
     {
         base.Awake();
+        Debug.Log("GameManager finished Awake()");
+    }
+
+    private void Start()
+    {
+        Debug.Log("GameManager entered Start()");
+        //TODO: This is here for testing purposes.
+        LoadNextLevel();
     }
 
     public int GetLevelCount()
@@ -25,14 +34,24 @@ public class GameManager : AbstractSingleton<GameManager>
     {
         levelIndex++;
         if (levelIndex > levelCount) levelIndex = 1;
-        string levelName = sceneLoader.GetLevelName(levelIndex);
+        string levelName = sceneLoader.GetLevelSceneName(levelIndex);
         LoadLevel(levelName);
     }
 
     private void LoadLevel(string levelName)
     {
-        IEnumerator levelLoad = sceneLoader.LoadLevel(levelName);
-        StartCoroutine(levelLoad);
-        Debug.Log("Level \"" + levelName + "\" started.");
+        Action onFinishAction = () =>
+        {
+            Debug.Log("Level \"" + levelName + "\" was loaded.");
+            LevelController levelController = LevelController.Instance;
+            LevelSpawnPosition spawnPosition = levelController.GetSpawnPosition();
+
+            PlayerManager.Instance.SpawnPlayer(spawnPosition);
+            levelController.StartLevel();
+            Debug.Log("Level \"" + levelName + "\" was started.");
+        };
+
+        IEnumerator loadScene = sceneLoader.LoadLevelScene(levelName, onFinishAction);
+        StartCoroutine(loadScene);
     }
 }

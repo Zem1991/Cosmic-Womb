@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class LevelController : AbstractSingleton<LevelController>
 {
-    [Header("Level data")]
+    [Header("Level information")]
     [SerializeField] private string levelName = "Unnamed level";
-    [SerializeField] private bool isCompleted = false;
     [SerializeField] private float completionTime = 30F;
+    [SerializeField] private LevelSpawnPosition spawnPosition;
+
+    [Header("Level data")]
+    [SerializeField] private bool isCompleted = false;
     [SerializeField] private float playTime = 0F;
 
     private void Start()
     {
+        //TODO: is this supposed to be called here or within GameManager?
         StartLevel();
     }
 
@@ -21,6 +25,11 @@ public class LevelController : AbstractSingleton<LevelController>
         {
             playTime += Time.deltaTime;
         }
+    }
+
+    public LevelSpawnPosition GetSpawnPosition()
+    {
+        return spawnPosition;
     }
 
     public void StartLevel()

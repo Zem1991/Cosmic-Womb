@@ -4,6 +4,9 @@ using UnityEngine;
 
 public static class GizmosColors
 {
+    //Spawn Position - Magenta
+    public static readonly Color spawnPosition = new Color(1F, 0F, 1F, 1F);
+
     //Camera - Black
     public static readonly Color cameraRange = new Color(0F, 0F, 0F, 1F);
     public static readonly Color cameraPosition = new Color(0F, 0F, 0F, 1F);

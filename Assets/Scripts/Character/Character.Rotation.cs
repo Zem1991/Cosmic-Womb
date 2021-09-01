@@ -20,12 +20,12 @@ public partial class Character : MonoBehaviour
         rotPosPrevious = rotPos;
     }
 
-    public void RotateAt(Vector3 direction)
+    public void RotateAt(Vector3 direction, bool instant = false)
     {
         if (direction.magnitude < 0.1F) return;
         direction = Vector3.ClampMagnitude(direction, 1F);
         Vector3 position = transform.position + direction;
-        RotateTo(position);
+        RotateTo(position, instant);
     }
 
     public void RotateTo(Vector3 position, bool instant = false)

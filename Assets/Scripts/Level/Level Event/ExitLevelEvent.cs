@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EndLevelEvent : AbstractLevelEvent
+public class ExitLevelEvent : AbstractLevelEvent
 {
     //[Header("End settings")]
     //[SerializeField] private LevelController levelController;

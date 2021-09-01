@@ -22,7 +22,7 @@ public partial class Character : MonoBehaviour
     private void Awake()
     {
         //This fixes an bug that made all Characters rotate towards the position (0; 0; 0) at scene start.
-        RotateAt(transform.forward);
+        RotateAt(transform.forward, true);
     }
 
     private void FixedUpdate()

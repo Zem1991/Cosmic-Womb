@@ -184,7 +184,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scenePlayer:
     m_Handle: 0
+  scenePlayerHandle: 0
   sceneLevel:
     m_Handle: 0
+  sceneLevelHandle: 0
   sceneShop:
     m_Handle: 0
+  sceneShopHandle: 0
