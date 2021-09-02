@@ -11,10 +11,10 @@ public partial class Player : MonoBehaviour
 
     private void GizmosInteraction()
     {
-        if (!mainCharacter) return;
+        if (!playerCharacter) return;
 
-        Vector3 myPos = mainCharacter.transform.position;
-        Vector3 mcDir = mainCharacter.GetForwardDirection();
+        Vector3 myPos = playerCharacter.transform.position;
+        Vector3 mcDir = playerCharacter.GetForwardDirection();
 
         Gizmos.color = GizmosColors.interactionRange;
         GizmosExtensions.DrawWireArc(myPos, -mcDir, 360, interactionRange, 24);

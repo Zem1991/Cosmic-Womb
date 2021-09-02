@@ -6,6 +6,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 {
     [Header("Scene references")]
     [SerializeField] private PlayerUI uiHandler;
+    [SerializeField] private PlayerCamera playerCamera;
+    [SerializeField] private PlayerCursor playerCursor;
+    [SerializeField] private PlayerAim playerAim;
 
     [Header("Players")]
     [SerializeField] private Player localPlayer;
@@ -20,9 +23,31 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         Debug.Log("PlayerManager finished Awake()");
     }
 
+    #region Scene references
+    public PlayerUI GetPlayerUI()
+    {
+        return uiHandler;
+    }
+    public PlayerCamera GetPlayerCamera()
+    {
+        return playerCamera;
+    }
+    public PlayerCursor GetPlayerCursor()
+    {
+        return playerCursor;
+    }
+    public PlayerAim GetPlayerAim()
+    {
+        return playerAim;
+    }
+    #endregion
+
     public bool DespawnAllPlayers()
     {
         uiHandler.HideAll();
+        playerCamera.gameObject.SetActive(false);
+        playerCursor.gameObject.SetActive(false);
+        playerAim.gameObject.SetActive(false);
 
         //TODO: if this game ever get co-op mode, make this method work for any player instead of just localPlayer.
         Player player = localPlayer;
@@ -34,6 +59,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     public bool SpawnAllPlayers(LevelSpawnPosition spawnPosition)
     {
         uiHandler.ShowAll();
+        playerCamera.gameObject.SetActive(true);
+        playerCursor.gameObject.SetActive(true);
+        playerAim.gameObject.SetActive(true);
 
         //TODO: if this game ever get co-op mode, make this method work for any player instead of just localPlayer.
         Player player = localPlayer;

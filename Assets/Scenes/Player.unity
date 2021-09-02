@@ -152,7 +152,7 @@ Transform:
   m_Children:
   - {fileID: 333892226}
   m_Father: {fileID: 626242608}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &190473750
 GameObject:
@@ -1337,11 +1337,7 @@ MonoBehaviour:
   interactionPos: {x: 0, y: 0, z: 0}
   interactionTarget: {fileID: 0}
   inputReader: {fileID: 626242605}
-  playerCamera: {fileID: 1041672449}
-  playerCursor: {fileID: 2023865877}
-  playerAim: {fileID: 1248960714}
-  mainCharacter: {fileID: 665999623}
-  uiHandler: {fileID: 1183763802}
+  playerCharacter: {fileID: 665999623}
 --- !u!4 &626242608
 Transform:
   m_ObjectHideFlags: 0
@@ -1353,10 +1349,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1041672448}
   - {fileID: 134024723}
-  - {fileID: 2023865876}
-  - {fileID: 1248960713}
   m_Father: {fileID: 1909940900}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1886,7 +1879,7 @@ GameObject:
   - component: {fileID: 1041672448}
   - component: {fileID: 1041672449}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: Player Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1899,13 +1892,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1041672447}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2106384071}
-  m_Father: {fileID: 626242608}
-  m_RootOrder: 0
+  m_Father: {fileID: 1925398493}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1041672449
 MonoBehaviour:
@@ -2178,7 +2171,7 @@ RectTransform:
   - {fileID: 1075783478}
   - {fileID: 627918193}
   - {fileID: 1091891906}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1925398493}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2645,7 +2638,7 @@ GameObject:
   - component: {fileID: 1248960713}
   - component: {fileID: 1248960714}
   m_Layer: 0
-  m_Name: Aim
+  m_Name: Player Aim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2658,14 +2651,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248960712}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 548625589}
   - {fileID: 1225047684}
   - {fileID: 345467088}
-  m_Father: {fileID: 626242608}
+  m_Father: {fileID: 1925398493}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1248960714
@@ -2985,7 +2978,7 @@ Transform:
   m_Children:
   - {fileID: 665999624}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1726543920
 GameObject:
@@ -3246,7 +3239,7 @@ Transform:
   m_Children:
   - {fileID: 626242608}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1925398492
 GameObject:
@@ -3275,9 +3268,13 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1183763801}
+  - {fileID: 1041672448}
+  - {fileID: 2023865876}
+  - {fileID: 1248960713}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1925398494
 MonoBehaviour:
@@ -3292,6 +3289,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiHandler: {fileID: 1183763802}
+  playerCamera: {fileID: 1041672449}
+  playerCursor: {fileID: 2023865877}
+  playerAim: {fileID: 1248960714}
   localPlayer: {fileID: 626242607}
 --- !u!1 &1939240935
 GameObject:
@@ -3535,7 +3535,7 @@ GameObject:
   - component: {fileID: 2023865876}
   - component: {fileID: 2023865877}
   m_Layer: 0
-  m_Name: Cursor
+  m_Name: Player Cursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3548,12 +3548,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2023865875}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 244320154}
-  m_Father: {fileID: 626242608}
+  m_Father: {fileID: 1925398493}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2023865877

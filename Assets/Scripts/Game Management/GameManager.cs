@@ -42,7 +42,6 @@ public class GameManager : AbstractSingleton<GameManager>
     {
         Action onFinishAction = () =>
         {
-            Debug.Log("Level \"" + levelName + "\" was loaded.");
             LevelController levelController = LevelController.Instance;
             LevelSpawnPosition spawnPosition = levelController.GetSpawnPosition();
 

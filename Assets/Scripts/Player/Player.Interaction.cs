@@ -11,8 +11,8 @@ public partial class Player : MonoBehaviour
     
     private void SearchInteractable()
     {
-        Vector3 mcPos = mainCharacter.GetTargetablePosition();
-        Vector3 mcDir = mainCharacter.GetForwardDirection();
+        Vector3 mcPos = playerCharacter.GetTargetablePosition();
+        Vector3 mcDir = playerCharacter.GetForwardDirection();
 
         string[] layerNames = {"Interactable"};
         LayerMask layerMask = LayerMask.GetMask(layerNames);

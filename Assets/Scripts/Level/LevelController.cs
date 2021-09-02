@@ -84,8 +84,8 @@ public class LevelController : AbstractSingleton<LevelController>
 
     public void StartLevel()
     {
-        endCameraHolder.gameObject.SetActive(false);
         uiHandler.HideAll();
+        endCameraHolder.gameObject.SetActive(false);
 
         isCompleted = false;
         playTime = 0F;
@@ -96,17 +96,17 @@ public class LevelController : AbstractSingleton<LevelController>
         //TODO: Say this game becomes co-op. Do it despawn everyone when one uses the Exit? Do it wait for some, if not all, players?
         PlayerManager.Instance.DespawnAllPlayers();
 
-        endCameraHolder.gameObject.SetActive(true);
         uiHandler.ShowAll();
         uiHandler.UpdateLevelResults(this);
+        endCameraHolder.gameObject.SetActive(true);
 
         isCompleted = true;
     }
 
     public void ToNextLevel()
     {
-        endCameraHolder.gameObject.SetActive(false);
         uiHandler.HideAll();
+        endCameraHolder.gameObject.SetActive(false);
 
         GameManager.Instance.LoadNextLevel();
     }

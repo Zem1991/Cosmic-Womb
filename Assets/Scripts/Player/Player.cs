@@ -6,13 +6,13 @@ public partial class Player : MonoBehaviour
 {
     [Header("Self references")]
     [SerializeField] private InputReader inputReader;
-    [SerializeField] private PlayerCamera playerCamera;
-    [SerializeField] private PlayerCursor playerCursor;
-    [SerializeField] private PlayerAim playerAim;
+    //[SerializeField] private PlayerCamera playerCamera;
+    //[SerializeField] private PlayerCursor playerCursor;
+    //[SerializeField] private PlayerAim playerAim;
 
-    [Header("Other references")]
-    [SerializeField] private MainCharacter mainCharacter;
-    [SerializeField] private PlayerUI uiHandler;
+    [Header("Belongings")]
+    [SerializeField] private MainCharacter playerCharacter;
+    //[SerializeField] private PlayerUI uiHandler;
 
     private void Awake()
     {
@@ -24,7 +24,7 @@ public partial class Player : MonoBehaviour
 
     private void Update()
     {
-        if (mainCharacter)
+        if (playerCharacter)
         {
             //CameraPlacement();
             //CursorPlacement();
@@ -38,7 +38,7 @@ public partial class Player : MonoBehaviour
             //AimPlacement();
         }
 
-        if (mainCharacter)
+        if (playerCharacter)
         {
             SearchInteractable();
             Interaction();
@@ -48,7 +48,7 @@ public partial class Player : MonoBehaviour
     
     private void LateUpdate()
     {
-        if (mainCharacter)
+        if (playerCharacter)
         {
             //DONT CHANGE THIS - UNITY HAS A WEIRD MOUSE POSITON THAT ONLY GIVES YOU THE DELAYED VALUE.
             CameraPlacement();
@@ -59,7 +59,7 @@ public partial class Player : MonoBehaviour
             CameraControl();
             Rotation();
 
-            transform.position = mainCharacter.transform.position;
+            transform.position = playerCharacter.transform.position;
 
             //DONT CHANGE THIS - UNITY HAS A WEIRD MOUSE POSITON THAT ONLY GIVES YOU THE DELAYED VALUE.
             CameraPlacement();
@@ -76,13 +76,15 @@ public partial class Player : MonoBehaviour
 
     private void Movement()
     {
+        PlayerCamera playerCamera = PlayerManager.Instance.GetPlayerCamera();
+
         Vector3 cameraRotationEuler = playerCamera.GetRotation();
         Quaternion cameraRotation = Quaternion.Euler(0, cameraRotationEuler.y, 0);
 
         Vector3 characterMov = inputReader.CharacterMovement();
         Vector3 moveDirAdjusted = cameraRotation * characterMov;
 
-        mainCharacter.MoveAt(moveDirAdjusted);
+        playerCharacter.MoveAt(moveDirAdjusted);
     }
 
     private void Combat()
@@ -96,10 +98,10 @@ public partial class Player : MonoBehaviour
         //bool useGrenadeHold = inputReader.UseGrenadeHold();
         //bool useGrenadeRelease = inputReader.UseGrenadeRelease();
 
-        if (previousWeapon && !nextWeapon) mainCharacter.SelectPreviousWeapon();
-        if (!previousWeapon && nextWeapon) mainCharacter.SelectNextWeapon();
+        if (previousWeapon && !nextWeapon) playerCharacter.SelectPreviousWeapon();
+        if (!previousWeapon && nextWeapon) playerCharacter.SelectNextWeapon();
 
-        if (useWeaponHold) mainCharacter.UseWeaponHold();
+        if (useWeaponHold) playerCharacter.UseWeaponHold();
         //TODO: mash-or-charge weapon, so I can make an UseWeaponRelease() method
 
         //if (useGrenadePress) mainCharacter.UseGrenadePress();
@@ -109,6 +111,8 @@ public partial class Player : MonoBehaviour
 
     private void CameraControl()
     {
+        PlayerCamera playerCamera = PlayerManager.Instance.GetPlayerCamera();
+
         float rotation = 0F;
         if (inputReader.CameraRotLeft()) rotation--;
         if (inputReader.CameraRotRight()) rotation++;
@@ -117,54 +121,69 @@ public partial class Player : MonoBehaviour
 
     private void Rotation()
     {
+        PlayerAim playerAim = PlayerManager.Instance.GetPlayerAim();
+
         Vector3 aimPos = playerAim.GetAimPosition();
-        mainCharacter.RotateTo(aimPos, true);
+        playerCharacter.RotateTo(aimPos, true);
     }
 
     private void CursorPlacement()
     {
+        PlayerCursor playerCursor = PlayerManager.Instance.GetPlayerCursor();
+
         playerCursor.UpdateCursor(Camera.main);
     }
     
     private void AimPlacement()
     {
+        PlayerCursor playerCursor = PlayerManager.Instance.GetPlayerCursor();
+        PlayerAim playerAim = PlayerManager.Instance.GetPlayerAim();
+
         Vector3 mcPos = transform.position;
-        if (mainCharacter) mcPos = mainCharacter.transform.position;
+        if (playerCharacter) mcPos = playerCharacter.transform.position;
         Ray screenRay = playerCursor.GetScreenRay();
         playerAim.UpdateAim(screenRay, mcPos.y);
 
-        float weaponRange = mainCharacter.GetWeapon().GetEffectiveRange();
-        Vector3 aimStart = mainCharacter.GetProjectileSpawnPoint();
-        Vector3 aimEnd = aimStart + (mainCharacter.GetForwardDirection() * weaponRange);
+        float weaponRange = playerCharacter.GetWeapon().GetEffectiveRange();
+        Vector3 aimStart = playerCharacter.GetProjectileSpawnPoint();
+        Vector3 aimEnd = aimStart + (playerCharacter.GetForwardDirection() * weaponRange);
         playerAim.DrawAimLine(aimStart, aimEnd);
     }
 
     private void CameraPlacement()
     {
+        PlayerCamera playerCamera = PlayerManager.Instance.GetPlayerCamera();
+        PlayerAim playerAim = PlayerManager.Instance.GetPlayerAim();
+
         Vector3 mcPos = transform.position;
-        if (mainCharacter) mcPos = mainCharacter.transform.position;
+        if (playerCharacter) mcPos = playerCharacter.transform.position;
         Vector3 aimPos = playerAim.GetAimPosition();
         playerCamera.SetPosition(mcPos, aimPos);
     }
 
     private void UIRefresh()
     {
+        PlayerUI uiHandler = PlayerManager.Instance.GetPlayerUI();
+
         if (!uiHandler) return;
 
-        uiHandler.UpdatePlayerData(mainCharacter);
+        uiHandler.UpdatePlayerData(playerCharacter);
         uiHandler.UpdateInteraction(interactionTarget, interactionPos);
     }
 
     private void ShowAim()
     {
+        PlayerUI uiHandler = PlayerManager.Instance.GetPlayerUI();
+        PlayerCursor playerCursor = PlayerManager.Instance.GetPlayerCursor();
+
         if (!uiHandler) return;
 
-        Weapon weapon = mainCharacter.GetWeapon();
+        Weapon weapon = playerCharacter.GetWeapon();
         bool hasBoost = weapon.HasChargeBoost() || weapon.HasAimBoost();
 
         Vector2 screenPosition = playerCursor.GetScreenPosition();
         Sprite crosshair = weapon.GetCrosshairSprite();
-        float scale = hasBoost ? mainCharacter.GetWeaponPower() : 0F;
+        float scale = hasBoost ? playerCharacter.GetWeaponPower() : 0F;
 
         //TODO: have this method pass mainCharacter and playerCursor as parameters?
         uiHandler.UpdateCrosshair(screenPosition, crosshair, scale);
