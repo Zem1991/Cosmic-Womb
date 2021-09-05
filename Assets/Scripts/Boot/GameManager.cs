@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class GameManager : AbstractSingleton<GameManager>
 {
-    [Header("Self references")]
-    [SerializeField] private SceneLoader sceneLoader;
-
     [Header("Game data")]
     [SerializeField] private int levelIndex;
     [SerializeField] private int levelCount;
@@ -32,14 +29,19 @@ public class GameManager : AbstractSingleton<GameManager>
 
     public void LoadNextLevel()
     {
+        SceneLoader sceneLoader = SceneLoader.Instance;
+
         levelIndex++;
         if (levelIndex > levelCount) levelIndex = 1;
         string levelName = sceneLoader.GetLevelSceneName(levelIndex);
         LoadLevel(levelName);
     }
 
+    //TODO: send this method to SceneLoader
     private void LoadLevel(string levelName)
     {
+        SceneLoader sceneLoader = SceneLoader.Instance;
+
         Action onFinishAction = () =>
         {
             LevelController levelController = LevelController.Instance;

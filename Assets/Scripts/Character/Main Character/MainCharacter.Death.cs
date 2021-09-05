@@ -4,9 +4,8 @@ using UnityEngine;
 
 public partial class MainCharacter : Character
 {
-    protected override void Death()
+    protected override void Die()
     {
-        ////characterController.detectCollisions = false;
-        //Destroy(gameObject);
+        //TODO: this is here just for testing purposes - with this empty the player character cannot die.
     }
 }

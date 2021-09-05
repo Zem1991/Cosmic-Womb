@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -109,5 +110,15 @@ public class LevelController : AbstractSingleton<LevelController>
         endCameraHolder.gameObject.SetActive(false);
 
         GameManager.Instance.LoadNextLevel();
+    }
+
+    public void ReportDeadEnemy(Character character)
+    {
+        killCount++;
+    }
+
+    public void ReportSecretFound(SecretAreaLevelEvent secretArea)
+    {
+        findingsCount++;
     }
 }

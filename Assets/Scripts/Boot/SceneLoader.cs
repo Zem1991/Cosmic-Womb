@@ -1,30 +1,33 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+public partial class SceneLoader : AbstractSingleton<SceneLoader>
 {
-    //public const string SCENE_MAIN = "Main";
-    //public const string SCENE_GAME = "Game";
-    //public const string SCENE_PLAYER = "Player";
+    public const string SCENE_MAIN = "Main Menu";
+    public const string SCENE_GAME = "Game Management";
+    public const string SCENE_PLAYER = "Player";
     public const string SCENE_LEVEL = "Level";
     //public const string SCENE_SHOP = "Shop";
 
     [Header("Scene references")]
-    //[SerializeField] private Scene scenePlayer;
-    //[SerializeField] private int scenePlayerHandle;
+    [SerializeField] private Scene sceneMain;
+    [SerializeField] private int sceneMainHandle;
+    [SerializeField] private Scene sceneGame;
+    [SerializeField] private int sceneGameHandle;
+    [SerializeField] private Scene scenePlayer;
+    [SerializeField] private int scenePlayerHandle;
     [SerializeField] private Scene sceneLevel;
     [SerializeField] private int sceneLevelHandle;
     //[SerializeField] private Scene sceneShop;
     //[SerializeField] private int sceneShopHandle;
 
-    private void Awake()
+    private void Start()
     {
-        CheckExistingScenes();
-        Debug.Log("SceneLoader finished Awake()");
+        LoadMain(true);
+        Debug.Log("SceneLoader finished Start()");
     }
 
     public string GetLevelSceneName(int levelIndex)
@@ -45,21 +48,27 @@ public class SceneLoader : MonoBehaviour
         IEnumerator loadNextLevel = LoadScene(levelName);
         IEnumerator[] enumerators = { loadNextLevel };
 
-        Action onFinishYieldAll = () =>
+        Action onFinishYield = () =>
         {
-            CheckExistingScenes();
+            //TODO: some singletons could be missing
+            //CheckExistingScenes();
         };
 
-        IEnumerator fullCoroutine = YieldCoroutines(enumerators, onFinishYieldAll);
+        IEnumerator fullCoroutine = YieldCoroutines(enumerators, onFinishYield);
         yield return StartCoroutine(fullCoroutine);
 
-        onFinish();
+        onFinish?.Invoke();
     }
 
     private void CheckExistingScenes()
     {
-        //scenePlayer = SceneManager.GetSceneByName(SCENE_PLAYER);
-        //scenePlayerHandle = scenePlayer.handle;
+        //TODO: check if this is still required
+        sceneMain = SceneManager.GetSceneByName(SCENE_MAIN);
+        sceneMainHandle = scenePlayer.handle;
+        sceneGame = SceneManager.GetSceneByName(SCENE_GAME);
+        sceneGameHandle = scenePlayer.handle;
+        scenePlayer = SceneManager.GetSceneByName(SCENE_PLAYER);
+        scenePlayerHandle = scenePlayer.handle;
         sceneLevel = CheckExistingLevelScene();
         sceneLevelHandle = sceneLevel.handle;
         //sceneShop = SceneManager.GetSceneByName(SCENE_SHOP);
@@ -100,7 +109,7 @@ public class SceneLoader : MonoBehaviour
         }
     }
 
-    private IEnumerator LoadScene(string sceneName)
+    private IEnumerator LoadScene(string sceneName, Action onFinish = null)
     {
         //Begin to load the Scene you specify. Also don't let the Scene activate until you allow it to.
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
@@ -123,11 +132,15 @@ public class SceneLoader : MonoBehaviour
             //Wait for end of frame
             yield return null;
         }
+
+        //Wait one extra frame, so it has time to become active.
+        yield return null;
         Debug.Log("Scene \"" + sceneName + "\" was loaded.");
+        onFinish?.Invoke();
     }
 
     //TODO: move this to a more appropriate class
-    private IEnumerator YieldCoroutines(IEnumerator[] enumerators, Action onFinish)
+    private IEnumerator YieldCoroutines(IEnumerator[] enumerators, Action onFinish = null)
     {
         List<Coroutine> coroutineList = new List<Coroutine>();
         foreach (IEnumerator forEnumerator in enumerators)
@@ -141,6 +154,6 @@ public class SceneLoader : MonoBehaviour
             yield return forCoroutine;
         }
 
-        onFinish();
+        onFinish?.Invoke();
     }
 }

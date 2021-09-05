@@ -7,7 +7,6 @@ public partial class Character : MonoBehaviour
     [Header("Health")]
     [SerializeField] private int currentHealth;
     [SerializeField] private int maximumHealth;
-    [SerializeField] private bool isDead = false;
     
     public int GetCurrentHealth()
     {
@@ -29,11 +28,11 @@ public partial class Character : MonoBehaviour
         return currentHealth >= maximumHealth;
     }
 
-    public void LoseAllHealth()
-    {
-        Debug.LogWarning("LoseAllHealth() was called for character " + characterName);
-        LoseHealth(currentHealth);
-    }
+    //public void LoseAllHealth()
+    //{
+    //    Debug.LogWarning("LoseAllHealth() was called for character " + characterName);
+    //    LoseHealth(currentHealth);
+    //}
 
     public bool LoseHealth(int amount)
     {
@@ -46,7 +45,7 @@ public partial class Character : MonoBehaviour
         isDead = CheckNoHealth();
         if (isDead)
         {
-            Death();
+            Die();
         }
         if (animator)
         {
@@ -65,11 +64,5 @@ public partial class Character : MonoBehaviour
         currentHealth += amount;
         if (currentHealth > maximumHealth) currentHealth = maximumHealth;
         return true;
-    }
-    
-    protected virtual void Death()
-    {
-        //characterController.detectCollisions = false;
-        Destroy(gameObject);
     }
 }
