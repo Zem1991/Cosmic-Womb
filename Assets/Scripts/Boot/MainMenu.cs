@@ -10,6 +10,8 @@ public class MainMenu : MonoBehaviour
         Debug.Log("NewGame()");
         SceneLoader sceneLoader = SceneLoader.Instance;
         sceneLoader.LoadGame(true);
+        sceneLoader.LoadPlayer();
+        sceneLoader.LoadLevel(1);
     }
 
     public void ExitGame()

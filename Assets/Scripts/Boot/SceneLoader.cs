@@ -30,14 +30,6 @@ public partial class SceneLoader : AbstractSingleton<SceneLoader>
         Debug.Log("SceneLoader finished Start()");
     }
 
-    public string GetLevelSceneName(int levelIndex)
-    {
-        string result = SCENE_LEVEL + " ";
-        if (levelIndex < 10) result += "0";
-        result += levelIndex;
-        return result;
-    }
-
     public IEnumerator LoadLevelScene(string levelName, Action onFinish)
     {
         //Unload the current level first, for safety. Regardless if the Shop scene was loaded or not.
@@ -69,27 +61,13 @@ public partial class SceneLoader : AbstractSingleton<SceneLoader>
         sceneGameHandle = scenePlayer.handle;
         scenePlayer = SceneManager.GetSceneByName(SCENE_PLAYER);
         scenePlayerHandle = scenePlayer.handle;
-        sceneLevel = CheckExistingLevelScene();
+        sceneLevel = FindLevelScene();
         sceneLevelHandle = sceneLevel.handle;
         //sceneShop = SceneManager.GetSceneByName(SCENE_SHOP);
         //sceneShopHandle = sceneShop.handle;
     }
 
-    private Scene CheckExistingLevelScene()
-    {
-        int levelCount = GameManager.Instance.GetLevelCount();
-        Scene result = new Scene();
-        for (int levelIndex = 1; levelIndex <= levelCount; levelIndex++)
-        {
-            string levelName = GetLevelSceneName(levelIndex);
-            Scene attempt = SceneManager.GetSceneByName(levelName);
-            if (attempt.handle == 0) continue;
-
-            result = attempt;
-            break;
-        }
-        return result;
-    }
+    
 
     private IEnumerator UnloadScene(Scene scene)
     {
