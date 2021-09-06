@@ -6,6 +6,15 @@ using UnityEngine.SceneManagement;
 
 public partial class SceneLoader : AbstractSingleton<SceneLoader>
 {
+    public IEnumerator UnloadGame()
+    {
+        IEnumerator unloadScene = UnloadScene(sceneGame);
+        yield return StartCoroutine(unloadScene);
+
+        sceneGame = new Scene();
+        sceneGameHandle = sceneGame.handle;
+    }
+
     public IEnumerator LoadGame(bool setActive, Action onFinish = null)
     {
         if (CheckGame(setActive))

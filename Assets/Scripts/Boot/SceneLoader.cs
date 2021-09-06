@@ -26,7 +26,8 @@ public partial class SceneLoader : AbstractSingleton<SceneLoader>
 
     private void Start()
     {
-        IEnumerator loadMainMenu = LoadMain(true);
+        //Doing this inside Awake() generates an error, because the Game Management scene is not yet ready.
+        IEnumerator loadMainMenu = LoadMainMenu(true);
         StartCoroutine(loadMainMenu);
         Debug.Log("SceneLoader finished Start()");
     }
@@ -96,13 +97,14 @@ public partial class SceneLoader : AbstractSingleton<SceneLoader>
         while (!asyncOperation.isDone)
         {
             //Output the current progress
-            Debug.Log("Loading progress: " + (asyncOperation.progress * 100) + "%.");
+            Debug.Log("Scene \"" + sceneName + "\" loading progress: " + (asyncOperation.progress * 100) + "%.");
 
             // Check if the load has finished
             if (asyncOperation.progress >= 0.9f)
             {
                 //Change the Text to show the Scene is ready
-                Debug.Log("Pretend you had to press Spacebar to continue from load.");
+                Debug.Log("Scene \"" + sceneName + "\" loading progress: 100%.");
+                //Debug.Log("Pretend you had to press Spacebar to continue from load.");
                 asyncOperation.allowSceneActivation = true;
             }
 

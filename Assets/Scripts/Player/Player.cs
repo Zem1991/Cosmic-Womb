@@ -129,9 +129,10 @@ public partial class Player : MonoBehaviour
 
     private void CursorPlacement()
     {
+        PlayerCamera playerCamera = PlayerManager.Instance.GetPlayerCamera();
         PlayerCursor playerCursor = PlayerManager.Instance.GetPlayerCursor();
-
-        playerCursor.UpdateCursor(Camera.main);
+        Camera camera = playerCamera.GetCamera();
+        playerCursor.UpdateCursor(camera);
     }
     
     private void AimPlacement()

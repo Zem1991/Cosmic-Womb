@@ -7,10 +7,10 @@ public partial class MainMenu : MonoBehaviour
     [Header("Scene references")]
     [SerializeField] private SceneUI uiHandler;
 
-    //private void Start()
-    //{
-    //    uiHandler.ShowAll();
-    //}
+    private void Start()
+    {
+        uiHandler.ShowAll();
+    }
 
     public void NewGame()
     {

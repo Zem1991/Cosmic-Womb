@@ -1336,6 +1336,7 @@ MonoBehaviour:
   interactionRange: 1
   interactionPos: {x: 0, y: 0, z: 0}
   interactionTarget: {fileID: 0}
+  spawned: 0
   inputReader: {fileID: 626242605}
   playerCharacter: {fileID: 665999623}
 --- !u!4 &626242608

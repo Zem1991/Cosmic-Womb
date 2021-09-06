@@ -14,6 +14,15 @@ public partial class SceneLoader : AbstractSingleton<SceneLoader>
         return result;
     }
 
+    public IEnumerator UnloadLevel()
+    {
+        IEnumerator unloadScene = UnloadScene(sceneLevel);
+        yield return StartCoroutine(unloadScene);
+
+        sceneLevel = new Scene();
+        sceneLevelHandle = sceneLevel.handle;
+    }
+
     public IEnumerator LoadLevel(int levelIndex, Action onFinish = null)
     {
         string levelName = GetLevelSceneName(levelIndex);

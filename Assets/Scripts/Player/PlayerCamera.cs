@@ -49,4 +49,9 @@ public class PlayerCamera : MonoBehaviour
     {
         return cameraHolder.rotation.eulerAngles;
     }
+
+    public Camera GetCamera()
+    {
+        return camera;
+    }
 }

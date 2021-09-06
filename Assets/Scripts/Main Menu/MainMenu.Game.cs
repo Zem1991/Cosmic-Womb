@@ -7,13 +7,17 @@ public partial class MainMenu : MonoBehaviour
 {
     private void Game()
     {
+        uiHandler.HideAll();
+
         CoroutineHelper coroutineHelper = CoroutineHelper.Instance;
         SceneLoader sceneLoader = SceneLoader.Instance;
 
+        IEnumerator unloadMainMenu = sceneLoader.UnloadMainMenu();
         IEnumerator loadGameMgmt = sceneLoader.LoadGame(true);
         IEnumerator loadPlayerMgmt = sceneLoader.LoadPlayer();
 
         List<IEnumerator> enumeratorList = new List<IEnumerator>();
+        enumeratorList.Add(unloadMainMenu);
         enumeratorList.Add(loadGameMgmt);
         enumeratorList.Add(loadPlayerMgmt);
 

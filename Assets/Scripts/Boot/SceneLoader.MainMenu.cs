@@ -6,9 +6,18 @@ using UnityEngine.SceneManagement;
 
 public partial class SceneLoader : AbstractSingleton<SceneLoader>
 {
-    public IEnumerator LoadMain(bool setActive, Action onFinish = null)
+    public IEnumerator UnloadMainMenu()
     {
-        if (CheckMain(setActive))
+        IEnumerator unloadScene = UnloadScene(sceneMainMenu);
+        yield return StartCoroutine(unloadScene);
+
+        sceneMainMenu = new Scene();
+        sceneMainMenuHandle = sceneMainMenu.handle;
+    }
+
+    public IEnumerator LoadMainMenu(bool setActive, Action onFinish = null)
+    {
+        if (CheckMainMenu(setActive))
         {
             //TODO: do something else here?
             onFinish?.Invoke();
@@ -17,7 +26,7 @@ public partial class SceneLoader : AbstractSingleton<SceneLoader>
         {
             Action onLoadMain = () =>
             {
-                CheckMain(setActive);
+                CheckMainMenu(setActive);
                 onFinish?.Invoke();
                 Debug.Log("Scene \"" + SCENE_MAIN_MENU + "\" is ready.");
             };
@@ -27,7 +36,7 @@ public partial class SceneLoader : AbstractSingleton<SceneLoader>
         }
     }
 
-    private bool CheckMain(bool setActive)
+    private bool CheckMainMenu(bool setActive)
     {
         sceneMainMenu = SceneManager.GetSceneByName(SCENE_MAIN_MENU);
         sceneMainMenuHandle = sceneMainMenu.handle;
