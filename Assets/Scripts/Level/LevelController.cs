@@ -28,6 +28,13 @@ public class LevelController : AbstractSingleton<LevelController>
     public override void Awake()
     {
         base.Awake();
+
+        uiHandler.HideAll();
+        endCameraHolder.gameObject.SetActive(false);
+
+        //TODO: descommenting this is required when testing an level directly from its scene.
+        StartLevel();
+
         Debug.Log("LevelController finished Awake()");
     }
 
@@ -105,6 +112,8 @@ public class LevelController : AbstractSingleton<LevelController>
     //This one is called from the LevelUI
     public void ToNextLevel()
     {
+        Debug.Log("ToNextLevel() was called");
+
         uiHandler.HideAll();
         endCameraHolder.gameObject.SetActive(false);
 
