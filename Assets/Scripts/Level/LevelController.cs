@@ -31,12 +31,6 @@ public class LevelController : AbstractSingleton<LevelController>
         Debug.Log("LevelController finished Awake()");
     }
 
-    private void Start()
-    {
-        //TODO: is this supposed to be called here or within GameManager?
-        StartLevel();
-    }
-
     private void Update()
     {
         if (!isCompleted)
@@ -85,16 +79,19 @@ public class LevelController : AbstractSingleton<LevelController>
 
     public void StartLevel()
     {
+        PlayerManager.Instance.SpawnAllPlayers(spawnPosition);
+
         uiHandler.HideAll();
         endCameraHolder.gameObject.SetActive(false);
 
         isCompleted = false;
         playTime = 0F;
+        Debug.Log("Level \"" + levelName + "\" started.");
     }
 
     public void EndLevel()
     {
-        //TODO: Say this game becomes co-op. Do it despawn everyone when one uses the Exit? Do it wait for some, if not all, players?
+        //TODO: Say this game becomes co-op. Does it despawn everyone when only one player uses the Exit? Or does it wait for some, if not all, players?
         PlayerManager.Instance.DespawnAllPlayers();
 
         uiHandler.ShowAll();
@@ -102,14 +99,16 @@ public class LevelController : AbstractSingleton<LevelController>
         endCameraHolder.gameObject.SetActive(true);
 
         isCompleted = true;
+        Debug.Log("Level \"" + levelName + "\" finished.");
     }
 
+    //This one is called from the LevelUI
     public void ToNextLevel()
     {
         uiHandler.HideAll();
         endCameraHolder.gameObject.SetActive(false);
 
-        GameManager.Instance.LoadNextLevel();
+        GameManager.Instance.ToNextLevel();
     }
 
     public void ReportDeadEnemy(Character character)

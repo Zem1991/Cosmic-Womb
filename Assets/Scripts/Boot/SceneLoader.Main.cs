@@ -6,32 +6,35 @@ using UnityEngine.SceneManagement;
 
 public partial class SceneLoader : AbstractSingleton<SceneLoader>
 {
-    public void LoadMain(bool setActive)
+    public IEnumerator LoadMain(bool setActive, Action onFinish = null)
     {
         if (CheckMain(setActive))
         {
-            //TODO: something else?
-            return;
+            //TODO: do something else here?
+            onFinish?.Invoke();
         }
-
-        Action onFinishAction = () =>
+        else
         {
-            CheckMain(setActive);
-            Debug.Log("\"" + SCENE_MAIN + "\" is ready.");
-        };
+            Action onLoadMain = () =>
+            {
+                CheckMain(setActive);
+                onFinish?.Invoke();
+                Debug.Log("Scene \"" + SCENE_MAIN_MENU + "\" is ready.");
+            };
 
-        IEnumerator loadScene = LoadScene(SCENE_MAIN, onFinishAction);
-        StartCoroutine(loadScene);
+            IEnumerator loadScene = LoadScene(SCENE_MAIN_MENU, onLoadMain);
+            yield return StartCoroutine(loadScene);
+        }
     }
 
     private bool CheckMain(bool setActive)
     {
-        sceneMain = SceneManager.GetSceneByName(SCENE_MAIN);
-        sceneMainHandle = sceneMain.handle;
+        sceneMainMenu = SceneManager.GetSceneByName(SCENE_MAIN_MENU);
+        sceneMainMenuHandle = sceneMainMenu.handle;
 
-        if (sceneMainHandle != 0)
+        if (sceneMainMenuHandle != 0)
         {
-            if (setActive) SceneManager.SetActiveScene(sceneMain);
+            if (setActive) SceneManager.SetActiveScene(sceneMainMenu);
             return true;
         }
         return false;

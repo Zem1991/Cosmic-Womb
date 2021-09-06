@@ -14,24 +14,32 @@ public partial class SceneLoader : AbstractSingleton<SceneLoader>
         return result;
     }
 
-    public void LoadLevel(int levelIndex)
+    public IEnumerator LoadLevel(int levelIndex, Action onFinish = null)
     {
         string levelName = GetLevelSceneName(levelIndex);
-
         if (CheckLevel(levelName))
         {
-            //TODO: something else?
-            return;
+            //TODO: do something else here?
+            onFinish?.Invoke();
         }
-
-        Action onFinishAction = () =>
+        else
         {
-            CheckLevel(levelName);
-            Debug.Log("\"" + levelName + "\" is ready.");
-        };
+            Action onLoadLevel = () =>
+            {
+                CheckLevel(levelName);
+                onFinish?.Invoke();
+                Debug.Log("Scene \"" + levelName + "\" is ready.");
 
-        IEnumerator loadScene = LoadScene(levelName, onFinishAction);
-        StartCoroutine(loadScene);
+                //if (startLevel)
+                //{
+                //    LevelController levelController = LevelController.Instance;
+                //    levelController.StartLevel();
+                //}
+            };
+
+            IEnumerator loadScene = LoadScene(levelName, onLoadLevel);
+            yield return StartCoroutine(loadScene);
+        }
     }
 
     private bool CheckLevel(string levelName)
@@ -41,19 +49,19 @@ public partial class SceneLoader : AbstractSingleton<SceneLoader>
         return sceneLevelHandle != 0;
     }
 
-    private Scene FindLevelScene()
-    {
-        int levelCount = GameManager.Instance.GetLevelCount();
-        Scene result = new Scene();
-        for (int levelIndex = 1; levelIndex <= levelCount; levelIndex++)
-        {
-            string levelName = GetLevelSceneName(levelIndex);
-            Scene attempt = SceneManager.GetSceneByName(levelName);
-            if (attempt.handle == 0) continue;
+    //private Scene FindLevelScene()
+    //{
+    //    int levelCount = GameManager.Instance.GetLevelCount();
+    //    Scene result = new Scene();
+    //    for (int levelIndex = 1; levelIndex <= levelCount; levelIndex++)
+    //    {
+    //        string levelName = GetLevelSceneName(levelIndex);
+    //        Scene attempt = SceneManager.GetSceneByName(levelName);
+    //        if (attempt.handle == 0) continue;
 
-            result = attempt;
-            break;
-        }
-        return result;
-    }
+    //        result = attempt;
+    //        break;
+    //    }
+    //    return result;
+    //}
 }

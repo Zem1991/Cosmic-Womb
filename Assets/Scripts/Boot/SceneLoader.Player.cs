@@ -6,22 +6,25 @@ using UnityEngine.SceneManagement;
 
 public partial class SceneLoader : AbstractSingleton<SceneLoader>
 {
-    public void LoadPlayer()
+    public IEnumerator LoadPlayer(Action onFinish = null)
     {
         if (CheckPlayer())
         {
-            //TODO: something else?
-            return;
+            //TODO: do something else here?
+            onFinish?.Invoke();
         }
-
-        Action onFinishAction = () =>
+        else
         {
-            CheckPlayer();
-            Debug.Log("\"" + SCENE_PLAYER + "\" is ready.");
-        };
+            Action onLoadPlayer = () =>
+            {
+                CheckPlayer();
+                onFinish?.Invoke();
+                Debug.Log("Scene \"" + SCENE_PLAYER + "\" is ready.");
+            };
 
-        IEnumerator loadScene = LoadScene(SCENE_PLAYER, onFinishAction);
-        StartCoroutine(loadScene);
+            IEnumerator loadScene = LoadScene(SCENE_PLAYER, onLoadPlayer);
+            yield return StartCoroutine(loadScene);
+        }
     }
 
     private bool CheckPlayer()

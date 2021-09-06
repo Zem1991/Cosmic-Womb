@@ -3,22 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerUI : MonoBehaviour
+public class PlayerUI : SceneUI
 {
     [Header("Panels")]
     [SerializeField] private UICrosshair crosshair;
     [SerializeField] private UIPanel_PlayerData playerData;
     [SerializeField] private UIInteraction interaction;
-
-    public void HideAll()
-    {
-        gameObject.SetActive(false);
-    }
-
-    public void ShowAll()
-    {
-        gameObject.SetActive(true);
-    }
 
     public void UpdateCrosshair(Vector2 screenPosition, Sprite crosshairImg, float chargeAmount)
     {

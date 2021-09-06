@@ -6,15 +6,15 @@ using UnityEngine.SceneManagement;
 
 public partial class SceneLoader : AbstractSingleton<SceneLoader>
 {
-    public const string SCENE_MAIN = "Main Menu";
+    public const string SCENE_MAIN_MENU = "Main Menu";
     public const string SCENE_GAME = "Game Management";
-    public const string SCENE_PLAYER = "Player";
+    public const string SCENE_PLAYER = "Player Management";
     public const string SCENE_LEVEL = "Level";
     //public const string SCENE_SHOP = "Shop";
 
     [Header("Scene references")]
-    [SerializeField] private Scene sceneMain;
-    [SerializeField] private int sceneMainHandle;
+    [SerializeField] private Scene sceneMainMenu;
+    [SerializeField] private int sceneMainMenuHandle;
     [SerializeField] private Scene sceneGame;
     [SerializeField] private int sceneGameHandle;
     [SerializeField] private Scene scenePlayer;
@@ -26,49 +26,48 @@ public partial class SceneLoader : AbstractSingleton<SceneLoader>
 
     private void Start()
     {
-        LoadMain(true);
+        IEnumerator loadMainMenu = LoadMain(true);
+        StartCoroutine(loadMainMenu);
         Debug.Log("SceneLoader finished Start()");
     }
 
-    public IEnumerator LoadLevelScene(string levelName, Action onFinish)
-    {
-        //Unload the current level first, for safety. Regardless if the Shop scene was loaded or not.
-        IEnumerator unloadCurrentLevel = UnloadScene(sceneLevel);
-        yield return unloadCurrentLevel;
+    //public IEnumerator LoadLevelScene(string levelName, Action onFinish)
+    //{
+    //    //Unload the current level first, for safety. Regardless if the Shop scene was loaded or not.
+    //    IEnumerator unloadCurrentLevel = UnloadScene(sceneLevel);
+    //    yield return unloadCurrentLevel;
 
-        //Proceed with the next level, and also with any parallel stuff that is required.
-        IEnumerator loadNextLevel = LoadScene(levelName);
-        IEnumerator[] enumerators = { loadNextLevel };
+    //    //Proceed with the next level, and also with any parallel stuff that is required.
+    //    IEnumerator loadNextLevel = LoadScene(levelName);
+    //    IEnumerator[] enumerators = { loadNextLevel };
 
-        Action onFinishYield = () =>
-        {
-            //TODO: some singletons could be missing
-            //CheckExistingScenes();
-        };
+    //    Action onFinishYield = () =>
+    //    {
+    //        //TODO: some singletons could be missing
+    //        //CheckExistingScenes();
+    //    };
 
-        IEnumerator fullCoroutine = YieldCoroutines(enumerators, onFinishYield);
-        yield return StartCoroutine(fullCoroutine);
+    //    IEnumerator fullCoroutine = YieldCoroutines(enumerators, onFinishYield);
+    //    yield return StartCoroutine(fullCoroutine);
 
-        onFinish?.Invoke();
-    }
+    //    onFinish?.Invoke();
+    //}
 
-    private void CheckExistingScenes()
-    {
-        //TODO: check if this is still required
-        sceneMain = SceneManager.GetSceneByName(SCENE_MAIN);
-        sceneMainHandle = scenePlayer.handle;
-        sceneGame = SceneManager.GetSceneByName(SCENE_GAME);
-        sceneGameHandle = scenePlayer.handle;
-        scenePlayer = SceneManager.GetSceneByName(SCENE_PLAYER);
-        scenePlayerHandle = scenePlayer.handle;
-        sceneLevel = FindLevelScene();
-        sceneLevelHandle = sceneLevel.handle;
-        //sceneShop = SceneManager.GetSceneByName(SCENE_SHOP);
-        //sceneShopHandle = sceneShop.handle;
-    }
-
+    ////TODO: check if this is still required
+    //private void CheckExistingScenes()
+    //{
+    //    sceneMain = SceneManager.GetSceneByName(SCENE_MAIN);
+    //    sceneMainHandle = scenePlayer.handle;
+    //    sceneGame = SceneManager.GetSceneByName(SCENE_GAME);
+    //    sceneGameHandle = scenePlayer.handle;
+    //    scenePlayer = SceneManager.GetSceneByName(SCENE_PLAYER);
+    //    scenePlayerHandle = scenePlayer.handle;
+    //    sceneLevel = FindLevelScene();
+    //    sceneLevelHandle = sceneLevel.handle;
+    //    //sceneShop = SceneManager.GetSceneByName(SCENE_SHOP);
+    //    //sceneShopHandle = sceneShop.handle;
+    //}
     
-
     private IEnumerator UnloadScene(Scene scene)
     {
         int sceneHandle = scene.handle;
@@ -114,24 +113,6 @@ public partial class SceneLoader : AbstractSingleton<SceneLoader>
         //Wait one extra frame, so it has time to become active.
         yield return null;
         Debug.Log("Scene \"" + sceneName + "\" was loaded.");
-        onFinish?.Invoke();
-    }
-
-    //TODO: move this to a more appropriate class
-    private IEnumerator YieldCoroutines(IEnumerator[] enumerators, Action onFinish = null)
-    {
-        List<Coroutine> coroutineList = new List<Coroutine>();
-        foreach (IEnumerator forEnumerator in enumerators)
-        {
-            Coroutine coroutine = StartCoroutine(forEnumerator);
-            coroutineList.Add(coroutine);
-        }
-
-        foreach (Coroutine forCoroutine in coroutineList)
-        {
-            yield return forCoroutine;
-        }
-
         onFinish?.Invoke();
     }
 }
