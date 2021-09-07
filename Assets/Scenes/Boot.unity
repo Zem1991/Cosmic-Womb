@@ -630,8 +630,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1efa233567096eb4997a558ee6789823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  progressRunning: 0
-  progressPercent: 0
+  isLoading: 0
+  loadPercent: 0
+  processName: 
   uiHandler: {fileID: 329887959}
   coroutineHelper: {fileID: 745586822}
   sceneOperations: {fileID: 1033134855}
@@ -664,7 +665,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e8b62d2f943824e8cf98a4adf1befa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelCount: 0
+  currentLevelIndex: 1
+  levelCount: 1
   sceneMainMenu:
     m_Handle: 0
   sceneMainMenuHandle: 0

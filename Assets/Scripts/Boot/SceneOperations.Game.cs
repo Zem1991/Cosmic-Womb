@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public partial class SceneOperations : AbstractSingleton<SceneOperations>
+public partial class SceneOperations : MonoBehaviour
 {
     public bool CheckGame()
     {
@@ -21,7 +21,13 @@ public partial class SceneOperations : AbstractSingleton<SceneOperations>
 
     public AsyncOperation LoadGame()
     {
+        if (CheckGame()) return null;
         return LoadSceneAsync(SCENE_GAME);
+    }
+
+    public void SetGameAsActiveScene()
+    {
+        SetActiveScene(sceneGame);
     }
 
     //public IEnumerator LoadGame()

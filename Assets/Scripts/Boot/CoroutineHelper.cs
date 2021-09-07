@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoroutineHelper : AbstractSingleton<CoroutineHelper>
+public class CoroutineHelper : MonoBehaviour
 {
     public IEnumerator YieldCoroutines(IEnumerator enumerator, Action onFinish = null)
     {

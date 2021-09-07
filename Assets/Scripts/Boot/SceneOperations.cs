@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public partial class SceneOperations : AbstractSingleton<SceneOperations>
+public partial class SceneOperations : MonoBehaviour
 {
     public const string SCENE_MAIN_MENU = "Main Menu";
     public const string SCENE_GAME = "Game Management";
@@ -23,11 +23,6 @@ public partial class SceneOperations : AbstractSingleton<SceneOperations>
     [SerializeField] private int sceneLevelHandle;
     //[SerializeField] private Scene sceneShop;
     //[SerializeField] private int sceneShopHandle;
-
-    public void SetActiveScene(Scene scene)
-    {
-        SceneManager.SetActiveScene(scene);
-    }
     
     private AsyncOperation UnloadSceneAsync(string sceneName)
     {
@@ -42,35 +37,10 @@ public partial class SceneOperations : AbstractSingleton<SceneOperations>
         result.allowSceneActivation = false;
         return result;
     }
-
-    private IEnumerator LoadScene(string sceneName, Action onFinish = null)
+    
+    private void SetActiveScene(Scene scene)
     {
-        //Begin to load the Scene you specify. Also don't let the Scene activate until you allow it to.
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-        asyncOperation.allowSceneActivation = false;
-
-        //While the load is still in progress, output the progress in the debug console.
-        while (!asyncOperation.isDone)
-        {
-            //Output the current progress
-            Debug.Log("Scene \"" + sceneName + "\" loading progress: " + (asyncOperation.progress * 100) + "%.");
-
-            // Check if the load has finished
-            if (asyncOperation.progress >= 0.9f)
-            {
-                //Change the Text to show the Scene is ready
-                Debug.Log("Scene \"" + sceneName + "\" loading progress: 100%.");
-                //Debug.Log("Pretend you had to press Spacebar to continue from load.");
-                asyncOperation.allowSceneActivation = true;
-            }
-
-            //Wait for end of frame
-            yield return null;
-        }
-
-        //Wait one extra frame, so it has time to become active.
-        yield return null;
-        Debug.Log("Scene \"" + sceneName + "\" was loaded.");
-        onFinish?.Invoke();
+        //TODO: this, but scenes actually ready to go
+        //SceneManager.SetActiveScene(scene);
     }
 }

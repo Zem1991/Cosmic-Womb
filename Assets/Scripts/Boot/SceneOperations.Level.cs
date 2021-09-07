@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public partial class SceneOperations : AbstractSingleton<SceneOperations>
+public partial class SceneOperations : MonoBehaviour
 {
     [Header("Level")]
     [SerializeField] private int currentLevelIndex = 1;
@@ -54,9 +54,10 @@ public partial class SceneOperations : AbstractSingleton<SceneOperations>
         string levelName = GetLevelSceneName(levelIndex);
         return UnloadSceneAsync(levelName);
     }
-
+    
     public AsyncOperation LoadLevel(int levelIndex)
     {
+        if (CheckLevel(levelIndex)) return null;
         currentLevelIndex = levelIndex;
         string levelName = GetLevelSceneName(levelIndex);
         return LoadSceneAsync(levelName);

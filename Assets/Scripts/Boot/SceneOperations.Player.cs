@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public partial class SceneOperations : AbstractSingleton<SceneOperations>
+public partial class SceneOperations : MonoBehaviour
 {
     public bool CheckPlayer()
     {
@@ -21,6 +21,7 @@ public partial class SceneOperations : AbstractSingleton<SceneOperations>
 
     public AsyncOperation LoadPlayer()
     {
+        if (CheckPlayer()) return null;
         return LoadSceneAsync(SCENE_PLAYER);
     }
 

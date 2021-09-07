@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public partial class BootManager : AbstractSingleton<BootManager>
 {
@@ -40,7 +41,7 @@ public partial class BootManager : AbstractSingleton<BootManager>
         else
         {
             Debug.Log("First boot is Main Menu");
-            BootMainMenu(null);
+            BootMainMenu();
         }
     }
 }

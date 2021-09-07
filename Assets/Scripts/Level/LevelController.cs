@@ -32,8 +32,8 @@ public class LevelController : AbstractSingleton<LevelController>
         uiHandler.HideAll();
         endCameraHolder.gameObject.SetActive(false);
 
-        //TODO: descommenting this is required when testing an level directly from its scene.
-        StartLevel();
+        ////TODO: descommenting this is required when testing an level directly from its scene.
+        //StartLevel();
 
         Debug.Log("LevelController finished Awake()");
     }

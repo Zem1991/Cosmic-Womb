@@ -23,6 +23,7 @@ public partial class BootManager : AbstractSingleton<BootManager>
         asyncOperationList = new List<AsyncOperation>(aoList);
 
         uiHandler.ShowAll();
+        Debug.Log("Process \"" + processName + "\" started.");
     }
 
     private void UpdateLoading()
@@ -48,7 +49,7 @@ public partial class BootManager : AbstractSingleton<BootManager>
 
             loadPercent = (int)lowestProgress;
             uiHandler.UpdateBootProgress(loadPercent);
-            Debug.Log("\"" + processName + "\" at " + loadPercent + "%");
+            Debug.Log("Process \"" + processName + "\" at " + loadPercent + "%.");
         }
         else
         {
@@ -58,14 +59,16 @@ public partial class BootManager : AbstractSingleton<BootManager>
 
     private void FinishLoading()
     {
+        uiHandler.HideAll();
+        Debug.Log("Process \"" + processName + "\" finished.");
+
         isLoading = false;
         loadPercent = 0;
         processName = null;
         asyncOperationList.Clear();
 
-        uiHandler.HideAll();
-
         onFinish?.Invoke();
-        onFinish = null;
+        //For some reason I can't clear the 'onFinish' variable. If I try, it risks messing with another process's onFinish action.
+        //onFinish = null;
     }
 }

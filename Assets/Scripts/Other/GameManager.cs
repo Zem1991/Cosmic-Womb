@@ -24,10 +24,10 @@ public class GameManager : AbstractSingleton<GameManager>
     //TODO: send this method to SceneLoader
     public void ToLevel(int levelIndex)
     {
-        levelCurrent = levelIndex;
+        //levelCurrent = levelIndex;
 
-        CoroutineHelper coroutineHelper = CoroutineHelper.Instance;
-        SceneOperations sceneLoader = SceneOperations.Instance;
+        //CoroutineHelper coroutineHelper = CoroutineHelper.Instance;
+        //SceneOperations sceneLoader = SceneOperations.Instance;
 
         //IEnumerator loadLevel = sceneLoader.LoadLevel(levelIndex);
 
