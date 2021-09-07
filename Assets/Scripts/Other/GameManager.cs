@@ -27,18 +27,18 @@ public class GameManager : AbstractSingleton<GameManager>
         levelCurrent = levelIndex;
 
         CoroutineHelper coroutineHelper = CoroutineHelper.Instance;
-        SceneLoader sceneLoader = SceneLoader.Instance;
+        SceneOperations sceneLoader = SceneOperations.Instance;
 
-        IEnumerator loadLevel = sceneLoader.LoadLevel(levelIndex);
+        //IEnumerator loadLevel = sceneLoader.LoadLevel(levelIndex);
 
-        Action onFinishAction = () =>
-        {
-            LevelController levelController = LevelController.Instance;
-            levelController.StartLevel();
-        };
+        //Action onFinishAction = () =>
+        //{
+        //    LevelController levelController = LevelController.Instance;
+        //    levelController.StartLevel();
+        //};
         
-        IEnumerator yieldCoroutines = coroutineHelper.YieldCoroutines(loadLevel, onFinishAction);
-        StartCoroutine(yieldCoroutines);
+        //IEnumerator yieldCoroutines = coroutineHelper.YieldCoroutines(loadLevel, onFinishAction);
+        //StartCoroutine(yieldCoroutines);
     }
 
     public void ToNextLevel()

@@ -78,7 +78,7 @@ public partial class Player : MonoBehaviour
     {
         PlayerCamera playerCamera = PlayerManager.Instance.GetPlayerCamera();
 
-        Vector3 cameraRotationEuler = playerCamera.GetRotation();
+        Vector3 cameraRotationEuler = playerCamera.GetCameraHolderRotation();
         Quaternion cameraRotation = Quaternion.Euler(0, cameraRotationEuler.y, 0);
 
         Vector3 characterMov = inputReader.CharacterMovement();
@@ -169,7 +169,7 @@ public partial class Player : MonoBehaviour
         if (!uiHandler) return;
 
         uiHandler.UpdatePlayerData(playerCharacter);
-        uiHandler.UpdateInteraction(interactionTarget, interactionPos);
+        uiHandler.UpdateInteraction(interactionTarget, interactionScreenPos);
     }
 
     private void ShowAim()

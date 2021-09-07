@@ -6,11 +6,14 @@ public partial class Player : MonoBehaviour
 {
     [Header("Interaction")]
     [SerializeField] private float interactionRange = 1F;
-    [SerializeField] private Vector3 interactionPos;
     [SerializeField] private AbstractInteractable interactionTarget;
+    [SerializeField] private Vector3 interactionScenePos;
+    [SerializeField] private Vector2 interactionScreenPos;
     
     private void SearchInteractable()
     {
+        PlayerCamera playerCamera = PlayerManager.Instance.GetPlayerCamera();
+
         Vector3 mcPos = playerCharacter.GetTargetablePosition();
         Vector3 mcDir = playerCharacter.GetForwardDirection();
 
@@ -48,12 +51,14 @@ public partial class Player : MonoBehaviour
         {
             //TODO: Switch the position of these 2 lines - see previous TODOs.
             interactionTarget = interactableList[0];
-            interactionPos = interactionTarget.GetComponent<Collider>().ClosestPoint(mcPos);
+            interactionScenePos = interactionTarget.GetComponent<Collider>().ClosestPoint(mcPos);
+            interactionScreenPos = playerCamera.GetScreenPointFromScenePoint(interactionScenePos);
         }
         else
         {
-            interactionPos = Vector3.zero;
             interactionTarget = null;
+            interactionScenePos = Vector3.zero;
+            interactionScreenPos = Vector3.zero;
         }
     }
     

@@ -23,6 +23,17 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         Debug.Log("PlayerManager finished Awake()");
     }
 
+    private void Update()
+    {
+        if (localPlayer)
+        {
+            Vector3 playerPos = localPlayer.transform.position;
+            playerCamera.transform.position = playerPos;
+            playerCursor.transform.position = playerPos;
+            playerAim.transform.position = playerPos;
+        }
+    }
+
     #region Scene references
     public PlayerUI GetPlayerUI()
     {

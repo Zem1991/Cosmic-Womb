@@ -21,7 +21,7 @@ public partial class Player : MonoBehaviour
 
         if (interactionTarget)
         {
-            Vector3 cubePos = interactionPos;
+            Vector3 cubePos = interactionScenePos;
             Vector3 cubeSize = Vector3.one * 1F;
             Gizmos.color = GizmosColors.interactionTarget;
             Gizmos.DrawWireCube(cubePos, cubeSize);

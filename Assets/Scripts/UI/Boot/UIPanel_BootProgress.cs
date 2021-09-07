@@ -15,8 +15,9 @@ public class UIPanel_BootProgress : MonoBehaviour
 
     public void ManualUpdate(int percent)
     {
+        float percentFactor = percent / 100F;
         string percentString = percent.ToString() + "%";
-        progressFillImage.fillAmount = percent;
+        progressFillImage.fillAmount = percentFactor;
         progressPercentText.text = percentString;
     }
 }

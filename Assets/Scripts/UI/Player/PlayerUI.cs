@@ -20,17 +20,16 @@ public class PlayerUI : SceneUI
         playerData.ManualUpdate(mainCharacter);
     }
     
-    public void UpdateInteraction(AbstractInteractable interactionTarget, Vector3 interactionPos)
+    public void UpdateInteraction(AbstractInteractable interactionTarget, Vector2 interactionScreenPos)
     {
         if (!interactionTarget || interactionTarget.IsConcealed())
         {
             interaction.ManualUpdate();
             return;
         }
-
-        Vector2 screenPosition = Camera.main.WorldToScreenPoint(interactionPos);
+        
         string interactionText = interactionTarget.ReadInteraction();
         //TODO: also pass an bool to render with a different color when the interaction is not possible?
-        interaction.ManualUpdate(screenPosition, interactionText);
+        interaction.ManualUpdate(interactionScreenPos, interactionText);
     }
 }

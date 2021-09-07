@@ -23,7 +23,12 @@ public class PlayerCamera : MonoBehaviour
         Gizmos.color = GizmosColors.cameraPosition;
         Gizmos.DrawWireSphere(cameraHolderPos, 0.25F);
     }
-
+    
+    public Camera GetCamera()
+    {
+        return camera;
+    }
+    
     public void SetPosition(Vector3 charPos, Vector3 aimPos)
     {
         aimPos.y = charPos.y;
@@ -45,13 +50,13 @@ public class PlayerCamera : MonoBehaviour
         cameraHolder.transform.Rotate(Vector3.up, rotation, Space.World);
     }
 
-    public Vector3 GetRotation()
+    public Vector3 GetCameraHolderRotation()
     {
         return cameraHolder.rotation.eulerAngles;
     }
-
-    public Camera GetCamera()
+    
+    public Vector2 GetScreenPointFromScenePoint(Vector3 scenePoint)
     {
-        return camera;
+        return camera.WorldToScreenPoint(scenePoint);
     }
 }
