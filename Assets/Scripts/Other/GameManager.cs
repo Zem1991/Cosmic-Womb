@@ -14,31 +14,11 @@ public class GameManager : AbstractSingleton<GameManager>
         base.Awake();
         Debug.Log("GameManager finished Awake()");
     }
-
-    public void NewGame()
-    {
-        //TODO: more stuff here?
-        ToLevel(1);
-    }
     
-    //TODO: send this method to SceneLoader
     public void ToLevel(int levelIndex)
     {
-        //levelCurrent = levelIndex;
-
-        //CoroutineHelper coroutineHelper = CoroutineHelper.Instance;
-        //SceneOperations sceneLoader = SceneOperations.Instance;
-
-        //IEnumerator loadLevel = sceneLoader.LoadLevel(levelIndex);
-
-        //Action onFinishAction = () =>
-        //{
-        //    LevelController levelController = LevelController.Instance;
-        //    levelController.StartLevel();
-        //};
-        
-        //IEnumerator yieldCoroutines = coroutineHelper.YieldCoroutines(loadLevel, onFinishAction);
-        //StartCoroutine(yieldCoroutines);
+        BootManager bootManager = BootManager.Instance;
+        bootManager.BootLevel(levelIndex);
     }
 
     public void ToNextLevel()

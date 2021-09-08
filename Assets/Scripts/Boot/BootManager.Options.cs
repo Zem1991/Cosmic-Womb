@@ -46,61 +46,51 @@ public partial class BootManager : AbstractSingleton<BootManager>
 
         StartLoading("Preparing the Game", asyncOperations, onFinish);
     }
-
+    
     public void BootLevel(int levelIndex)
     {
+        //If I unload a level while loading another, the 'currentLevelIndex' variable inside SceneOperations gets erased.
+        //And this happens after being written with the next level index value.
+        //This is why those operations run in sequence instead of in parallel.
+        BootLevelPart1(levelIndex);
+    }
+
+    private void BootLevelPart1(int levelIndex)
+    {
         List<AsyncOperation> unloadCurrentLevel = UnloadLevel();
-        List<AsyncOperation> loadNextLevel = LoadLevel(levelIndex);
-
-        string processName = "Loading level " + levelIndex;
-
+        
         List<AsyncOperation> asyncOperations = new List<AsyncOperation>();
         asyncOperations.AddRange(unloadCurrentLevel);
+
+        Action onFinish = () =>
+        {
+            Debug.Log("BootLevelPart1 calling it's onFinish");
+            sceneOperations.CheckLevel();
+
+            BootLevelPart2(levelIndex);
+        };
+
+        StartLoading("Unloading current level", asyncOperations, onFinish);
+    }
+
+    private void BootLevelPart2(int levelIndex)
+    {
+        List<AsyncOperation> loadNextLevel = LoadLevel(levelIndex);
+
+        List<AsyncOperation> asyncOperations = new List<AsyncOperation>();
         asyncOperations.AddRange(loadNextLevel);
 
         Action onFinish = () =>
         {
-            Debug.Log("BootLevel calling it's onFinish");
+            Debug.Log("BootLevelPart2 calling it's onFinish");
             sceneOperations.CheckLevel();
 
             LevelController levelController = LevelController.Instance;
             levelController.StartLevel();
         };
 
+        string nextLevelSceneName = sceneOperations.GetLevelSceneName(levelIndex);
+        string processName = "Loading " + nextLevelSceneName;
         StartLoading(processName, asyncOperations, onFinish);
     }
-
-    //public void BootLevel(int levelIndex)
-    //{
-    //    //If I unload a level while loading another, the 'currentLevelIndex' variable inside SceneOperations gets erased.
-    //    //And this happens after being written with the next level index value.
-    //    //This is why those operations run in sequence instead of in parallel.
-
-    //    List<AsyncOperation> unloadCurrentLevel = UnloadLevel();
-    //    List<AsyncOperation> loadNextLevel = LoadLevel(levelIndex);
-
-    //    List<AsyncOperation> asyncOperations02 = new List<AsyncOperation>();
-    //    asyncOperations02.AddRange(loadNextLevel);
-
-    //    Action onFinish02 = () =>
-    //    {
-    //        Debug.Log("BootLevel calling it's onFinish02");
-    //        LevelController levelController = LevelController.Instance;
-    //        levelController.StartLevel();
-    //    };
-
-    //    List<AsyncOperation> asyncOperations01 = new List<AsyncOperation>();
-    //    asyncOperations01.AddRange(unloadCurrentLevel);
-
-    //    Action onFinish01 = () =>
-    //    {
-    //        Debug.Log("BootLevel calling it's onFinish01");
-    //        string nextLevelSceneName = sceneOperations.GetLevelSceneName(levelIndex);
-    //        string processName02 = "Loading " + nextLevelSceneName;
-    //        StartLoading(processName02, asyncOperations02, onFinish02);
-    //    };
-
-    //    string processName01 = "Unloading current level";
-    //    StartLoading(processName01, asyncOperations01, onFinish01);
-    //}
 }

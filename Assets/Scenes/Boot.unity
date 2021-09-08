@@ -665,7 +665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e8b62d2f943824e8cf98a4adf1befa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevelIndex: 1
+  currentLevelIndex: 0
   levelCount: 1
   sceneMainMenu:
     m_Handle: 0

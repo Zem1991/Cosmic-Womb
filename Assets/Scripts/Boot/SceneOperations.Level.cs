@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public partial class SceneOperations : MonoBehaviour
 {
     [Header("Level")]
-    [SerializeField] private int currentLevelIndex = 1;
+    [SerializeField] private int currentLevelIndex = 0;
     [SerializeField] private int levelCount = 1;
 
     public int GetCurrentLevelIndex()

@@ -117,7 +117,8 @@ public class LevelController : AbstractSingleton<LevelController>
         uiHandler.HideAll();
         endCameraHolder.gameObject.SetActive(false);
 
-        GameManager.Instance.ToNextLevel();
+        GameManager gameManager = GameManager.Instance;
+        gameManager.ToNextLevel();
     }
 
     public void ReportDeadEnemy(Character character)
