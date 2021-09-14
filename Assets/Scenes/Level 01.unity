@@ -2674,7 +2674,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Next Level
+  m_Text: "Proceed\t"
 --- !u!222 &209800582
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4522,7 +4522,7 @@ GameObject:
   - component: {fileID: 516937749}
   - component: {fileID: 516937748}
   m_Layer: 5
-  m_Name: Next Level Button
+  m_Name: Proceed Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6761,7 +6761,7 @@ Transform:
   m_Children:
   - {fileID: 641620479}
   m_Father: {fileID: 1993081057}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &828919029
 GameObject:
@@ -7286,7 +7286,7 @@ Transform:
   - {fileID: 1010956118}
   - {fileID: 1717830706}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &932606108
 Mesh:
@@ -7644,7 +7644,7 @@ Transform:
   m_Children:
   - {fileID: 79215193}
   m_Father: {fileID: 1993081057}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
 --- !u!114 &965784027
 MonoBehaviour:
@@ -12285,7 +12285,7 @@ Transform:
   - {fileID: 1670100012}
   - {fileID: 803211486}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1106522827
 Mesh:
@@ -20017,7 +20017,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1401331749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20104,7 +20104,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 531433947}
-  m_Father: {fileID: 1993081057}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -22904,7 +22904,7 @@ Transform:
   - {fileID: 870628261}
   - {fileID: 71410057}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1614167791
 Mesh:
@@ -23700,7 +23700,7 @@ Transform:
   - {fileID: 828919034}
   - {fileID: 1504200446}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1703333833
 PrefabInstance:
@@ -26586,12 +26586,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1401331753}
   - {fileID: 807469985}
   - {fileID: 965784026}
   - {fileID: 2143625592}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1993081058
 MonoBehaviour:
@@ -29649,7 +29648,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1993081057}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2143625593
 MonoBehaviour:

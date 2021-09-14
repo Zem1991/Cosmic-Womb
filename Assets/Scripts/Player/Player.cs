@@ -10,7 +10,7 @@ public partial class Player : MonoBehaviour
     //[SerializeField] private PlayerCursor playerCursor;
     //[SerializeField] private PlayerAim playerAim;
 
-    [Header("Belongings")]
+    [Header("Player Character")]
     [SerializeField] private MainCharacter playerCharacter;
     //[SerializeField] private PlayerUI uiHandler;
 
@@ -24,6 +24,8 @@ public partial class Player : MonoBehaviour
 
     private void Update()
     {
+        //TODO: pause button
+
         if (playerCharacter)
         {
             //CameraPlacement();

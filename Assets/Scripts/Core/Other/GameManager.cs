@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameManager : AbstractSingleton<GameManager>
 {
     [Header("Game data")]
+    //TODO: these two variables are kinda useless now, because BootManager/SceneOperations also have these.
     [SerializeField] private int levelCurrent;
     [SerializeField] private int levelCount;
 
@@ -26,5 +27,16 @@ public class GameManager : AbstractSingleton<GameManager>
         levelCurrent++;
         if (levelCurrent > levelCount) levelCurrent = 1;
         ToLevel(levelCurrent);
+    }
+
+    public void Restart()
+    {
+        ToLevel(levelCurrent);
+    }
+
+    public void QuitGame()
+    {
+        BootManager bootManager = BootManager.Instance;
+        bootManager.BootMainMenu();
     }
 }

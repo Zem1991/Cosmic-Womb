@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class InputReader : MonoBehaviour
 {
+    [Header("Pause")]
+    [SerializeField] private KeyCode pause = KeyCode.Escape;
+
     [Header("Character")]
     [SerializeField] private string characterAxisX = "Horizontal";
     [SerializeField] private string characterAxisY = "Vertical";
@@ -22,9 +25,14 @@ public class InputReader : MonoBehaviour
     [SerializeField] private KeyCode useWeapon = KeyCode.Mouse0;
     //[SerializeField] private KeyCode useGrenade = KeyCode.Mouse1;
 
-    [Header("Other")]
+    [Header("Interaction")]
     [SerializeField] private KeyCode interact = KeyCode.R;
-
+    
+    public bool Pause()
+    {
+        return Input.GetKeyDown(pause);
+    }
+    
     public Vector3 CharacterMovement()
     {
         Vector3 result = new Vector3();
