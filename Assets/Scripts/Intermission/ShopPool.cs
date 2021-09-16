@@ -28,11 +28,11 @@ public class ShopPool : MonoBehaviour
         return result;
     }
 
-    public List<ShopOffer> SelectOffers(System.Random rng, int qualityLevelLimit, int amountRequired)
+    public List<ShopOffer> SelectOffers(System.Random rng, int qualityLevel, int amountRequired)
     {
         List<ShopOffer> result = new List<ShopOffer>();
 
-        List<PossibleShopOffer> possibleShopOfferList = GetPossibleOffers(qualityLevelLimit);
+        List<PossibleShopOffer> possibleShopOfferList = GetPossibleOffers(qualityLevel);
         if (possibleShopOfferList.Count >= 2)
         {
             int allWeights = 0;

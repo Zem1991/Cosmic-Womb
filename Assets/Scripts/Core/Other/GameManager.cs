@@ -29,9 +29,15 @@ public class GameManager : AbstractSingleton<GameManager>
         ToLevel(levelCurrent);
     }
 
-    public void Restart()
+    public void RestartLevel()
     {
         ToLevel(levelCurrent);
+    }
+
+    public void ToIntermission()
+    {
+        BootManager bootManager = BootManager.Instance;
+        bootManager.BootIntermission();
     }
 
     public void QuitGame()

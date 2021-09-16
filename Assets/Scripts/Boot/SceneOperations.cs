@@ -10,7 +10,7 @@ public partial class SceneOperations : MonoBehaviour
     public const string SCENE_GAME = "Game Management";
     public const string SCENE_PLAYER = "Player Management";
     public const string SCENE_LEVEL = "Level";
-    //public const string SCENE_SHOP = "Shop";
+    public const string SCENE_INTERMISSION = "Intermission";
 
     [Header("Scene references")]
     [SerializeField] private Scene sceneMainMenu;
@@ -21,8 +21,8 @@ public partial class SceneOperations : MonoBehaviour
     [SerializeField] private int scenePlayerHandle;
     [SerializeField] private Scene sceneLevel;
     [SerializeField] private int sceneLevelHandle;
-    //[SerializeField] private Scene sceneShop;
-    //[SerializeField] private int sceneShopHandle;
+    [SerializeField] private Scene sceneIntermission;
+    [SerializeField] private int sceneIntermissionHandle;
     
     private AsyncOperation UnloadSceneAsync(string sceneName)
     {

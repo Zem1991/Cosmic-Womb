@@ -110,15 +110,15 @@ public class LevelController : AbstractSingleton<LevelController>
     }
 
     //This one is called from the LevelUI
-    public void ToNextLevel()
+    public void Proceed()
     {
-        Debug.Log("ToNextLevel() was called");
+        Debug.Log("Proceed() was called");
 
         uiHandler.HideAll();
         endCameraHolder.gameObject.SetActive(false);
 
         GameManager gameManager = GameManager.Instance;
-        gameManager.ToNextLevel();
+        gameManager.ToIntermission();
     }
 
     public void ReportDeadEnemy(Character character)

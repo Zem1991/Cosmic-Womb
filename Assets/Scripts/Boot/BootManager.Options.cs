@@ -57,10 +57,13 @@ public partial class BootManager : AbstractSingleton<BootManager>
 
     private void BootLevelPart1(int levelIndex)
     {
+        //TODO: make this method optional if no level scene or intermission scene exists
         List<AsyncOperation> unloadCurrentLevel = UnloadLevel();
-        
+        List<AsyncOperation> unloadIntermission = UnloadIntermission();
+
         List<AsyncOperation> asyncOperations = new List<AsyncOperation>();
         asyncOperations.AddRange(unloadCurrentLevel);
+        asyncOperations.AddRange(unloadIntermission);
 
         Action onFinish = () =>
         {
@@ -70,7 +73,7 @@ public partial class BootManager : AbstractSingleton<BootManager>
             BootLevelPart2(levelIndex);
         };
 
-        StartLoading("Unloading current level", asyncOperations, onFinish);
+        StartLoading("Preparing for the next level", asyncOperations, onFinish);
     }
 
     private void BootLevelPart2(int levelIndex)
@@ -90,7 +93,28 @@ public partial class BootManager : AbstractSingleton<BootManager>
         };
 
         string nextLevelSceneName = sceneOperations.GetLevelSceneName(levelIndex);
-        string processName = "Loading " + nextLevelSceneName;
+        string processName = "Now entering: " + nextLevelSceneName;
         StartLoading(processName, asyncOperations, onFinish);
+    }
+    
+    public void BootIntermission()
+    {
+        List<AsyncOperation> unloadCurrentLevel = UnloadLevel();
+        List<AsyncOperation> loadIntermission = LoadIntermission();
+
+        List<AsyncOperation> asyncOperations = new List<AsyncOperation>();
+        asyncOperations.AddRange(unloadCurrentLevel);
+        asyncOperations.AddRange(loadIntermission);
+
+        Action onFinish = () =>
+        {
+            Debug.Log("BootIntermission calling it's onFinish");
+            sceneOperations.CheckLevel();
+            sceneOperations.CheckIntermission();
+
+            //TODO: IntermissionManager start call?
+        };
+
+        StartLoading("Intermission...", asyncOperations, onFinish);
     }
 }

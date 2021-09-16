@@ -14,7 +14,7 @@ public partial class PlayerManager : AbstractSingleton<PlayerManager>
         uiHandler.TogglePauseMenu(false);
 
         GameManager gameManager = GameManager.Instance;
-        gameManager.Restart();
+        gameManager.RestartLevel();
     }
 
     public void QuitGame()

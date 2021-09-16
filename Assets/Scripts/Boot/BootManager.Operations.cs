@@ -28,13 +28,13 @@ public partial class BootManager : AbstractSingleton<BootManager>
         AsyncOperation unloadGame = sceneOperations.UnloadGame();
         AsyncOperation unloadPlayer = sceneOperations.UnloadPlayer();
         List<AsyncOperation> unloadLevelList = UnloadLevel();
-        //TODO: unload Shop scene
+        List<AsyncOperation> unloadIntermissionList = UnloadIntermission();
 
         List<AsyncOperation> result = new List<AsyncOperation>();
         if (unloadGame != null) result.Add(unloadGame);
         if (unloadPlayer != null) result.Add(unloadPlayer);
         result.AddRange(unloadLevelList);
-        //TODO: unload Shop scene
+        result.AddRange(unloadIntermissionList);
         return result;
     }
 
@@ -73,19 +73,21 @@ public partial class BootManager : AbstractSingleton<BootManager>
         return result;
     }
 
-    //private List<AsyncOperation> UnloadShop()
-    //{
-    //    //TODO: SceneLoader magic
+    private List<AsyncOperation> UnloadIntermission()
+    {
+        AsyncOperation unloadIntermission = sceneOperations.UnloadIntermission();
 
-    //    List<AsyncOperation> result = new List<AsyncOperation>();
-    //    return result;
-    //}
+        List<AsyncOperation> result = new List<AsyncOperation>();
+        if (unloadIntermission != null) result.Add(unloadIntermission);
+        return result;
+    }
 
-    //private List<AsyncOperation> LoadShop(int levelIndex)
-    //{
-    //    //TODO: SceneLoader magic
+    private List<AsyncOperation> LoadIntermission()
+    {
+        AsyncOperation loadIntermission = sceneOperations.LoadIntermission();
 
-    //    List<AsyncOperation> result = new List<AsyncOperation>();
-    //    return result;
-    //}
+        List<AsyncOperation> result = new List<AsyncOperation>();
+        if (loadIntermission != null) result.Add(loadIntermission);
+        return result;
+    }
 }

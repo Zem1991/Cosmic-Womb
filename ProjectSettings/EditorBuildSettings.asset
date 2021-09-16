@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Player Management.unity
     guid: 07222b99a1efe554f90b437927103728
   - enabled: 1
+    path: Assets/Scenes/Intermission.unity
+    guid: d2697afc05e1abd4ab877de4034023cd
+  - enabled: 1
     path: Assets/Scenes/Level 01.unity
     guid: 68aa343c3f2e8694591cb312cb75d900
   m_configObjects: {}

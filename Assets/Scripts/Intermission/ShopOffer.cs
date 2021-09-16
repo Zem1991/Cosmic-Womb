@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class ShopOffer : MonoBehaviour
 {
+    [Header("Identification")]
+    [SerializeField] private string title;
+    [SerializeField] private string description;
+    [SerializeField] private Sprite sprite;
+
     [Header("Quality")]
     [SerializeField] private int qualityLevel;
 
@@ -12,6 +17,21 @@ public class ShopOffer : MonoBehaviour
     [SerializeField] private int weight = 10;
     [SerializeField] private bool wasOffered;
     [SerializeField] private bool wasChosen;
+
+    #region Identification
+    public string GetTitle()
+    {
+        return title;
+    }
+    public string GetDescription()
+    {
+        return description;
+    }
+    public Sprite GetSprite()
+    {
+        return sprite;
+    }
+    #endregion
 
     #region Quality
     public int GetQualityLevel()
@@ -41,8 +61,6 @@ public class ShopOffer : MonoBehaviour
     {
         wasChosen = value;
     }
-    #endregion
-
     public int CalculateAvailability()
     {
         int result = weight;
@@ -50,4 +68,5 @@ public class ShopOffer : MonoBehaviour
         if (wasChosen) result = 0;
         return result;
     }
+    #endregion
 }
