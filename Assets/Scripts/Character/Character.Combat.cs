@@ -5,7 +5,12 @@ using UnityEngine;
 
 public partial class Character : MonoBehaviour
 {
-    [Header("Combat")]
+    [Header("Combat - Properties")]
+    [SerializeField] private FloatProperty attackDamage;
+    [SerializeField] private FloatProperty attackSpeed;
+    [SerializeField] private FloatProperty attackRange;
+
+    [Header("Combat - Spawn positions")]
     [SerializeField] private Vector3 projectileSpawnOffset;
     [SerializeField] private Vector3 targetablePosition;
     [SerializeField] private Vector3 projectileSpawnPoint;

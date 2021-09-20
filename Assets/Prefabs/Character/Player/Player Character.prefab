@@ -275,17 +275,27 @@ MonoBehaviour:
   aimDisplacement: 0
   aimCurrent: 0
   aimMaximum: 0
+  attackDamage:
+    value: 1
+  attackSpeed:
+    value: 1
+  attackRange:
+    value: 1
   projectileSpawnOffset: {x: 0, y: 1.5, z: 1}
   targetablePosition: {x: 0, y: 0, z: 0}
   projectileSpawnPoint: {x: 0, y: 0, z: 0}
   weapon: {fileID: 5393540603304009328}
+  isDead: 0
+  canRevive: 0
+  deathCount: 0
   attackDelayRemaining: 0
   burstDelayRemaining: 0
   burstShotsRemaining: 0
-  currentHealth: 100
-  maximumHealth: 100
-  isDead: 0
-  moveSpeed: 12
+  health:
+    value: 100
+    maximum: 100
+  movementSpeed:
+    value: 12
   moveDir: {x: 0, y: 0, z: 0}
   rotPos: {x: 0, y: 0, z: 0}
   rotPosPrevious: {x: 0, y: 0, z: 0}
@@ -293,6 +303,30 @@ MonoBehaviour:
   animator: {fileID: 0}
   characterName: Unknown Player
   allegiance: 1
+  bullets:
+    value: 0
+    maximum: 200
+  shells:
+    value: 0
+    maximum: 50
+  rockets:
+    value: 0
+    maximum: 50
+  cells:
+    value: 0
+    maximum: 200
+  ricos:
+    value: 0
+    maximum: 50
+  flames:
+    value: 0
+    maximum: 100
+  teslas:
+    value: 0
+    maximum: 100
+  chains:
+    value: 0
+    maximum: 200
   consumablesHolder: {fileID: 4626529746763681189}
   consumableList:
   - {fileID: 7610134456908983212}

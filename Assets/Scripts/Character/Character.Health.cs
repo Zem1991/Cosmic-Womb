@@ -5,40 +5,33 @@ using UnityEngine;
 public partial class Character : MonoBehaviour
 {
     [Header("Health")]
-    [SerializeField] private int currentHealth;
-    [SerializeField] private int maximumHealth;
-    
+    [SerializeField] private Resource health;
+
     public int GetCurrentHealth()
     {
-        return currentHealth;
+        return health.Maximum;
     }
 
     public int GetMaximumHealth()
     {
-        return maximumHealth;
+        return health.Maximum;
     }
 
     public bool CheckNoHealth()
     {
-        return currentHealth <= 0;
+        return health.CheckEmpty();
     }
     
     public bool CheckFullHealth()
     {
-        return currentHealth >= maximumHealth;
+        return health.CheckFull();
     }
-
-    //public void LoseAllHealth()
-    //{
-    //    Debug.LogWarning("LoseAllHealth() was called for character " + characterName);
-    //    LoseHealth(currentHealth);
-    //}
 
     public bool LoseHealth(int amount)
     {
         if (amount <= 0) return false;
-        currentHealth -= amount;
-        
+        health.Subtract(amount);
+
         //TODO: if already dead, will still use negative health to check for gibbing
         if (isDead) return false;
 
@@ -55,14 +48,21 @@ public partial class Character : MonoBehaviour
         return isDead;
     }
 
-    public bool GainHealth(int amount)
+    public bool GainHealth(int amount, bool isIncrease)
     {
         //TODO: if already dead, can only come back from specific Revival mechanics
         if (isDead) return false;
-        if (amount <= 0) return false;
 
-        currentHealth += amount;
-        if (currentHealth > maximumHealth) currentHealth = maximumHealth;
-        return true;
+        if (isIncrease)
+            return health.Increase(amount);
+        else
+            return health.Add(amount);
+    }
+
+    public bool GainHealthPercent(int percent)
+    {
+        //TODO: if already dead, can only come back from specific Revival mechanics
+        if (isDead) return false;
+        return health.AddPercent(percent);
     }
 }

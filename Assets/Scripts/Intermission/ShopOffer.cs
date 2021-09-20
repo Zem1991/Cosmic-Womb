@@ -7,7 +7,7 @@ public class ShopOffer : MonoBehaviour
 {
     [Header("Identification")]
     [SerializeField] private string title;
-    [SerializeField] private string description;
+    [SerializeField] [TextArea] private string description;
     [SerializeField] private Sprite sprite;
 
     [Header("Quality")]
@@ -17,6 +17,9 @@ public class ShopOffer : MonoBehaviour
     [SerializeField] private int weight = 10;
     [SerializeField] private bool wasOffered;
     [SerializeField] private bool wasChosen;
+
+    //[Header("Effects")]
+    //[SerializeField] private List<AbstractEffect> effectList = new List<AbstractEffect>();
 
     #region Identification
     public string GetTitle()
@@ -67,6 +70,23 @@ public class ShopOffer : MonoBehaviour
         if (wasOffered) result /= 2;
         if (wasChosen) result = 0;
         return result;
+    }
+    #endregion
+
+    #region Effects
+    public List<AbstractEffect> GetEffectList()
+    {
+        AbstractEffect[] abstractEffects = GetComponents<AbstractEffect>();
+        return new List<AbstractEffect>(abstractEffects);
+    }
+    public bool ApplyAll(Character target)
+    {
+        List<AbstractEffect> effectList = GetEffectList();
+        foreach (AbstractEffect forEffect in effectList)
+        {
+            forEffect.Apply(target);
+        }
+        return true;
     }
     #endregion
 }

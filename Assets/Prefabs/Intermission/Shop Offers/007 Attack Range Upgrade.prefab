@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1879033841203653956}
   - component: {fileID: 5924860421214333842}
+  - component: {fileID: 447115504936406442}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: 007 Attack Range Upgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,10 +44,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7ce769f5f8649643ad07ba8069aeaf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: 
-  description: 
+  title: Attack Range Increase
+  description: Increases attack range by 20%.
   sprite: {fileID: 0}
-  qualityLevel: 0
+  qualityLevel: 1
   weight: 10
   wasOffered: 0
   wasChosen: 0
+--- !u!114 &447115504936406442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8131666369447210691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98fb70b5b029add4fa2682a2197dfe19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  propertyType: 2
+  amount: 0.2

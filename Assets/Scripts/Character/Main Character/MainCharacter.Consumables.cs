@@ -4,7 +4,6 @@ using UnityEngine;
 
 public partial class MainCharacter : Character
 {
-
     [Header("Consumables")]
     [SerializeField] private Transform consumablesHolder;
     [SerializeField] private List<Consumable> consumableList = new List<Consumable>();

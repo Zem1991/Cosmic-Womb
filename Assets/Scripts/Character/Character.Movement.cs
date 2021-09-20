@@ -5,12 +5,12 @@ using UnityEngine;
 public partial class Character : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] private float moveSpeed;
+    [SerializeField] private FloatProperty movementSpeed;
     [SerializeField] private Vector3 moveDir;
 
     public float GetMoveSpeed()
     {
-        return moveSpeed;
+        return movementSpeed.Value;
     }
     
     public Vector3 GetMoveDir()
@@ -20,7 +20,7 @@ public partial class Character : MonoBehaviour
 
     private void UpdateMovement()
     {
-        Vector3 speed = moveDir * moveSpeed;
+        Vector3 speed = moveDir * GetMoveSpeed();
         //speed *= Time.deltaTime;
         characterController.SimpleMove(speed);
 

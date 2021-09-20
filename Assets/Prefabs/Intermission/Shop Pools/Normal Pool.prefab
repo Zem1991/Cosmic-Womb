@@ -44,4 +44,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ignoreAvailability: 0
-  shopOfferList: []
+  shopOfferList:
+  - {fileID: 5924860421214333842, guid: e8425125949a21e4f97a2f306cfc560f, type: 3}
+  - {fileID: 5924860421214333842, guid: 0f9c46b95092a424f8f996caf1f6886f, type: 3}
+  - {fileID: 5924860421214333842, guid: 8b5689048c46e6c47b8e97223f4b27ca, type: 3}
+  - {fileID: 5924860421214333842, guid: d4d8d96d6bfdf9f48a73856eb3e21b01, type: 3}
+  - {fileID: 5924860421214333842, guid: f0ecb6c38f25b414c93397aebe65c9cf, type: 3}
+  - {fileID: 5924860421214333842, guid: 38d13f55b1dbe9f488effa26e35a7968, type: 3}

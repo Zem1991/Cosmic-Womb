@@ -862,17 +862,27 @@ MonoBehaviour:
   aimDisplacement: 0
   aimCurrent: 0
   aimMaximum: 0
+  attackDamage:
+    value: 1
+  attackSpeed:
+    value: 1
+  attackRange:
+    value: 1
   projectileSpawnOffset: {x: 0, y: 1.5, z: 1}
   targetablePosition: {x: 0, y: 0, z: 0}
   projectileSpawnPoint: {x: 0, y: 0, z: 0}
   weapon: {fileID: 5166707120222199064}
+  isDead: 0
+  canRevive: 0
+  deathCount: 0
   attackDelayRemaining: 0
   burstDelayRemaining: 0
   burstShotsRemaining: 0
-  currentHealth: 20
-  maximumHealth: 20
-  isDead: 0
-  moveSpeed: 5
+  health:
+    value: 20
+    maximum: 20
+  movementSpeed:
+    value: 5
   moveDir: {x: 0, y: 0, z: 0}
   rotPos: {x: 0, y: 0, z: 0}
   rotPosPrevious: {x: 0, y: 0, z: 0}

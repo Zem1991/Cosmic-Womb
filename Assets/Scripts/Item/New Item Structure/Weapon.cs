@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public class Weapon : AbstractEquipment
 {
     [Header("Identification")]
     [SerializeField] private string weaponName;

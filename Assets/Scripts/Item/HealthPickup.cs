@@ -11,7 +11,7 @@ public class HealthPickup : AbstractPickup
         MainCharacter mainCharacter = other.GetComponent<MainCharacter>();
         if (mainCharacter)
         {
-            bool added = mainCharacter.GainHealth(amount);
+            bool added = mainCharacter.GainHealth(amount, false);
             if (added) Destroy(gameObject);
         }
     }

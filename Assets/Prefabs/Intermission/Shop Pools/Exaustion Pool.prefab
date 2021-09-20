@@ -44,4 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ignoreAvailability: 1
-  shopOfferList: []
+  shopOfferList:
+  - {fileID: 5924860421214333842, guid: e8425125949a21e4f97a2f306cfc560f, type: 3}
+  - {fileID: 5924860421214333842, guid: f8a127d4da7118c47ae2e4f63f172128, type: 3}
+  - {fileID: 5924860421214333842, guid: 9bb00d116d3a8674fb9e0da57fd5de37, type: 3}
