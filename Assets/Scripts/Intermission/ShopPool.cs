@@ -35,23 +35,39 @@ public class ShopPool : MonoBehaviour
         List<PossibleShopOffer> possibleShopOfferList = GetPossibleOffers(qualityLevel);
         if (possibleShopOfferList.Count >= 2)
         {
-            int allWeights = 0;
+            int totalWeight = 0;
             foreach (PossibleShopOffer forPSO in possibleShopOfferList)
             {
-                allWeights += forPSO.Weight;
+                totalWeight += forPSO.Weight;
             }
 
             for (int i = 0; i < amountRequired; i++)
             {
-                double rngValue = allWeights * rng.NextDouble();
-                PossibleShopOffer selectedOffer = possibleShopOfferList.Last(shopOffer => shopOffer.Weight <= rngValue);
-                result.Add(selectedOffer.ShopOffer);
+                ShopOffer shopOffer = SelectOffer(rng, possibleShopOfferList, totalWeight);
+                result.Add(shopOffer);
             }
         }
         else if (possibleShopOfferList.Count == 1)
         {
             PossibleShopOffer selectedOffer = possibleShopOfferList[0];
             result.Add(selectedOffer.ShopOffer);
+        }
+        return result;
+    }
+    
+    private ShopOffer SelectOffer(System.Random rng, List<PossibleShopOffer> possibleShopOfferList, int totalWeight)
+    {
+        int randomNumber = rng.Next(0, totalWeight);
+        ShopOffer result = null;
+        foreach (PossibleShopOffer forPSO in possibleShopOfferList)
+        {
+            int forPSOWeight = forPSO.Weight;
+            if (randomNumber < forPSOWeight)
+            {
+                result = forPSO.ShopOffer;
+                break;
+            }
+            randomNumber -= forPSOWeight;
         }
         return result;
     }

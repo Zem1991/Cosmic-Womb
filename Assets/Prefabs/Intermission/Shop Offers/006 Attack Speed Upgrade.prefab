@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7ce769f5f8649643ad07ba8069aeaf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Attack Speed Increase
+  title: Attack Speed Upgrade
   description: Increases attack speed by 20%.
   sprite: {fileID: 0}
   qualityLevel: 1

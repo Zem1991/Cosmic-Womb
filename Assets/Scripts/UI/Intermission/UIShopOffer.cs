@@ -24,23 +24,27 @@ public class UIShopOffer : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         //TODO: more UI stuff
         this.shopOffer = shopOffer;
+        name = shopOffer.name + " (UI)";
     }
     #endregion
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        Debug.Log("OnPointerEnter " + name);
         IntermissionManager intermissionManager = IntermissionManager.Instance;
         intermissionManager.Highlight(this);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        Debug.Log("OnPointerExit " + name);
         IntermissionManager intermissionManager = IntermissionManager.Instance;
         intermissionManager.Unhighlight(this);
     }
 
     public void Click()
     {
+        Debug.Log("Click " + name);
         IntermissionManager intermissionManager = IntermissionManager.Instance;
         intermissionManager.Select(this);
     }

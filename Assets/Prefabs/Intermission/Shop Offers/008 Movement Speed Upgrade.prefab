@@ -44,12 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7ce769f5f8649643ad07ba8069aeaf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Attack Speed Increase
+  title: Movement Speed Upgrade
   description: Increases movement speed by 20%.
   sprite: {fileID: 0}
   qualityLevel: 0
   weight: 10
-  wasOffered: 0
+  wasOffered: 1
   wasChosen: 0
 --- !u!114 &447115504936406442
 MonoBehaviour:
