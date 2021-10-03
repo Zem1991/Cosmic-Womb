@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class ShopOffer : MonoBehaviour
 {
-    [Header("Identification")]
+    [Header("Reward")]
+    [SerializeField] private Reward reward;
+    //TODO: replace the self identification fields for the Reward identification fields (I mean, copy and paste some values to other prefabs)
     [SerializeField] private string title;
     [SerializeField] [TextArea] private string description;
     [SerializeField] private Sprite sprite;
@@ -18,21 +20,22 @@ public class ShopOffer : MonoBehaviour
     [SerializeField] private bool wasOffered;
     [SerializeField] private bool wasChosen;
 
-    //[Header("Effects")]
-    //[SerializeField] private List<AbstractEffect> effectList = new List<AbstractEffect>();
-
-    #region Identification
+    #region Reward
+    public Reward GetReward()
+    {
+        return reward;
+    }
     public string GetTitle()
     {
-        return title;
+        return reward.GetTitle();
     }
     public string GetDescription()
     {
-        return description;
+        return reward.GetDescription();
     }
     public Sprite GetSprite()
     {
-        return sprite;
+        return reward.GetSprite();
     }
     #endregion
 
@@ -70,23 +73,6 @@ public class ShopOffer : MonoBehaviour
         if (wasOffered) result /= 2;
         if (wasChosen) result = 0;
         return result;
-    }
-    #endregion
-
-    #region Effects
-    public List<AbstractEffect> GetEffectList()
-    {
-        AbstractEffect[] abstractEffects = GetComponents<AbstractEffect>();
-        return new List<AbstractEffect>(abstractEffects);
-    }
-    public bool ApplyAll(Character target)
-    {
-        List<AbstractEffect> effectList = GetEffectList();
-        foreach (AbstractEffect forEffect in effectList)
-        {
-            forEffect.Apply(target);
-        }
-        return true;
     }
     #endregion
 }
