@@ -33,7 +33,7 @@ public class Reward : MonoBehaviour
         AbstractEffect[] abstractEffects = GetComponents<AbstractEffect>();
         return new List<AbstractEffect>(abstractEffects);
     }
-    public bool ApplyAll(Character target)
+    public bool ApplyAll(AbstractCharacter target)
     {
         List<AbstractEffect> effectList = GetEffectList();
         foreach (AbstractEffect forEffect in effectList)

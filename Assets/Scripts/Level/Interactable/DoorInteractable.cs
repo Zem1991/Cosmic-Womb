@@ -21,7 +21,7 @@ public class DoorInteractable : AbstractInteractable
     [Header("Occupants")]
     //TODO: I can change having the doorway trigger by instead using an Physics.CheckBox call.
     [SerializeField] private Collider doorway;  //Useless?
-    [SerializeField] private HashSet<Character> doorwayOccupantList = new HashSet<Character>();
+    [SerializeField] private HashSet<AbstractCharacter> doorwayOccupantList = new HashSet<AbstractCharacter>();
     
     private void Awake()
     {
@@ -37,13 +37,13 @@ public class DoorInteractable : AbstractInteractable
 
     private void OnTriggerEnter(Collider other)
     {
-        Character chara = other.GetComponent<Character>();
+        AbstractCharacter chara = other.GetComponent<AbstractCharacter>();
         if (chara) doorwayOccupantList.Add(chara);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Character chara = other.GetComponent<Character>();
+        AbstractCharacter chara = other.GetComponent<AbstractCharacter>();
         if (chara) doorwayOccupantList.Remove(chara);
     }
 

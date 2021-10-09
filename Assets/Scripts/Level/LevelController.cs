@@ -121,7 +121,7 @@ public class LevelController : AbstractSingleton<LevelController>
         gameManager.ToIntermission();
     }
 
-    public void ReportDeadEnemy(Character character)
+    public void ReportDeadEnemy(AbstractCharacter character)
     {
         killCount++;
     }

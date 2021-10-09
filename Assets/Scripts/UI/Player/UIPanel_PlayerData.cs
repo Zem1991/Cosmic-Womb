@@ -16,7 +16,7 @@ public class UIPanel_PlayerData : MonoBehaviour
     [SerializeField] private Text keyCounterText;
     [SerializeField] private Text medalCounterText;
 
-    public void ManualUpdate(MainCharacter mainCharacter)
+    public void ManualUpdate(PlayerCharacter mainCharacter)
     {
         if (mainCharacter)
         {

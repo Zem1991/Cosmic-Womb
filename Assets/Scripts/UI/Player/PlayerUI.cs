@@ -18,7 +18,7 @@ public class PlayerUI : SceneUI
         crosshair.ManualUpdate(screenPosition, crosshairImg, chargeAmount);
     }
 
-    public void UpdatePlayerData(MainCharacter mainCharacter)
+    public void UpdatePlayerData(PlayerCharacter mainCharacter)
     {
         playerData.ManualUpdate(mainCharacter);
     }

@@ -11,7 +11,7 @@ public partial class Player : MonoBehaviour
     //[SerializeField] private PlayerAim playerAim;
 
     [Header("Player Character")]
-    [SerializeField] private MainCharacter playerCharacter;
+    [SerializeField] private PlayerCharacter playerCharacter;
     //[SerializeField] private PlayerUI uiHandler;
 
     private void Awake()
