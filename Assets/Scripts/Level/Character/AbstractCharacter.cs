@@ -37,8 +37,8 @@ public abstract partial class AbstractCharacter : MonoBehaviour
         UpdateRotation();
 
         UpdateCombat();
-        UpdateAiming();
-        UpdateFiring();
+        UpdateAimBonus();
+        UpdateAttack();
     }
 
     #region Identification

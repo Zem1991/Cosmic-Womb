@@ -7,12 +7,12 @@ public partial class PlayerCharacter : AbstractCharacter
     [Header("Armor")]
     [SerializeField] private Resource armor;
 
-    public int GetCurrentArmor()
+    public int GetArmorCurrent()
     {
-        return armor.Maximum;
+        return armor.Value;
     }
 
-    public int GetMaximumArmor()
+    public int GetArmorMax()
     {
         return armor.Maximum;
     }
@@ -27,27 +27,16 @@ public partial class PlayerCharacter : AbstractCharacter
         return armor.CheckFull();
     }
 
-    public bool LoseArmor(int amount)
+    public bool AddArmor(int amount)
+    {
+        //TODO: if already dead, can only come back from specific Revival mechanics
+        if (isDead) return false;
+        return armor.Add(amount);
+    }
+
+    private bool SubtractArmor(int amount)
     {
         if (amount <= 0) return false;
         return armor.Subtract(amount);
-    }
-
-    public bool GainArmor(int amount, bool isIncrease)
-    {
-        //TODO: if already dead, can only come back from specific Revival mechanics
-        if (isDead) return false;
-
-        if (isIncrease)
-            return armor.Increase(amount);
-        else
-            return armor.Add(amount);
-    }
-
-    public bool GainArmorPercent(int percent)
-    {
-        //TODO: if already dead, can only come back from specific Revival mechanics
-        if (isDead) return false;
-        return armor.AddPercent(percent);
     }
 }

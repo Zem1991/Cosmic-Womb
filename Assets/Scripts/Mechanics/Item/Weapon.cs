@@ -5,154 +5,47 @@ using UnityEngine;
 
 public class Weapon : AbstractEquipment
 {
-    [Header("Identification")]
-    [SerializeField] private string itemName;
-    [SerializeField] private Sprite itemSprite;
-    [SerializeField] private Sprite crosshairSprite;
+    [Header("References")]
+    [SerializeField] private Attack attack;
+    [SerializeField] private Sprite crosshair;
 
     [Header("Ammunition")]
-    [SerializeField] private bool hasInfiniteAmmo;
-    [SerializeField] private int ammunitionCurrent;
-    [SerializeField] private int ammunitionMax;
+    [SerializeField] private AmmoType ammoType;
+    [SerializeField] private int ammoCost = 1;
 
-    [Header("Projectile")]
-    [SerializeField] private Projectile projectile;
-
-    //[Header("Charging")]
-
-    [Header("Aiming")]
-    //[SerializeField] private float aimMin = 10;
-    [SerializeField] private float aimMax = 0;
-    [SerializeField] private float aimRecovery = 0;
-    [SerializeField] private float aimDecreaseOnFire = 0;
-    //[SerializeField] private float aimDamageScale = 1;
-
-    [Header("Firing")]
-    [SerializeField] private float attackDelay = 0.4F;
-    [SerializeField] private int attackShots = 1;
-    [SerializeField] private float attackArc = 0;
-    [SerializeField] private float burstDelay = 0.1F;
-    [SerializeField] private int burstShots = 1;
-    [SerializeField] private float effectiveRange = 15F;
-
-    [Header("Other")]
+    [Header("Settings")]
     [SerializeField] private float shotAudibleRange = 25F;
 
-    #region Identification
-    public string GetWeaponName()
+    #region References
+    public Attack GetAttack()
     {
-        return itemName;
+        return attack;
     }
-
-    public Sprite GetWeaponSprite()
+    public Sprite GetCrosshair()
     {
-        return itemSprite;
-    }
-    public Sprite GetCrosshairSprite()
-    {
-        return crosshairSprite;
+        return crosshair;
     }
     #endregion
 
     #region Ammunition
-    public bool HasInfiniteAmmo()
+    public AmmoType GetAmmoType()
     {
-        return hasInfiniteAmmo;
+        return ammoType;
     }
-    public int GetAmmunitionCurrent()
+    public int GetAmmoCost()
     {
-        return ammunitionCurrent;
+        return ammoCost;
     }
-    public int GetAmmunitionMax()
+    public bool NeedsAmmo()
     {
-        return ammunitionMax;
-    }
-    #endregion
-
-    #region Projectile
-    public Projectile GetProjectile()
-    {
-        return projectile;
+        return ammoCost > 0;
     }
     #endregion
 
-    #region Charging
-    public bool HasChargeBoost()
-    {
-        //TODO: Plasma Rifle - weapon with "button mash for more shots or hold for bigger projectile" mechanic
-        return false;
-    }
-    #endregion
-
-    #region Aiming
-    public bool HasAimBoost()
-    {
-        return aimMax > 0;
-    }
-    //public float GetAimMin()
-    //{
-    //    return aimMin;
-    //}
-    public float GetAimMax()
-    {
-        return aimMax;
-    }
-    public float GetAimRecovery()
-    {
-        return aimRecovery;
-    }
-    public float GetAimDecreaseOnFire()
-    {
-        return aimDecreaseOnFire;
-    }
-    //public float GetAimDamageScale()
-    //{
-    //    return aimDamageScale;
-    //}
-    #endregion
-
-    #region Firing
-    public float GetAttackDelay()
-    {
-        return attackDelay;
-    }
-    public int GetAttackShots()
-    {
-        return attackShots;
-    }
-    public float GetAttackArc()
-    {
-        return attackArc;
-    }
-    public float GetBurstDelay()
-    {
-        return burstDelay;
-    }
-    public int GetBurstShots()
-    {
-        return burstShots;
-    }
-    public float GetEffectiveRange()
-    {
-        return effectiveRange;
-    }
-    #endregion
-
-    #region Other
+    #region Settings
     public float GetShotAudibleRange()
     {
         return shotAudibleRange;
     }
     #endregion
-
-    //private bool IsBurstFire()
-    //{
-    //    return burstShots > 1;
-    //}
-
-    //public float GetAttacksPerSecond()
-    //{
-    //    //attackDelay = 1 / shotsPerSecond;
-    //    return 1 / attackDelay;
-    //}
 }

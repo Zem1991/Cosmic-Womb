@@ -6,7 +6,21 @@ public partial class PlayerCharacter : AbstractCharacter
 {
     [Header("Weapons")]
     [SerializeField] private Transform weaponsHolder;
+    [SerializeField] private Weapon weapon;
     [SerializeField] private List<Weapon> weaponList = new List<Weapon>();
+
+    public Weapon GetWeapon()
+    {
+        return weapon;
+    }
+
+    public bool GiveWeapon(Weapon prefab)
+    {
+        //TODO check for repeated weapons
+        Weapon newWeapon = Instantiate(prefab, weaponsHolder);
+        weaponList.Add(newWeapon);
+        return true;
+    }
 
     public void SelectPreviousWeapon()
     {
@@ -34,24 +48,19 @@ public partial class PlayerCharacter : AbstractCharacter
     {
         if (weaponList.Count <= 0)
         {
-            weapon = null;
+            this.weapon = null;
             return;
         }
+
         if (index < 0) index = weaponList.Count - 1;
         if (index >= weaponList.Count) index = 0;
-        SetWeapon(weaponList[index]);
+        Weapon weapon = weaponList[index];
+        SetWeapon(weapon);
     }
 
     private void SetWeapon(Weapon weapon)
     {
         this.weapon = weapon;
-    }
-
-    public bool GiveWeapon(Weapon prefab)
-    {
-        //TODO check for repeated weapons
-        Weapon newWeapon = Instantiate(prefab, weaponsHolder);
-        weaponList.Add(newWeapon);
-        return true;
+        attack = weapon.GetAttack();
     }
 }

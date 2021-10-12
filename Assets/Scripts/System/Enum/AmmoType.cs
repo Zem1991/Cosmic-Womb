@@ -1,5 +1,6 @@
 public enum AmmoType
 {
+    //NONE,
     BULLET,
     SHELL,
     ROCKET,

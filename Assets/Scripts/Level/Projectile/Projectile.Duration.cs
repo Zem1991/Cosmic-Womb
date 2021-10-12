@@ -21,7 +21,7 @@ public partial class Projectile : MonoBehaviour
 
         //TODO: only use timed durations instead of time and distance?
         distanceCurrent = Vector3.Distance(spawnPosition, transform.position);
-        float maxDistance = weapon ? weapon.GetEffectiveRange() : 0;
+        float maxDistance = attack ? attack.GetRange() : 0;
         if (maxDistance > 0 && distanceCurrent > maxDistance)
         {
             TimerExplosion();

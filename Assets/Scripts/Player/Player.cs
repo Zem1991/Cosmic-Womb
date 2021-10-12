@@ -103,7 +103,7 @@ public partial class Player : MonoBehaviour
         if (previousWeapon && !nextWeapon) playerCharacter.SelectPreviousWeapon();
         if (!previousWeapon && nextWeapon) playerCharacter.SelectNextWeapon();
 
-        if (useWeaponHold) playerCharacter.UseWeaponHold();
+        if (useWeaponHold) playerCharacter.Attack();
         //TODO: mash-or-charge weapon, so I can make an UseWeaponRelease() method
 
         //if (useGrenadePress) mainCharacter.UseGrenadePress();
@@ -147,7 +147,7 @@ public partial class Player : MonoBehaviour
         Ray screenRay = playerCursor.GetScreenRay();
         playerAim.UpdateAim(screenRay, mcPos.y);
 
-        float weaponRange = playerCharacter.GetWeapon().GetEffectiveRange();
+        float weaponRange = playerCharacter.GetAttack().GetRange();
         Vector3 aimStart = playerCharacter.GetProjectileSpawnPoint();
         Vector3 aimEnd = aimStart + (playerCharacter.GetForwardDirection() * weaponRange);
         playerAim.DrawAimLine(aimStart, aimEnd);
@@ -182,11 +182,13 @@ public partial class Player : MonoBehaviour
         if (!uiHandler) return;
 
         Weapon weapon = playerCharacter.GetWeapon();
-        bool hasBoost = weapon.HasChargeBoost() || weapon.HasAimBoost();
+        Attack attack = playerCharacter.GetAttack();
+        //bool hasBoost = attack.HasChargeBoost() || attack.HasAimBoost();
+        bool hasBoost = attack.HasAimBoost();
 
         Vector2 screenPosition = playerCursor.GetScreenPosition();
-        Sprite crosshair = weapon.GetCrosshairSprite();
-        float scale = hasBoost ? playerCharacter.GetWeaponPower() : 0F;
+        Sprite crosshair = weapon.GetCrosshair();
+        float scale = hasBoost ? playerCharacter.GetAttackPower() : 0F;
 
         //TODO: have this method pass mainCharacter and playerCursor as parameters?
         uiHandler.UpdateCrosshair(screenPosition, crosshair, scale);

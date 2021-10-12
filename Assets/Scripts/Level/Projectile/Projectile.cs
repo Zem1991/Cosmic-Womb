@@ -12,18 +12,20 @@ public partial class Projectile : MonoBehaviour
     [Header("Initialization")]
     [SerializeField] private Vector3 spawnPosition;
     [SerializeField] private AbstractCharacter shooter;
-    [SerializeField] private Weapon weapon;
+    [SerializeField] private Attack attack;
 
-    public void Initialize(AbstractCharacter shooter, Weapon weapon)
+    public void Initialize(AbstractCharacter shooter, Attack attack)
     {
         spawnPosition = transform.position;
         this.shooter = shooter;
-        this.weapon = weapon;
+        this.attack = attack;
 
-        if (weapon)
+        if (attack)
         {
-            bool hasBoost = weapon.HasChargeBoost() || weapon.HasAimBoost();
-            float aimScale = hasBoost ? shooter.GetWeaponPower() : 1F;
+            //TODO: charged projectiles
+            //bool hasBoost = attack.HasChargeBoost() || attack.HasAimBoost();
+            bool hasBoost = attack.HasAimBoost();
+            float aimScale = hasBoost ? shooter.GetAttackPower() : 1F;
             if (aimScale < 1)
             {
                 aimScale *= 0.8F;

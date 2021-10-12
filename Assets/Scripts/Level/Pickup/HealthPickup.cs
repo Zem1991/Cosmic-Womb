@@ -8,6 +8,6 @@ public class HealthPickup : AbstractPickup
 
     protected override bool ApplyPickup(PlayerCharacter mainCharacter)
     {
-        return mainCharacter.GainHealth(amount, false);
+        return mainCharacter.AddHealth(amount);
     }
 }

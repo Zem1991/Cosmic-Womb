@@ -14,6 +14,54 @@ public partial class PlayerCharacter : AbstractCharacter
     [SerializeField] private Resource teslas;
     [SerializeField] private Resource chains;
 
+    public int GetAmmoCurrent(AmmoType ammoType)
+    {
+        switch (ammoType)
+        {
+            case AmmoType.BULLET:
+                return bullets.Value;
+            case AmmoType.SHELL:
+                return shells.Value;
+            case AmmoType.ROCKET:
+                return rockets.Value;
+            case AmmoType.CELL:
+                return cells.Value;
+            case AmmoType.RICOS:
+                return ricos.Value;
+            case AmmoType.FLAMES:
+                return flames.Value;
+            case AmmoType.TESLAS:
+                return teslas.Value;
+            case AmmoType.CHAINS:
+                return chains.Value;
+        }
+        return -1;
+    }
+
+    public int GetAmmoMax(AmmoType ammoType)
+    {
+        switch (ammoType)
+        {
+            case AmmoType.BULLET:
+                return bullets.Maximum;
+            case AmmoType.SHELL:
+                return shells.Maximum;
+            case AmmoType.ROCKET:
+                return rockets.Maximum;
+            case AmmoType.CELL:
+                return cells.Maximum;
+            case AmmoType.RICOS:
+                return ricos.Maximum;
+            case AmmoType.FLAMES:
+                return flames.Maximum;
+            case AmmoType.TESLAS:
+                return teslas.Maximum;
+            case AmmoType.CHAINS:
+                return chains.Maximum;
+        }
+        return -1;
+    }
+
     public bool AddAmmo(AmmoType ammoType, int amount)
     {
         switch (ammoType)
@@ -38,7 +86,7 @@ public partial class PlayerCharacter : AbstractCharacter
         return false;
     }
 
-    public bool SubtractAmmo(AmmoType ammoType, int amount)
+    private bool SubtractAmmo(AmmoType ammoType, int amount)
     {
         switch (ammoType)
         {

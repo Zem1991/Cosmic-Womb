@@ -17,4 +17,6 @@ public partial class AbstractCharacter : MonoBehaviour
         //TODO: add animations, and then remove the Destroy() call.
         Destroy(gameObject);
     }
+
+    //TODO: this game's Arch-vile and its resurrection mechanic
 }

@@ -64,7 +64,7 @@ public partial class EnemyAI : MonoBehaviour
         Vector3 targetablePosition = decisionTarget.GetTargetablePosition();
 
         float distance = Vector3.Distance(myPos, targetablePosition);
-        float attackRange = character.GetWeapon().GetEffectiveRange();
+        float attackRange = character.GetAttack().GetRange();
 
         bool withinAttackRange = distance <= attackRange;
         bool withinAttackDistance = distance <= engageDistance;

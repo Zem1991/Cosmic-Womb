@@ -7,7 +7,7 @@ public class Explosion : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private AbstractCharacter shooter;
-    [SerializeField] private Weapon weapon;
+    [SerializeField] private Attack attack;
     [SerializeField] private float radius;
     [SerializeField] private float growth;
     [SerializeField] private float damage;
@@ -16,10 +16,10 @@ public class Explosion : MonoBehaviour
     [SerializeField] private float radiusCurrent;
     [SerializeField] private List<AbstractCharacter> characterHitList = new List<AbstractCharacter>();
 
-    public void Initialize(AbstractCharacter shooter, Weapon weapon, float explosionRadius, float explosionGrowth, float explosionDamage)
+    public void Initialize(AbstractCharacter shooter, Attack attack, float explosionRadius, float explosionGrowth, float explosionDamage)
     {
         this.shooter = shooter;
-        this.weapon = weapon;
+        this.attack = attack;
         radius = explosionRadius;
         growth = explosionGrowth;
         damage = explosionDamage;
@@ -52,6 +52,6 @@ public class Explosion : MonoBehaviour
         float ratio = Mathf.InverseLerp(radius, 0, distance);
 
         int impactDamage = Mathf.RoundToInt(damage * ratio);
-        character.LoseHealth(impactDamage);
+        character.TakeDamage(impactDamage);
     }
 }

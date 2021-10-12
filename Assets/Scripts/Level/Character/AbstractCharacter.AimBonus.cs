@@ -5,18 +5,18 @@ using UnityEngine;
 
 public partial class AbstractCharacter : MonoBehaviour
 {
-    [Header("Aiming")]
+    [Header("Aim Bonus")]
     [SerializeField] private float aimDisplacement;
     [SerializeField] private float aimCurrent;
-    [SerializeField] private float aimMaximum;
+    [SerializeField] private float aimMax;
 
-    private void UpdateAiming()
+    private void UpdateAimBonus()
     {
         aimDisplacement = Vector3.Distance(rotPosPrevious, rotPos);
         aimCurrent -= aimDisplacement;
-        aimMaximum = weapon.GetAimMax();
+        aimMax = attack.GetAimMax();
 
-        float recovery = weapon.GetAimRecovery();
+        float recovery = attack.GetAimRecovery();
         float recoveryPerFrame = recovery * Time.deltaTime;
         aimCurrent += recoveryPerFrame;
 
@@ -27,7 +27,7 @@ public partial class AbstractCharacter : MonoBehaviour
     {
         //float aimMin = 0F;
         //float aimMax = aimMaximum;
-        aimCurrent = Mathf.Clamp(aimCurrent, 0F, aimMaximum);
+        aimCurrent = Mathf.Clamp(aimCurrent, 0F, aimMax);
     }
 
     private void DecreaseAim(float amount)
@@ -36,11 +36,11 @@ public partial class AbstractCharacter : MonoBehaviour
         AimClamp();
     }
 
-    public float GetAimBoost()
+    public float GetAimBonus()
     {
         //float aimMin = weapon.GetAimMin();
         //float aimMax = weapon.GetAimMax();
-        if (aimMaximum <= 0) return 1;
-        return aimCurrent / aimMaximum;
+        if (aimMax <= 0) return 1;
+        return aimCurrent / aimMax;
     }
 }

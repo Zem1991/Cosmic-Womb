@@ -8,6 +8,6 @@ public class ArmorPickup : AbstractPickup
 
     protected override bool ApplyPickup(PlayerCharacter mainCharacter)
     {
-        return mainCharacter.GainArmor(amount, false);
+        return mainCharacter.AddArmor(amount);
     }
 }

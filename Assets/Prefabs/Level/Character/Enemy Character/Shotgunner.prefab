@@ -774,7 +774,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9072241975872126544}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d134820355ac4214190a88e5ff7ca0bd, type: 3}
+  m_Script: {fileID: 11500000, guid: f88cacc392249ea4fbc063e2fe14a186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   aimDisplacement: 0
@@ -786,10 +786,10 @@ MonoBehaviour:
     value: 1
   attackRange:
     value: 1
-  projectileSpawnOffset: {x: 0, y: 1.5, z: 1}
+  projectileSpawnOffset: {x: 0, y: 0, z: 0}
   targetablePosition: {x: 0, y: 0, z: 0}
   projectileSpawnPoint: {x: 0, y: 0, z: 0}
-  weapon: {fileID: 3602513793746721737}
+  weapon: {fileID: 0}
   isDead: 0
   canRevive: 0
   deathCount: 0
@@ -797,14 +797,14 @@ MonoBehaviour:
   burstDelayRemaining: 0
   burstShotsRemaining: 0
   health:
-    value: 20
-    maximum: 20
+    value: 10
+    maximum: 15
   movementSpeed:
-    value: 5.5
+    value: 1
   moveDir: {x: 0, y: 0, z: 0}
   rotPos: {x: 0, y: 0, z: 0}
   rotPosPrevious: {x: 0, y: 0, z: 0}
-  characterController: {fileID: 6418791018580347152}
+  characterController: {fileID: 0}
   animator: {fileID: 0}
   characterName: Unknown Character
   allegiance: 2
@@ -869,7 +869,7 @@ MonoBehaviour:
   previousSearchPos: {x: 0, y: 0, z: 0}
   searchStateTimeCurrent: 0
   searchActionTimeCurrent: 0
-  character: {fileID: 9072241975872126547}
+  character: {fileID: 0}
 --- !u!1001 &1844882461844193936
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -945,15 +945,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1844882461844193936}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3602513793746721737 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2910704036538063193, guid: 01bf67fc0fb486842b59f4e8ab9ee444,
-    type: 3}
-  m_PrefabInstance: {fileID: 1844882461844193936}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e568a1121d1c2a54c9ae4128d03f7fed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

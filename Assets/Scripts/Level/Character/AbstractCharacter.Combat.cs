@@ -5,70 +5,40 @@ using UnityEngine;
 
 public partial class AbstractCharacter : MonoBehaviour
 {
-    [Header("Combat - Properties")]
-    [SerializeField] private FloatProperty attackDamage;
-    [SerializeField] private FloatProperty attackSpeed;
-    [SerializeField] private FloatProperty attackRange;
-
-    [Header("Combat - Spawn positions")]
+    [Header("Combat - Settings")]
     [SerializeField] private Vector3 projectileSpawnOffset;
-    [SerializeField] private Vector3 targetablePosition;
+
+    [Header("Combat - Variables")]
     [SerializeField] private Vector3 projectileSpawnPoint;
-    [SerializeField] protected Weapon weapon;
+    [SerializeField] private Vector3 targetablePosition;
 
     private void UpdateCombat()
     {
         Vector3 myPos = transform.position;
-
         Quaternion forwardRot = Quaternion.LookRotation(transform.forward);
         Vector3 spawnOffset = forwardRot * projectileSpawnOffset;
 
-        targetablePosition = myPos;
-        targetablePosition.y += 1.5F;
-
         projectileSpawnPoint = myPos + spawnOffset;
+
+        targetablePosition = myPos;
+        targetablePosition.y += 1.5F;   //TODO: universal height variable?
     }
+
+    #region Settings
+    public Vector3 GetProjectileSpawnOffset()
+    {
+        return projectileSpawnOffset;
+    }
+    #endregion
 
     #region Variables
-    public Vector3 GetTargetablePosition()
-    {
-        return targetablePosition;
-    }
     public Vector3 GetProjectileSpawnPoint()
     {
         return projectileSpawnPoint;
     }
-    #endregion
-
-    #region Weapon
-    public Weapon GetWeapon()
+    public Vector3 GetTargetablePosition()
     {
-        return weapon;
-    }
-    public virtual bool CanUseWeapon()
-    {
-        //MainCharacter depends on having ammo available. But the base Character doesn't need it.
-        return weapon && attackDelayRemaining <= 0 && burstDelayRemaining <= 0 && burstShotsRemaining <= 0;
-    }
-    public bool UseWeaponHold()
-    {
-        if (!CanUseWeapon()) return false;
-        burstShotsRemaining = weapon.GetBurstShots();
-        FireWeapon();
-        return true;
-    }
-    public float GetWeaponPower()
-    {
-        float charge = 0F;
-        if (weapon.HasChargeBoost())
-        {
-            //TODO: Nothing yet
-        }
-        else if (weapon.HasAimBoost())
-        {
-            charge += GetAimBoost();
-        }
-        return charge;
+        return targetablePosition;
     }
     #endregion
 }

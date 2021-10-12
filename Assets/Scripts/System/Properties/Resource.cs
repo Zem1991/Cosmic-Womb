@@ -9,57 +9,57 @@ public class Resource
     public int Value
     {
         get { return value; }
-        set { this.value = value; }
+        private set { this.value = value; }
     }
 
     [SerializeField] private int maximum = 15;
     public int Maximum
     {
         get { return maximum; }
-        set { maximum = value; }
+        private set { maximum = value; }
     }
 
-    public bool Increase(int amount)
-    {
-        Value += amount;
-        Maximum += amount;
-        return true;
-    }
+    //public bool Increase(int amount)
+    //{
+    //    Value += amount;
+    //    Maximum += amount;
+    //    return true;
+    //}
     
     public bool Add(int amount)
     {
         if (amount <= 0) return false;
         if (CheckFull()) return false;
-        Maximum = Mathf.Clamp(Maximum, Maximum + amount, Maximum);
+        Value = Mathf.Clamp(Value, Value + amount, Value);
         return true;
     }
 
-    public bool AddPercent(int percent)
-    {
-        percent = Mathf.Clamp(percent, 0, 100);
-        float percentFloat = percent / 100F;
-        percentFloat *= maximum;
-        int amount = Mathf.FloorToInt(percentFloat);
-        return Add(amount);
-    }
+    //public bool AddPercent(int percent)
+    //{
+    //    percent = Mathf.Clamp(percent, 0, 100);
+    //    float percentFloat = percent / 100F;
+    //    percentFloat *= maximum;
+    //    int amount = Mathf.FloorToInt(percentFloat);
+    //    return Add(amount);
+    //}
 
     public bool Subtract(int amount, bool mustHaveEnough = false)
     {
         if (amount <= 0) return false;
         if (CheckEmpty()) return false;
-        if (mustHaveEnough && Maximum < amount) return false;
-        Maximum = Mathf.Clamp(Maximum, 0, Maximum - amount);
+        if (mustHaveEnough && Value < amount) return false;
+        Value = Mathf.Clamp(Value, 0, Value - amount);
         return true;
-    }
-
-    public bool CheckEmpty()
-    {
-        return Maximum <= 0;
     }
 
     public bool CheckFull()
     {
-        return Maximum >= Maximum;
+        return Value >= Maximum;
+    }
+
+    public bool CheckEmpty()
+    {
+        return Value <= 0;
     }
 }
 

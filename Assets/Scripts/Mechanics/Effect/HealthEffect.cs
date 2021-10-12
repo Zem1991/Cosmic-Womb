@@ -6,14 +6,11 @@ public class HealthEffect : AbstractEffect
 {
     [Header("Health")]
     [SerializeField] private int amount;
-    [SerializeField] private bool isIncrease;
-    [SerializeField] private bool isPercent;
+    //[SerializeField] private bool isIncrease;
+    //[SerializeField] private bool isPercent;
 
     public override bool Apply(AbstractCharacter target)
     {
-        if (isPercent)
-            return target.GainHealthPercent(amount);
-        else
-            return target.GainHealth(amount, isIncrease);
+        return target.AddHealth(amount);
     }
 }

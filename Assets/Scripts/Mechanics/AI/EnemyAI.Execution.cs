@@ -23,12 +23,12 @@ public partial class EnemyAI : MonoBehaviour
                 break;
             case AIAction.ATTACK:
                 character.RotateTo(decisionPos);
-                character.UseWeaponHold();
+                character.Attack();
                 break;
             case AIAction.MOVE_AND_ATTACK:
                 character.MoveAt(navigationDir);
                 character.RotateTo(decisionPos);
-                character.UseWeaponHold();
+                character.Attack();
                 break;
             case AIAction.INTERACT:
                 interactionTarget.Interact();

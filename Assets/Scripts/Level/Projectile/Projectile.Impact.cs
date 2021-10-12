@@ -13,7 +13,7 @@ public partial class Projectile : MonoBehaviour
     private void Impact(GameObject hitObj)
     {
         AbstractCharacter hitChar = hitObj.GetComponent<AbstractCharacter>();
-        if (hitChar) hitChar.LoseHealth(impactDamage);
+        if (hitChar) hitChar.TakeDamage(impactDamage);
     }
 
     private void PostImpact()

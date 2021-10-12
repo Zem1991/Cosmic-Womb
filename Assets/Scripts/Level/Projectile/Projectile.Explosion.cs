@@ -36,7 +36,7 @@ public partial class Projectile : MonoBehaviour
         Vector3 pos = transform.position;
         Quaternion rot = transform.rotation;
         Explosion newExplosion = Instantiate(explosionPrefab, pos, rot);
-        newExplosion.Initialize(shooter, weapon, explosionRadius, explosionGrowth, explosionDamage);
+        newExplosion.Initialize(shooter, attack, explosionRadius, explosionGrowth, explosionDamage);
         return true;
     }
 }
