@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2930682547968383374}
   - component: {fileID: 2910704036538063193}
+  - component: {fileID: 9172481127788500258}
   m_Layer: 0
-  m_Name: Shotgun
+  m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,20 +44,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e568a1121d1c2a54c9ae4128d03f7fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: Shotgun
-  weaponSprite: {fileID: 21300000, guid: b085a510a279bf24f93356d176397143, type: 3}
-  crosshairSprite: {fileID: 21300000, guid: df2325884a828cd40acd817a55cc7f64, type: 3}
-  hasInfiniteAmmo: 0
-  ammunitionCurrent: 0
-  ammunitionMax: 50
-  projectile: {fileID: 895071195931463232, guid: 39d8b575f00d17144961b56f6a0f6f29,
-    type: 3}
+  equipmentName: Pistol
+  equipmentSprite: {fileID: 21300000, guid: 31957cc4c05803a4d98341db3fb0846a, type: 3}
+  attack: {fileID: 9172481127788500258}
+  crosshair: {fileID: 21300000, guid: 5d5317e0c942899468b29f0e5f471fb7, type: 3}
+  ammoType: 0
+  ammoCost: 1
+  shotAudibleRange: 25
+--- !u!114 &9172481127788500258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8589293463235756308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ca4379bb4237f45b0a3241b9be0444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   aimMax: 0
   aimRecovery: 0
-  aimDecreaseOnFire: 0
-  attackDelay: 0.75
-  attackShots: 12
-  attackArc: 30
-  burstDelay: 0
-  burstShots: 1
-  effectiveRange: 8
+  aimCost: 0
+  damageMin: 3
+  damageMax: 5
+  attackDelay: 0.5
+  projectile: {fileID: 895071195931463232, guid: 94f1336d3bad8ba47adec101e0afa018,
+    type: 3}
+  shots: 0
+  range: 15
+  arc: 0
+  repeatAmount: 0
+  repeatDelay: 0
+  audioRange: 25

@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2930682547968383374}
   - component: {fileID: 2910704036538063193}
+  - component: {fileID: -1798447802517100236}
   m_Layer: 0
-  m_Name: Assault Rifle
+  m_Name: Heavy Assault Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,20 +44,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e568a1121d1c2a54c9ae4128d03f7fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: Assault Rifle
-  weaponSprite: {fileID: 21300000, guid: dcf148ea7c4185243898b0d09eeea4c0, type: 3}
-  crosshairSprite: {fileID: 21300000, guid: d182beaaa0f30434ab0092c9acd6ab7a, type: 3}
-  hasInfiniteAmmo: 1
-  ammunitionCurrent: 0
-  ammunitionMax: 0
-  projectile: {fileID: 895071195931463232, guid: dfecaca2c324ee749b549e2fa083abe0,
-    type: 3}
+  equipmentName: Heavy Assault Rifle
+  equipmentSprite: {fileID: 21300000, guid: dcf148ea7c4185243898b0d09eeea4c0, type: 3}
+  attack: {fileID: -1798447802517100236}
+  crosshair: {fileID: 21300000, guid: d182beaaa0f30434ab0092c9acd6ab7a, type: 3}
+  ammoType: 0
+  ammoCost: 1
+  shotAudibleRange: 40
+--- !u!114 &-1798447802517100236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8589293463235756308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ca4379bb4237f45b0a3241b9be0444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   aimMax: 0
   aimRecovery: 0
-  aimDecreaseOnFire: 0
-  attackDelay: 0.4
-  attackShots: 1
-  attackArc: 0
-  burstDelay: 0.1
-  burstShots: 3
-  effectiveRange: 15
+  aimCost: 0
+  damageMin: 6
+  damageMax: 10
+  attackDelay: 0.3
+  projectile: {fileID: 895071195931463232, guid: dfecaca2c324ee749b549e2fa083abe0,
+    type: 3}
+  shots: 0
+  range: 15
+  arc: 0
+  repeatAmount: 3
+  repeatDelay: 0.1
+  audioRange: 40

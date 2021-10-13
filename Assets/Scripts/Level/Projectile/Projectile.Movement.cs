@@ -6,7 +6,7 @@ using UnityEngine;
 public partial class Projectile : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] private float speed;
+    [SerializeField] private float speed = 15F;
     
     private void ActualMovement()
     {
@@ -15,16 +15,16 @@ public partial class Projectile : MonoBehaviour
         _rigidbody.MovePosition(position);
     }
     
-    private bool CheckDeflection(GameObject collidedObject, Vector3 hitNormal)
-    {
-        AbstractCharacter collidedChara = collidedObject.GetComponent<AbstractCharacter>();
-        if (!collidedChara) return false;
-        float deflectionAngle = 0;// collidedChara.GetDeflectionArc();
-        if (deflectionAngle <= 0) return false;
+    //private bool CheckDeflection(GameObject collidedObject, Vector3 hitNormal)
+    //{
+    //    AbstractCharacter collidedChara = collidedObject.GetComponent<AbstractCharacter>();
+    //    if (!collidedChara) return false;
+    //    float deflectionAngle = 0;// collidedChara.GetDeflectionArc();
+    //    if (deflectionAngle <= 0) return false;
 
-        deflectionAngle /= 2F;
-        Vector3 forward = collidedObject.transform.forward;
-        float hitAngle = Vector3.Angle(forward, hitNormal);
-        return deflectionAngle >= hitAngle;
-    }
+    //    deflectionAngle /= 2F;
+    //    Vector3 forward = collidedObject.transform.forward;
+    //    float hitAngle = Vector3.Angle(forward, hitNormal);
+    //    return deflectionAngle >= hitAngle;
+    //}
 }

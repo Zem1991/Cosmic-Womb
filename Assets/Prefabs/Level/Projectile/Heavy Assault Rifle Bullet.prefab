@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3150716332543053750}
   - component: {fileID: 3842448582705695908}
   m_Layer: 12
-  m_Name: Assault Rifle Bullet
+  m_Name: Heavy Assault Rifle Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,24 +46,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93081a7a1e9127e45a8bd4c3076a3cf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durationMax: 5
-  durationCurrent: 0
-  distanceCurrent: 0
   explosionPrefab: {fileID: 0}
   explosionRadius: 0
   explosionGrowth: 0
   explosionDamage: 0
-  explodeOnImpact: 0
-  explodeOnTimer: 0
-  guidanceSpeed: 0
-  impactDamage: 12
-  destroyAfterImpact: 1
-  speed: 20
-  _collider: {fileID: 3150716332543053750}
-  _rigidbody: {fileID: 3842448582705695908}
+  impactDamage: 0
+  durationMax: 1
+  durationCurrent: 0
+  distanceMax: 15
+  distanceCurrent: 0
+  speed: 0
   spawnPosition: {x: 0, y: 0, z: 0}
   shooter: {fileID: 0}
-  weapon: {fileID: 0}
+  attack: {fileID: 0}
 --- !u!136 &3150716332543053750
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -5,45 +5,37 @@ using UnityEngine;
 [Serializable]
 public class Resource
 {
-    [SerializeField] private int value = 10;
+    [SerializeField] private int value = 50;
     public int Value
     {
         get { return value; }
-        private set { this.value = value; }
+        protected set { this.value = value; }
     }
 
-    [SerializeField] private int maximum = 15;
+    [SerializeField] private int maximum = 100;
     public int Maximum
     {
         get { return maximum; }
-        private set { maximum = value; }
+        //protected set { maximum = value; }
     }
 
-    //public bool Increase(int amount)
-    //{
-    //    Value += amount;
-    //    Maximum += amount;
-    //    return true;
-    //}
-    
-    public bool Add(int amount)
+    [SerializeField] private int trueMaximum = 100;
+    public int TrueMaximum
+    {
+        get { return trueMaximum; }
+        //protected set { trueMaximum = value; }
+    }
+
+    public bool Add(int amount, bool trueMaximum)
     {
         if (amount <= 0) return false;
-        if (CheckFull()) return false;
-        Value = Mathf.Clamp(Value, Value + amount, Value);
+        if (CheckFull(trueMaximum)) return false;
+        int maximum = trueMaximum ? TrueMaximum : Maximum;
+        Value = Mathf.Clamp(Value, Value + amount, maximum);
         return true;
     }
-
-    //public bool AddPercent(int percent)
-    //{
-    //    percent = Mathf.Clamp(percent, 0, 100);
-    //    float percentFloat = percent / 100F;
-    //    percentFloat *= maximum;
-    //    int amount = Mathf.FloorToInt(percentFloat);
-    //    return Add(amount);
-    //}
-
-    public bool Subtract(int amount, bool mustHaveEnough = false)
+    
+    public bool Subtract(int amount, bool mustHaveEnough)
     {
         if (amount <= 0) return false;
         if (CheckEmpty()) return false;
@@ -52,9 +44,10 @@ public class Resource
         return true;
     }
 
-    public bool CheckFull()
+    public bool CheckFull(bool trueMaximum)
     {
-        return Value >= Maximum;
+        if (trueMaximum) return Value >= TrueMaximum;
+        else return Value >= Maximum;
     }
 
     public bool CheckEmpty()
@@ -66,6 +59,9 @@ public class Resource
 [CustomPropertyDrawer(typeof(Resource))]
 public class ResourceDrawer : PropertyDrawer
 {
+    private readonly int valueWidth = 30;
+    private readonly int separatorWidth = 10;
+
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         EditorGUI.BeginProperty(position, label, property);
@@ -73,13 +69,17 @@ public class ResourceDrawer : PropertyDrawer
         int indent = EditorGUI.indentLevel;
         EditorGUI.indentLevel = 0;
 
-        Rect valueRect = new Rect(position.x, position.y, 40, position.height);
-        Rect separatorRect = new Rect(valueRect.x + valueRect.width, position.y, 10, position.height);
-        Rect maximumRect = new Rect(separatorRect.x + separatorRect.width, position.y, 40, position.height);
-        EditorGUI.PropertyField(valueRect, property.FindPropertyRelative("value"), GUIContent.none);
-        GUI.Label(separatorRect, "/");
-        EditorGUI.PropertyField(maximumRect, property.FindPropertyRelative("maximum"), GUIContent.none);
-        
+        Rect value = new Rect(position.x, position.y, valueWidth, position.height);
+        Rect separator1 = new Rect(value.x + value.width, position.y, separatorWidth, position.height);
+        Rect maximum = new Rect(separator1.x + separator1.width, position.y, valueWidth, position.height);
+        Rect separator2 = new Rect(maximum.x + maximum.width, position.y, separatorWidth, position.height);
+        Rect trueMaximum = new Rect(separator2.x + separator2.width, position.y, valueWidth, position.height);
+        EditorGUI.PropertyField(value, property.FindPropertyRelative("value"), GUIContent.none);
+        GUI.Label(separator1, "/");
+        EditorGUI.PropertyField(maximum, property.FindPropertyRelative("maximum"), GUIContent.none);
+        GUI.Label(separator2, "/");
+        EditorGUI.PropertyField(trueMaximum, property.FindPropertyRelative("trueMaximum"), GUIContent.none);
+
         EditorGUI.indentLevel = indent;
         EditorGUI.EndProperty();
     }

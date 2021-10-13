@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Weapon : AbstractEquipment
 {
-    [Header("References")]
+    [Header("Self references")]
     [SerializeField] private Attack attack;
     [SerializeField] private Sprite crosshair;
 
@@ -13,10 +13,7 @@ public class Weapon : AbstractEquipment
     [SerializeField] private AmmoType ammoType;
     [SerializeField] private int ammoCost = 1;
 
-    [Header("Settings")]
-    [SerializeField] private float shotAudibleRange = 25F;
-
-    #region References
+    #region Self references
     public Attack GetAttack()
     {
         return attack;
@@ -39,13 +36,6 @@ public class Weapon : AbstractEquipment
     public bool NeedsAmmo()
     {
         return ammoCost > 0;
-    }
-    #endregion
-
-    #region Settings
-    public float GetShotAudibleRange()
-    {
-        return shotAudibleRange;
     }
     #endregion
 }

@@ -10,24 +10,12 @@ public partial class Projectile : MonoBehaviour
     [SerializeField] private float explosionRadius;
     [SerializeField] private float explosionGrowth;
     [SerializeField] private float explosionDamage;
-    [SerializeField] private bool explodeOnImpact;
-    [SerializeField] private bool explodeOnTimer;
+    //[SerializeField] private bool explodeOnImpact;
+    //[SerializeField] private bool explodeOnTimer;
 
     private bool CanExplode()
     {
         return explosionPrefab;
-    }
-
-    private bool ImpactExplosion()
-    {
-        if (!explodeOnImpact) return false;
-        return Explode();
-    }
-
-    private bool TimerExplosion()
-    {
-        if (!explodeOnTimer) return false;
-        return Explode();
     }
 
     private bool Explode()

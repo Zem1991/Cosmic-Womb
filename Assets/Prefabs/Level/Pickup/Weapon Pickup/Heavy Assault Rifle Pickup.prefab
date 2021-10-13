@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &23389281733255275
+--- !u!1 &4924118811968843076
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6159920385055822259}
-  - component: {fileID: 286104814539266748}
-  - component: {fileID: 2997598972626599403}
+  - component: {fileID: 6976743975568658295}
+  - component: {fileID: 2016610596606229521}
+  - component: {fileID: 5178499863371133899}
   m_Layer: 11
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -18,35 +18,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6159920385055822259
+--- !u!4 &6976743975568658295
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 23389281733255275}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_GameObject: {fileID: 4924118811968843076}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6399938352750342447}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &286104814539266748
+--- !u!33 &2016610596606229521
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 23389281733255275}
+  m_GameObject: {fileID: 4924118811968843076}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &2997598972626599403
+--- !u!23 &5178499863371133899
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 23389281733255275}
+  m_GameObject: {fileID: 4924118811968843076}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d966e1c0a65805840979bca0e9f27090, type: 2}
+  - {fileID: 2100000, guid: 076b2e426f209e0429e87250838455bf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -108,7 +108,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6159920385055822259}
+  - {fileID: 6976743975568658295}
   - {fileID: 6399938352811335094}
   m_Father: {fileID: 6399938352992797065}
   m_RootOrder: 0
@@ -204,10 +204,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6399938352992797065}
   - component: {fileID: 6399938352992797062}
-  - component: {fileID: 774872953257680587}
+  - component: {fileID: -832491562074388498}
   - component: {fileID: 6399938352992797063}
   m_Layer: 11
-  m_Name: Sniper Rifle Pickup
+  m_Name: Heavy Assault Rifle Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -240,10 +240,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7369a334629c1d49a243648edfdbf95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPrefab: {fileID: 2910704036538063193, guid: d967ef77d1d2355418e49b5ffdea0c49,
+  weaponPrefab: {fileID: 2910704036538063193, guid: 3645b8277f60c3e49bd3bc7c5ce49af8,
     type: 3}
-  ammo: 0
---- !u!65 &774872953257680587
+--- !u!65 &-832491562074388498
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

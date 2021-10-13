@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: -1167908058078545618}
   - component: {fileID: 6399938352992797063}
   m_Layer: 11
-  m_Name: Shotgun Pickup
+  m_Name: Combat Shotgun Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,7 +161,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponPrefab: {fileID: 2910704036538063193, guid: 01bf67fc0fb486842b59f4e8ab9ee444,
     type: 3}
-  ammo: 0
 --- !u!65 &-1167908058078545618
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -248,7 +247,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 076b2e426f209e0429e87250838455bf, type: 2}
+  - {fileID: 2100000, guid: 442e49fbbdebfdd4b8c1e00b14441568, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

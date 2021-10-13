@@ -67,21 +67,21 @@ public partial class PlayerCharacter : AbstractCharacter
         switch (ammoType)
         {
             case AmmoType.BULLET:
-                return bullets.Add(amount);
+                return bullets.Add(amount, false);
             case AmmoType.SHELL:
-                return shells.Add(amount);
+                return shells.Add(amount, false);
             case AmmoType.ROCKET:
-                return rockets.Add(amount);
+                return rockets.Add(amount, false);
             case AmmoType.CELL:
-                return cells.Add(amount);
+                return cells.Add(amount, false);
             case AmmoType.RICOS:
-                return ricos.Add(amount);
+                return ricos.Add(amount, false);
             case AmmoType.FLAMES:
-                return flames.Add(amount);
+                return flames.Add(amount, false);
             case AmmoType.TESLAS:
-                return teslas.Add(amount);
+                return teslas.Add(amount, false);
             case AmmoType.CHAINS:
-                return chains.Add(amount);
+                return chains.Add(amount, false);
         }
         return false;
     }

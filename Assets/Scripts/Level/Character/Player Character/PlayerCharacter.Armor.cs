@@ -22,21 +22,21 @@ public partial class PlayerCharacter : AbstractCharacter
         return armor.CheckEmpty();
     }
     
-    public bool CheckFullArmor()
+    public bool CheckFullArmor(bool trueMaximum)
     {
-        return armor.CheckFull();
+        return armor.CheckFull(trueMaximum);
     }
 
-    public bool AddArmor(int amount)
+    public bool AddArmor(int amount, bool trueMaximum)
     {
         //TODO: if already dead, can only come back from specific Revival mechanics
         if (isDead) return false;
-        return armor.Add(amount);
+        return armor.Add(amount, trueMaximum);
     }
 
     private bool SubtractArmor(int amount)
     {
         if (amount <= 0) return false;
-        return armor.Subtract(amount);
+        return armor.Subtract(amount, false);
     }
 }

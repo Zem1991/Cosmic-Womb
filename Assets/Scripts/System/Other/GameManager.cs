@@ -36,8 +36,11 @@ public class GameManager : AbstractSingleton<GameManager>
 
     public void ToIntermission()
     {
-        BootManager bootManager = BootManager.Instance;
-        bootManager.BootIntermission();
+        //TODO: for now I dropped the idea about having the Intermission/Shop stuff.
+        ToNextLevel();
+
+        //BootManager bootManager = BootManager.Instance;
+        //bootManager.BootIntermission();
     }
 
     public void QuitGame()

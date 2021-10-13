@@ -22,21 +22,21 @@ public partial class AbstractCharacter : MonoBehaviour
         return health.CheckEmpty();
     }
     
-    public bool CheckFullHealth()
+    public bool CheckFullHealth(bool trueMaximum)
     {
-        return health.CheckFull();
+        return health.CheckFull(trueMaximum);
     }
 
-    public bool AddHealth(int amount)
+    public bool AddHealth(int amount, bool trueMaximum)
     {
         //TODO: if already dead, can only come back from specific Revival mechanics
         if (isDead) return false;
-        return health.Add(amount);
+        return health.Add(amount, trueMaximum);
     }
 
     private bool SubtractHealth(int amount)
     {
         if (amount <= 0) return false;
-        return health.Subtract(amount);
+        return health.Subtract(amount, false);
     }
 }

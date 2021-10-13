@@ -5,14 +5,37 @@ using UnityEngine;
 
 public partial class Projectile : MonoBehaviour
 {
-    [Header("Self references")]
-    [SerializeField] private Collider _collider;
-    [SerializeField] private Rigidbody _rigidbody;
+    //[Header("Auto references")]
+    private Collider _collider;
+    private Rigidbody _rigidbody;
 
     [Header("Initialization")]
     [SerializeField] private Vector3 spawnPosition;
     [SerializeField] private AbstractCharacter shooter;
     [SerializeField] private Attack attack;
+
+    //private virtual void OnDrawGizmos()
+    //{
+    //    if (HasGuidance())
+    //    {
+    //        Vector3 position = homingTarget.GetTargetablePosition();
+    //        Gizmos.color = GizmoColors.projectileTarget;
+    //        Gizmos.DrawLine(transform.position, position);
+    //    }
+    //}
+
+    private void Awake()
+    {
+        _collider = GetComponent<Collider>();
+        _rigidbody = GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
+        //_collider = GetComponent<Collider>();
+        //_rigidbody = GetComponent<Rigidbody>();
+        Physics.IgnoreCollision(_collider, shooter.GetComponent<Collider>());
+    }
 
     public void Initialize(AbstractCharacter shooter, Attack attack)
     {
@@ -32,31 +55,16 @@ public partial class Projectile : MonoBehaviour
                 aimScale += 0.2F;
             }
             transform.localScale = Vector3.one * aimScale;
+
             impactDamage = Mathf.RoundToInt(impactDamage * aimScale);
+            distanceMax = attack.GetRange();
         }
-    }
-
-    //private virtual void OnDrawGizmos()
-    //{
-    //    if (HasGuidance())
-    //    {
-    //        Vector3 position = homingTarget.GetTargetablePosition();
-    //        Gizmos.color = GizmoColors.projectileTarget;
-    //        Gizmos.DrawLine(transform.position, position);
-    //    }
-    //}
-
-    private void Start()
-    {
-        //_collider = GetComponent<Collider>();
-        //_rigidbody = GetComponent<Rigidbody>();
-        Physics.IgnoreCollision(_collider, shooter.GetComponent<Collider>());
     }
 
     protected virtual void Update()
     {
-        UpdateGuidance();
-        UpdateDurationAndDistance();
+        //UpdateGuidance();
+        UpdateLifespan();
     }
 
     private void FixedUpdate()
@@ -66,8 +74,7 @@ public partial class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        GameObject hitObj = collision.gameObject;
-        Impact(hitObj);
-        PostImpact();
+        Impact(collision.gameObject);
+        Expire();
     }
 }

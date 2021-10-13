@@ -5,27 +5,30 @@ using UnityEngine;
 
 public partial class Projectile : MonoBehaviour
 {
-    [Header("Duration (and Distance)")]
-    [SerializeField] private float durationMax;
+    [Header("Lifespan")]
+    [SerializeField] private float durationMax = 1F;
     [SerializeField] private float durationCurrent;
+    [SerializeField] private float distanceMax = 15F;
     [SerializeField] private float distanceCurrent;
 
-    private void UpdateDurationAndDistance()
+    private void UpdateLifespan()
     {
         durationCurrent += Time.deltaTime;
         if (durationCurrent > durationMax)
         {
-            TimerExplosion();
-            Destroy(gameObject);
+            Expire();
         }
 
-        //TODO: only use timed durations instead of time and distance?
         distanceCurrent = Vector3.Distance(spawnPosition, transform.position);
-        float maxDistance = attack ? attack.GetRange() : 0;
-        if (maxDistance > 0 && distanceCurrent > maxDistance)
+        if (0 < distanceMax && distanceMax < distanceCurrent)
         {
-            TimerExplosion();
-            Destroy(gameObject);
+            Expire();
         }
+    }
+
+    private void Expire()
+    {
+        Explode();
+        Destroy(gameObject);
     }
 }

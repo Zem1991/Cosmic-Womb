@@ -52,6 +52,8 @@ public partial class BootManager : AbstractSingleton<BootManager>
         //If I unload a level while loading another, the 'currentLevelIndex' variable inside SceneOperations gets erased.
         //And this happens after being written with the next level index value.
         //This is why those operations run in sequence instead of in parallel.
+
+        //TODO: This generates 2 loading bars, and I only need one
         BootLevelPart1(levelIndex);
     }
 

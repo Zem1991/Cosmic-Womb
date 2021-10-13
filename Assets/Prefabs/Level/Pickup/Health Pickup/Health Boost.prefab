@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 7161983137744139175}
   - component: {fileID: 7161983137744139172}
   m_Layer: 11
-  m_Name: Small Medikit Pickup
+  m_Name: Health Boost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -208,7 +208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 914c984646abe254bb7805c3727f936f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 35
+  amount: 1
+  trueMaximum: 1
 --- !u!135 &7161983137744139175
 SphereCollider:
   m_ObjectHideFlags: 0
