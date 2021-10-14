@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public partial class AbstractCharacter : MonoBehaviour
+public abstract partial class AbstractCharacter : MonoBehaviour
 {
     [Header("Rotation")]
     [SerializeField] private Vector3 rotPos;

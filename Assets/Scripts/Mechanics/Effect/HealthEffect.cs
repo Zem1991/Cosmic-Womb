@@ -12,6 +12,6 @@ public class HealthEffect : AbstractEffect
 
     public override bool Apply(AbstractCharacter target)
     {
-        return target.AddHealth(amount, trueMaximum);
+        return target.AddHealth(amount);
     }
 }

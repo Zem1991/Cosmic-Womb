@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public partial class AbstractCharacter : MonoBehaviour
+public abstract partial class AbstractCharacter : MonoBehaviour
 {
     [Header("Health")]
-    [SerializeField] private Resource health;
+    [SerializeField] protected Resource health;
 
     public int GetHealthCurrent()
     {
@@ -22,16 +22,16 @@ public partial class AbstractCharacter : MonoBehaviour
         return health.CheckEmpty();
     }
     
-    public bool CheckFullHealth(bool trueMaximum)
+    public bool CheckFullHealth()
     {
-        return health.CheckFull(trueMaximum);
+        return health.CheckFull();
     }
 
-    public bool AddHealth(int amount, bool trueMaximum)
+    public bool AddHealth(int amount)
     {
         //TODO: if already dead, can only come back from specific Revival mechanics
         if (isDead) return false;
-        return health.Add(amount, trueMaximum);
+        return health.Add(amount);
     }
 
     private bool SubtractHealth(int amount)

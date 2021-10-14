@@ -9,6 +9,7 @@ public class HealthPickup : AbstractPickup
 
     protected override bool ApplyPickup(PlayerCharacter mainCharacter)
     {
-        return mainCharacter.AddHealth(amount, trueMaximum);
+        if (trueMaximum) return mainCharacter.AddHealthTrueMax(amount);
+        else return mainCharacter.AddHealth(amount);
     }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public partial class AbstractCharacter : MonoBehaviour
+public abstract partial class AbstractCharacter : MonoBehaviour
 {
     [Header("Combat - Settings")]
     [SerializeField] private Vector3 projectileSpawnOffset;

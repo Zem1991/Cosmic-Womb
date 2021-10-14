@@ -9,6 +9,7 @@ public class ArmorPickup : AbstractPickup
 
     protected override bool ApplyPickup(PlayerCharacter mainCharacter)
     {
-        return mainCharacter.AddArmor(amount, trueMaximum);
+        if (trueMaximum) return mainCharacter.AddArmorTrueMax(amount);
+        else return mainCharacter.AddArmor(amount);
     }
 }
