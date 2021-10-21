@@ -26,7 +26,7 @@ public class ResourceDoubleMax : Resource
     }
 }
 
-[CustomPropertyDrawer(typeof(Resource))]
+[CustomPropertyDrawer(typeof(ResourceDoubleMax))]
 public class ResourceDoubleMaxDrawer : PropertyDrawer
 {
     private readonly int valueWidth = 30;
