@@ -242,16 +242,16 @@ MonoBehaviour:
   aimMax: 0
   aimRecovery: 0
   aimCost: 0
-  damageMin: 6
-  damageMax: 10
-  attackDelay: 0.3
-  projectile: {fileID: 895071195931463232, guid: dfecaca2c324ee749b549e2fa083abe0,
+  damageMin: 2
+  damageMax: 6
+  attackDelay: 0.7
+  projectile: {fileID: 895071195931463232, guid: 39d8b575f00d17144961b56f6a0f6f29,
     type: 3}
-  shots: 0
-  range: 15
+  shots: 12
+  range: 8
   arc: 0
-  repeatAmount: 3
-  repeatDelay: 0.1
+  repeatAmount: 0
+  repeatDelay: 0
   audioRange: 40
 --- !u!1 &8730394259674988758
 GameObject:
@@ -428,7 +428,7 @@ GameObject:
   - component: {fileID: 6418791018580347152}
   - component: {fileID: 9072241975872126546}
   m_Layer: 10
-  m_Name: Assault Infantry
+  m_Name: Shotgunner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -476,8 +476,8 @@ MonoBehaviour:
   isDead: 0
   deathCount: 0
   health:
-    value: 15
-    maximum: 15
+    value: 22
+    maximum: 22
   movementSpeed:
     value: 5
   moveDir: {x: 0, y: 0, z: 0}
@@ -485,9 +485,9 @@ MonoBehaviour:
   rotPosPrevious: {x: 0, y: 0, z: 0}
   characterController: {fileID: 6418791018580347152}
   animator: {fileID: 0}
-  characterName: Assault Infantry
+  characterName: Shotgunner
   allegiance: 2
-  droppedItem: {fileID: 6399938352992797062, guid: bd7891926a23be147ab1301e16151e41,
+  droppedItem: {fileID: 6399938352992797062, guid: ff402c914641f9e42ab33341d0e519c6,
     type: 3}
 --- !u!143 &6418791018580347152
 CharacterController:

@@ -5,18 +5,17 @@ using UnityEngine;
 public abstract partial class AbstractCharacter : MonoBehaviour
 {
     [Header("Death")]
+    [SerializeField] protected bool canRevive;
     [SerializeField] protected bool isDead;
-    [SerializeField] private bool canRevive;
-    [SerializeField] private int deathCount;
+    [SerializeField] protected int deathCount;
 
     protected virtual void Die()
     {
-        LevelController.Instance.ReportDeadEnemy(this);
+        isDead = true;
         deathCount++;
 
-        //TODO: add animations, and then remove the Destroy() call.
+        //TODO: add animations and body, and then remove the Destroy() call.
+        animator.SetBool("Is Dead", true);
         Destroy(gameObject);
     }
-
-    //TODO: this game's Arch-vile and its resurrection mechanic
 }

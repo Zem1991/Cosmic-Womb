@@ -10,13 +10,11 @@ public abstract partial class AbstractCharacter : MonoBehaviour
     public virtual bool TakeDamage(int amount)
     {
         SubtractHealth(amount);
-        isDead = CheckNoHealth();
+        bool noHealth = CheckNoHealth();
 
         //TODO: GIBBITUDE
-        ////TODO: if already dead, will still use negative health to check for gibbing
-        //if (isDead) return false;
 
-        if (isDead)
+        if (noHealth)
         {
             Die();
         }
