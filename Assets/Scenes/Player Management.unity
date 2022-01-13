@@ -2361,9 +2361,6 @@ MonoBehaviour:
   hpBarFillImage: {fileID: 2095659727}
   weaponImage: {fileID: 719227146}
   weaponAmmoText: {fileID: 1332142134}
-  grenadeCounterText: {fileID: 2064189058}
-  keyCounterText: {fileID: 1369792936}
-  medalCounterText: {fileID: 431535169}
 --- !u!1 &1091891905
 GameObject:
   m_ObjectHideFlags: 0

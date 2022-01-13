@@ -679,6 +679,9 @@ MonoBehaviour:
   sceneLevel:
     m_Handle: 0
   sceneLevelHandle: 0
+  sceneIntermission:
+    m_Handle: 0
+  sceneIntermissionHandle: 0
 --- !u!4 &1033134856
 Transform:
   m_ObjectHideFlags: 0
